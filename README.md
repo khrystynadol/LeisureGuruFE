@@ -23,11 +23,15 @@ This is the front end implementation for the LeisureGuru platform.
      in Terminal. This should print the version number so you’ll see something like this 8.19.1
 
 # Building and running
-1. Go to the folder react_home in Terminal
+1. Go to the root project folder in Terminal
+2. To install neccesary dependencies
+```
+npm install
+```
 2. To run type
-``
+```
 npm start
-``
+```
 You'll see something like this :
 You can now view react_home in the browser.
 
@@ -42,6 +46,8 @@ Login
     - If you alredy have an account, press "Login" and type username and password
 In both cases, you'll end up on the main page of the web site
 
+
+# Standart instructions
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
