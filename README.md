@@ -1,4 +1,46 @@
-# Getting Started with Create React App
+# Overview
+
+This is the front end implementation for the LeisureGuru platform.
+
+# Prepare development environment
+1. Install Node.js according to [installation instructions](https://nodejs.org/en/download/). This code was built and tested using Node.js 18.9.0 version.
+
+2. Test Node.js installation. 
+    - To see if Node is installed, type 
+    ```
+    node -v
+    ```
+     in Terminal. This should print the version number so you’ll see something like this v18.9.0.
+    - To confirm that npm is installed, type 
+    ```
+    npm -v
+    ```
+     in Terminal. This should print the version number so you’ll see something like this 8.19.1
+    - To see if npx is installed, type 
+    ```
+    npx -v
+    ```
+     in Terminal. This should print the version number so you’ll see something like this 8.19.1
+
+# Building and running
+1. Go to the folder react_home in Terminal
+2. To run type
+``
+npm start
+``
+You'll see something like this :
+You can now view react_home in the browser.
+
+  http://localhost:3000
+
+  Open the link in your browser
+# Navigation through the web page
+There are 2 buttons on the first page :
+Registration
+Login
+    - If you're new to the site, press "Registration" and fill all the required fields, press "Register"
+    - If you alredy have an account, press "Login" and type username and password
+In both cases, you'll end up on the main page of the web site
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
