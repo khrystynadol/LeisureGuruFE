@@ -2,24 +2,26 @@ import React, { useEffect, useState } from "react";
 
 
 function Login(){
-    const[email, setEmail] = useState("")
-    const[password, setPassword] = useState("")
-    const[dirtyEmail, setDirtyEmail] = useState(false)
-    const[dirtyPassword, setDirtyPassword] = useState(false)
-    const[errorEmail, setErrorEmail] = useState('Email field can`t be empty')
-    const[errorPassword, setErrorPassword] = useState('Password field can`t be empty')
-    const[formValid, setFormValid] = useState(false)
+    const[email, setEmail] = useState("") // ініціалізація змінної email
+    const[dirtyEmail, setDirtyEmail] = useState(false) //перевірка змінної на спробу змінити(якщо натиснути на форму для вводу і прибрати курсор, залишивши поле пустим, то буде помилка)
+    const[errorEmail, setErrorEmail] = useState('Email field can`t be empty')//ініціалізація помилки для змінної email
+
+    const[password, setPassword] = useState("")// ініціалізація змінної password
+    const[dirtyPassword, setDirtyPassword] = useState(false)//перевірка змінної на спробу змінити(якщо натиснути на форму для вводу і прибрати курсор, залишивши поле пустим, то буде помилка)
+    const[errorPassword, setErrorPassword] = useState('Password field can`t be empty')//ініціалізація помилки для змінної password
+
+    const[formValid, setFormValid] = useState(false)//ініціалізація пеевірки форми на валідність
   
-  
+  //перевірка всіх елементів на правильність заповнення
     useEffect(() =>{
-      if(errorEmail || errorPassword){
+      if(errorEmail || errorPassword){//якщо хоч один з елементів форми заповнений неправильно то форма вважається не валідною
         setFormValid(false)
       }else{
         setFormValid(true)
       }
     }, [errorEmail, errorPassword])
   
-  
+    //функція перевірки для форми email для відповідності стандарту email
     const emailHandler = (e) => {
         setEmail(e.target.value)
         const re =
@@ -31,7 +33,7 @@ function Login(){
       }
       
     }
-  
+    //перевірка для форми password на довжину
     const passwordHandler = (e) => {
       setPassword(e.target.value)
       if(e.target.value < 3 || e.target.value > 10){
