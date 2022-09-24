@@ -50,7 +50,7 @@ function Reg(){
       const passwordHandler = (e) => {
         setPassword(e.target.value)
         if(e.target.value.length < 5 || e.target.value.length > 10){
-          setErrorPassword('Your password should be between 3 and 10 symbols')
+          setErrorPassword('Your password should be between 5 and 10 symbols')
           if(!e.target.value){
             setErrorPassword('Password can`t be empty')
           }
