@@ -1,11 +1,11 @@
-
-#FE: up and running
-1. Для роботи з проектом написаним на React, для початку необхідно встановити Node JS, перейшовши по цьому https://nodejs.org/uk/ посиланню.
-2. Далі з двох запропонованих версій необхідно вибрати ту, що рекомендується розробниками.
-3. Після вибору версії необхідно встановити Node JS на ваш персональний комп'ютер.
-4. Після встановлення, необхідно перевірити чи справді це встановлення відбулося успішно. Для цього необхідно відкрити команду стрічку та вписати туди наступну команду node -v.
-	Якщо після цього ви бачите номер версії node js, то встановлення відбулося успішно.
-5. Також необхідно перевірити наявність одного з важливих пакетів node js. Для цього в тій же командній стрічці необхідно прописати команду npm -v. 
-	Якщо встановлення відбулося успішно ви побачите номер версії пакета.
-6. Для створення React додатку необхідно в командній стрічці перейти в директорію, де буде зберігатися ваш проект, використовуючи команду cd назва\вашої\директорії.
-7. Далі, за допомогою команди npm create-react-app <назва проекту> --use-npm ви створюєте свій проект.
+#FE: up and running && FE:Registration
+1. To work with a project written in React, first you need to install Node JS by going to this https://nodejs.org/uk/ link.
+2. Next, from the two proposed versions, you need to choose the one recommended by the developers.
+3. After choosing the version, you need to install Node JS on your personal computer.
+4. After installation, it is necessary to check whether the installation was successful. To do this, you need to open the cmd and enter the following command "node -v" there.
+If you see the node js version number after that, then the installation was successful.
+5. It is also necessary to check the presence of one of the important node js packages. To do this, in the same command line, it is necessary to write the "npm -v" command.
+If the installation was successful, you will see the version number of the package.
+6. To create a React application, you need to go to the directory in the cmd where your project will be stored, using the command "cd name\of\your\directory".
+7. Next, with the command "npm create-react-app <project name> --use-npm" you create your project.
+8. All the commands listed below must be used without brackets.
