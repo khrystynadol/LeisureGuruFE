@@ -2,6 +2,8 @@ import Header from "./Header";
 import './style.css'
 import React, {useState,setState, useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
+import 'whatwg-fetch';
+
 
 
 export const Registration = function() {
@@ -36,6 +38,9 @@ export const Registration = function() {
       setFormValid(true)
     }
   }, [errorEmail, errorPassword, errorFirstName, errorLastName, date])
+
+
+  const[serverEror, setServerEror] = useState('');
 
   const emailHandler = (e) => {
       setDirtyEmail(true)
@@ -104,8 +109,45 @@ export const Registration = function() {
   }
 
     const handleSubmit  = () => {
-       navigate("/homepage");
+      fetch('http://127.0.0.1:5000/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+          {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            date : date,
+            password: password
+          }
+        )
+      })
+        .then((response) => {
+         if (response.status >= 200 && response.status <= 299) {
+          setServerEror('')
+            navigate("/homepage");
+         } else if (response.status == 400) {
+          setServerEror('Bad Request')
+         } else if (response.status == 404) {
+          setServerEror('Not Found')
+         } else if (response.status == 500) {
+          setServerEror ('Internal Server Error')
+         } else if (response.status == 502) {
+          setServerEror('Bad Gateway')
+         } else if (response.status == 503) {
+          setServerEror('Service Unavailable')
+         } else if (response.status == 503) {
+          setServerEror ('Gateway Timeout')
+          }
+        //  return response.text()
+        })
+       //.then((text) => console.log(text));
+      // navigate("/homepage");
     }
+
+
 
     const registrationForm = (
         <div className="form">
@@ -136,13 +178,15 @@ export const Registration = function() {
             </div>
             <div className="password">
                 <label className="form__label" htmlFor="confirmPassword">Confirm Password </label>
-                <input className="form__input" onChange={e=>confirmPasswordHandler(e)} value = {confirmPassword} onBlur={e=>confirmPasswordHandler(e)} type="password" name="confirmPassword" placeholder="Confirm Password"/>
+1                <input className="form__input" onChange={e=>confirmPasswordHandler(e)} value = {confirmPassword} onBlur={e=>confirmPasswordHandler(e)} type="password" name="confirmPassword" placeholder="Confirm Password"/>
                 {(dirtyConfirmPassword && errorConfirmPassword) && <div style = {{color: 'red'}}>{errorConfirmPassword}</div>}
             </div>
         </div>
         <div className="footer">
            
             <button disabled = {!formValid} type = 'submit' onClick={()=>handleSubmit()}>Register</button>
+            { <div style = {{color: 'red'}}>{serverEror}</div>}
+
         </div>
     </div>
               
