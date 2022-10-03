@@ -10,12 +10,15 @@ import { Registration } from './components/Registration';
 import { Main } from './components/Main';
 import { Profile } from './components/Profile';
 import { Settings } from './components/Settings';
+import { NavigationBar } from './components/NavigationBar';
+import {Notifications} from './components/Notifications';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <NavigationBar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
@@ -23,6 +26,7 @@ root.render(
         <Route path='/homepage' element={<Main />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/settings' element={<Settings />} />
+        <Route path='/notifications' element={<Notifications />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
