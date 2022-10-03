@@ -8,16 +8,22 @@ import { Home } from './components/Home';
 import { Login } from './components/Login';
 import { Registration } from './components/Registration';
 import { Main } from './components/Main';
+import { Profile } from './components/Profile';
+import { Settings } from './components/Settings';
+import { NavBar } from './components/NavBar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <NavBar/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registration />} />
         <Route path='/homepage' element={<Main />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/settings' element={<Settings />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
