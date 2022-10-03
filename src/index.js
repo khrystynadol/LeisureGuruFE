@@ -10,13 +10,12 @@ import { Registration } from './components/Registration';
 import { Main } from './components/Main';
 import { Profile } from './components/Profile';
 import { Settings } from './components/Settings';
-import { NavBar } from './components/NavBar';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <NavBar/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
