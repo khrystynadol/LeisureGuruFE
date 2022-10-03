@@ -1,7 +1,7 @@
 export const Profile = function () {
     return (
         <div>
-            <h1>User Profile</h1>
+            <h2>User Profile</h2>
         </div>
 
     );

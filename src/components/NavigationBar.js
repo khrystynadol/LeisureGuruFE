@@ -12,20 +12,20 @@ export const NavigationBar = function () {
       case '/':
         return (
           <ul>
-            <li><Link to='/login' className="notification">Log</Link></li>
-            <li><Link to='/registration' className="user">Reg</Link></li>
+            <li><Link to='/login' className="login">Login</Link></li>
+            <li><Link to='/registration' className="user">Registration</Link></li>
           </ul>
         );
       case '/login':
         return (
           <ul>
-            <li><Link to='/registration' className="user">Reg</Link></li>
+            <li><Link to='/registration' className="user">Registration</Link></li>
           </ul>
         );
       case '/registration':
         return (
           <ul>
-            <li><Link to='/login' className="user">Log</Link></li>
+            <li><Link to='/login' className="user">Login</Link></li>
           </ul>
         );
       default:
