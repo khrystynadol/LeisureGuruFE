@@ -2,9 +2,9 @@ import React, {useEffect, useState } from "react";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 
-
 export const Login = function() {
   const[password, setPassword] = useState('')
+  const[email, setEmail] = useState('')
   const[dirtyEmail, setDirtyEmail] = useState(false)
   const[dirtyPassword, setDirtyPassword] = useState(false)
   const[errorEmail, setErrorEmail] = useState('Email field can`t be empty')
@@ -103,8 +103,8 @@ export const Login = function() {
       password: "pass2"
     }
   ];
-  
-  return(
+
+    return(
     <div className="Login">
       <div className="login-form">
         <div>{Header("Log in")}</div>
