@@ -12,6 +12,7 @@ import { Profile } from './components/Profile';
 import { Settings } from './components/Settings';
 import { NavigationBar } from './components/NavigationBar';
 import {Notifications} from './components/Notifications';
+import { Protected } from './components/Protected';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,10 +24,11 @@ root.render(
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registration />} />
-        <Route path='/homepage' element={<Main />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/settings' element={<Settings />} />
-        <Route path='/notifications' element={<Notifications />} />
+        <Route path='/editprofile' element={<Protected><Registration /></Protected>} />
+        <Route path='/homepage' element={<Protected> <Main /> </Protected>} />
+        <Route path='/profile' element={  <Protected> <Profile /></Protected>}  />
+        <Route path='/settings' element={<Protected> <Settings /></Protected>} />
+        <Route path='/notifications' element={<Protected> <Notifications /></Protected>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

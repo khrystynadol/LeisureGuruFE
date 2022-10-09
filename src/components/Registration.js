@@ -4,8 +4,6 @@ import React, {useState,setState, useEffect, useRef} from 'react';
 import { useNavigate } from "react-router-dom";
 import 'whatwg-fetch';
 
-
-
 export const Registration = function() {
     const navigate = useNavigate();
     const[firstName, setFirstName] = useState('');
@@ -30,6 +28,10 @@ export const Registration = function() {
 
     const [date, setDate] = useState('')
     const[formValid, setFormValid] = useState(false)
+
+    const formType = (localStorage.getItem('email')) ? "Edit Profile" : "Registration";
+    //const[header, setHeader] = useState("Registration")
+
 
     const FirstName = useRef();
     const LastName = useRef();
@@ -117,7 +119,7 @@ export const Registration = function() {
   }
 
     const handleSubmit  = () => {
-      fetch('http://127.0.0.1:5000/', {
+      fetch('http://127.0.0.1:5000/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -192,18 +194,22 @@ export const Registration = function() {
         </div>
         <div className="footer">
            
-            <button disabled = {!formValid} type = 'submit' onClick={()=>handleSubmit()}>Register</button>
+            <button disabled = {!formValid} type = 'submit' onClick={()=>handleSubmit()}>{formType}</button>
             { <div style = {{color: 'red'}}>{serverEror}</div>}
 
         </div>
     </div>
               
     );
+    
+     
+    
 
+      
      return(
         <div className="Login">
         <div className="login-onClick={()=>handleSubmit()}m">
-        <div>{Header("Registration")} </div>
+        <div><Header word={formType}></Header></div> 
         {registrationForm}
         </div>
     </div>
