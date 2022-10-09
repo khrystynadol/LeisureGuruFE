@@ -1,6 +1,6 @@
 import Header from "./Header";
 import './style.css'
-import React, {useState,setState, useEffect} from 'react';
+import React, {useState,setState, useEffect, useRef} from 'react';
 import { useNavigate } from "react-router-dom";
 import 'whatwg-fetch';
 
@@ -31,6 +31,11 @@ export const Registration = function() {
     const [date, setDate] = useState('')
     const[formValid, setFormValid] = useState(false)
 
+    const FirstName = useRef();
+    const LastName = useRef();
+    const Email = useRef();
+    const Password = useRef();
+
     useEffect(() =>{
     if(errorEmail || errorPassword || errorFirstName || errorLastName || !date){
       setFormValid(false)//якщо хоч один з елементів форми заповнений неправильно то форма вважається не валідною
@@ -54,7 +59,7 @@ export const Registration = function() {
     }else{
       setErrorEmail("")
     }
-    
+    localStorage.setItem("email", Email.current.value);
   }
 //перевірка для форми password на довжину
   const passwordHandler = (e) => {
@@ -68,6 +73,7 @@ export const Registration = function() {
     }else{
       setErrorPassword("")
     }
+    localStorage.setItem("password", Password.current.value);
   }
 
   const confirmPasswordHandler = (e) => {
@@ -93,6 +99,7 @@ export const Registration = function() {
     }else{
       setErrorFirstName('')
     }
+    localStorage.setItem("firstName", FirstName.current.value);
   }
 
   //функція перевірки форми surname на правильність написання і відсутність неправльних знаків
@@ -106,10 +113,11 @@ export const Registration = function() {
     } else {
       setErrorLastName('')
     }
+    localStorage.setItem("lastName", LastName.current.value);
   }
 
     const handleSubmit  = () => {
-      fetch('http://127.0.0.1:5000/user', {
+      fetch('http://127.0.0.1:5000/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -154,17 +162,17 @@ export const Registration = function() {
         <div className="form-body">
             <div className="username">
                 <label className="form__label" htmlFor="firstName">First Name </label>
-                <input className="form__input" onChange={e=>firstNameHandler(e)}  onBlur={e=>firstNameHandler(e)} type="text" value={firstName}  name="firstName" placeholder="First Name"/>
+                <input className="form__input" onChange={e=>firstNameHandler(e)}  onBlur={e=>firstNameHandler(e)} type="text" value={firstName}  name="firstName" placeholder="First Name" ref={FirstName}/>
                 {(dirtyFirstName && errorFirstName) && <div style = {{color: 'red'}}>{errorFirstName}</div>}
             </div>
             <div className="lastname">
                 <label className="form__label" htmlFor="lastName">Last Name </label>
-                <input  onChange={e=>lastNameHandler(e)} onBlur={e=>lastNameHandler(e)} type="text"  name="lastName" value={lastName}  className="form__input" placeholder="LastName"/>
+                <input  onChange={e=>lastNameHandler(e)} onBlur={e=>lastNameHandler(e)} type="text"  name="lastName" value={lastName}  className="form__input" placeholder="LastName" ref={LastName}/>
                 {(dirtyLastName && errorLastName) && <div style = {{color: 'red'}}>{errorLastName}</div>}
             </div>
             <div className="email">
                 <label className="form__label" htmlFor="email">Email </label>
-                <input  onChange={e=>emailHandler(e)} value = {email} onBlur={e=>emailHandler(e)} type="email" name="email" className="form__input"   placeholder="Email"/>
+                <input  onChange={e=>emailHandler(e)} value = {email} onBlur={e=>emailHandler(e)} type="email" name="email" className="form__input"   placeholder="Email" ref={Email}/>
                 {(dirtyEmail && errorEmail) && <div style = {{color: 'red'}}>{errorEmail}</div>}
             </div>
             <div>
@@ -173,12 +181,12 @@ export const Registration = function() {
             </div>
             <div className="password">
                 <label className="form__label" htmlFor="password">Password </label>
-                <input className="form__input" onChange={e=>passwordHandler(e)} value = {password} onBlur={e=>passwordHandler(e)} type="password"  name="password"   placeholder="Password"/>
+                <input className="form__input" onChange={e=>passwordHandler(e)} value = {password} onBlur={e=>passwordHandler(e)} type="password"  name="password"   placeholder="Password" ref={Password}/>
                 {(dirtyPassword && errorPassword) && <div style = {{color: 'red'}}>{errorPassword}</div>}
             </div>
             <div className="password">
                 <label className="form__label" htmlFor="confirmPassword">Confirm Password </label>
-1                <input className="form__input" onChange={e=>confirmPasswordHandler(e)} value = {confirmPassword} onBlur={e=>confirmPasswordHandler(e)} type="password" name="confirmPassword" placeholder="Confirm Password"/>
+                <input className="form__input" onChange={e=>confirmPasswordHandler(e)} value = {confirmPassword} onBlur={e=>confirmPasswordHandler(e)} type="password" name="confirmPassword" placeholder="Confirm Password"/>
                 {(dirtyConfirmPassword && errorConfirmPassword) && <div style = {{color: 'red'}}>{errorConfirmPassword}</div>}
             </div>
         </div>

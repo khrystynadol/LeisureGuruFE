@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import './/components/Profile.js'
 import { Home } from './components/Home';
 
 
