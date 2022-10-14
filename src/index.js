@@ -13,6 +13,7 @@ import { Settings } from './components/Settings';
 import { NavigationBar } from './components/NavigationBar';
 import {Notifications} from './components/Notifications';
 import { Protected } from './components/Protected';
+import { NotAuthorized } from './components/NotAuthorized';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -21,9 +22,9 @@ root.render(
     <BrowserRouter>
     <NavigationBar />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/registration' element={<Registration />} />
+        <Route path='/' element={<NotAuthorized><Home /></NotAuthorized>} />
+        <Route path='/login' element={<NotAuthorized><Login /></NotAuthorized>} />
+        <Route path='/registration' element={<NotAuthorized><Registration /></NotAuthorized>} />
         <Route path='/editprofile' element={<Protected><Registration /></Protected>} />
         <Route path='/homepage' element={<Protected> <Main /> </Protected>} />
         <Route path='/profile' element={  <Protected> <Profile /></Protected>}  />

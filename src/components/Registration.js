@@ -3,6 +3,9 @@ import './style.css'
 import React, {useState,setState, useEffect, useRef} from 'react';
 import { useNavigate } from "react-router-dom";
 import 'whatwg-fetch';
+import LoadingSpinner from "./LoadingSpinner";
+import { useLocation } from "react-router-dom";
+
 
 export const Registration = function() {
     const navigate = useNavigate();
@@ -28,10 +31,12 @@ export const Registration = function() {
 
     const [date, setDate] = useState('')
     const[formValid, setFormValid] = useState(false)
-
-    const formType = (localStorage.getItem('email')) ? "Edit Profile" : "Registration";
+    //localStorage.getItem('email')
+    const location = useLocation();
+    const formType = (location.pathname === '/editprofile' ? "Edit Profile" : "Registration");
     //const[header, setHeader] = useState("Registration")
 
+    const [isLoading, setIsLoading] = useState(false);
 
     const FirstName = useRef();
     const LastName = useRef();
@@ -119,7 +124,8 @@ export const Registration = function() {
   }
 
     const handleSubmit  = () => {
-      fetch('http://127.0.0.1:5000/user', {
+      setIsLoading(true);
+      fetch('http://127.0.0.1:5000/test', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -137,6 +143,9 @@ export const Registration = function() {
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
           setServerEror('')
+          //  for (let i = 0; i < 1000000000; i++) {
+
+          // }
             navigate("/homepage");
          } else if (response.status == 400) {
           setServerEror('Bad Request')
@@ -152,6 +161,7 @@ export const Registration = function() {
           setServerEror ('Gateway Timeout')
           }
         //  return response.text()
+          setIsLoading(false);
         })
        //.then((text) => console.log(text));
       // navigate("/homepage");
@@ -194,7 +204,7 @@ export const Registration = function() {
         </div>
         <div className="footer">
            
-            <button disabled = {!formValid} type = 'submit' onClick={()=>handleSubmit()}>{formType}</button>
+            <button disabled = {!formValid && isLoading} type = 'submit' onClick={()=>handleSubmit()}>{formType}</button>
             { <div style = {{color: 'red'}}>{serverEror}</div>}
 
         </div>
@@ -210,7 +220,7 @@ export const Registration = function() {
         <div className="Login">
         <div className="login-onClick={()=>handleSubmit()}m">
         <div><Header word={formType}></Header></div> 
-        {registrationForm}
+        {isLoading ? <LoadingSpinner />  : registrationForm}
         </div>
     </div>
      );

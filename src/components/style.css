@@ -320,3 +320,20 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     padding: 5px;
     /*left:27%;*/
 }
+
+@keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #b4702d; /* Black */
+    border-radius: 80%;
+    animation: spinner 1.5s linear infinite;
+  }
