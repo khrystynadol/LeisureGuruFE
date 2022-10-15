@@ -35,6 +35,7 @@ export const Login = function() {
     } else {
       setErrorEmail("")
     }
+    localStorage.setItem("email", e.target.value);
   }
 
   const passwordHandler = (e) => {
@@ -48,6 +49,7 @@ export const Login = function() {
     }else{
       setErrorPassword("")
     }
+    localStorage.setItem("password", e.target.value);
   }
 
   
