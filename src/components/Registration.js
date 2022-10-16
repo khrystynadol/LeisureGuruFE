@@ -4,10 +4,12 @@ import React, {useState,setState, useEffect, useRef} from 'react';
 import { useNavigate } from "react-router-dom";
 import 'whatwg-fetch';
 import LoadingSpinner from "./LoadingSpinner";
-import { useLocation } from "react-router-dom";
 
 
-export const Registration = function() {
+export const Registration = function(props) {
+    //can be either 'editprofile' or 'registration'
+    const { formType = 'registration' } = props;
+
     const navigate = useNavigate();
     const[firstName, setFirstName] = useState('');
     const[errorFirstName, setErrorFirstName] = useState('Name can`t be empty')
@@ -31,28 +33,30 @@ export const Registration = function() {
 
     const [date, setDate] = useState('')
     const[formValid, setFormValid] = useState(false)
-    //localStorage.getItem('email')
-    const location = useLocation();
-    const formType = (location.pathname === '/editprofile' ? "Edit Profile" : "Registration");
-    //const[header, setHeader] = useState("Registration")
+    const formCaption = (formType == 'editprofile' ? 'Edit Profile' : 'Registration');
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const FirstName = useRef();
-    const LastName = useRef();
-    const Email = useRef();
-    const Password = useRef();
+    const fieldFirstName = useRef();
+    const fieldLastName = useRef();
+    const fieldEmail = useRef();
+    //const fieldPassword = useRef();
+    const fieldDate = useRef();
+    const[serverEror, setServerEror] = useState('');
 
     useEffect(() =>{
+      console.log("use effect " + new Date());
     if(errorEmail || errorPassword || errorFirstName || errorLastName || !date){
+      console.log("use effect: invalid");
       setFormValid(false)//якщо хоч один з елементів форми заповнений неправильно то форма вважається не валідною
     }else{
+      console.log("use effect: valid");
       setFormValid(true)
     }
   }, [errorEmail, errorPassword, errorFirstName, errorLastName, date])
 
 
-  const[serverEror, setServerEror] = useState('');
+  
 
   const emailHandler = (e) => {
       setDirtyEmail(true)
@@ -66,7 +70,7 @@ export const Registration = function() {
     }else{
       setErrorEmail("")
     }
-    localStorage.setItem("email", Email.current.value);
+   
   }
 //перевірка для форми password на довжину
   const passwordHandler = (e) => {
@@ -80,7 +84,7 @@ export const Registration = function() {
     }else{
       setErrorPassword("")
     }
-    localStorage.setItem("password", Password.current.value);
+   // localStorage.setItem("password", Password.current.value);
   }
 
   const confirmPasswordHandler = (e) => {
@@ -97,6 +101,7 @@ export const Registration = function() {
 
   //функція перевірки форми name на правильність написання і відсутність неправльних знаків
   const firstNameHandler = (e) =>{
+    console.log("first name h: " + e.target.value);
     setDirtyFirstName(true)
     setFirstName(e.target.value)
     if (e.target.value ===''){
@@ -106,7 +111,7 @@ export const Registration = function() {
     }else{
       setErrorFirstName('')
     }
-    localStorage.setItem("firstName", FirstName.current.value);
+    //localStorage.setItem("firstName", FirstName.current.value);
   }
 
   //функція перевірки форми surname на правильність написання і відсутність неправльних знаків
@@ -120,12 +125,12 @@ export const Registration = function() {
     } else {
       setErrorLastName('')
     }
-    localStorage.setItem("lastName", LastName.current.value);
+    //localStorage.setItem("lastName", LastName.current.value);
   }
 
     const handleSubmit  = () => {
       setIsLoading(true);
-      fetch('http://127.0.0.1:5000/test', {
+      fetch('http://127.0.0.1:5000/tanya_reg', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -143,10 +148,12 @@ export const Registration = function() {
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
           setServerEror('')
-          //  for (let i = 0; i < 1000000000; i++) {
+          localStorage.setItem("email", fieldEmail.value);
+          localStorage.setItem("firstName", fieldFirstName.value);
+          localStorage.setItem("lastName", fieldLastName.value);
+          localStorage.setItem("date", fieldDate.value);
 
-          // }
-            navigate("/homepage");
+          navigate("/homepage");
          } else if (response.status == 400) {
           setServerEror('Bad Request')
          } else if (response.status == 404) {
@@ -160,11 +167,8 @@ export const Registration = function() {
          } else if (response.status == 503) {
           setServerEror ('Gateway Timeout')
           }
-        //  return response.text()
           setIsLoading(false);
         })
-       //.then((text) => console.log(text));
-      // navigate("/homepage");
     }
 
 
@@ -174,26 +178,26 @@ export const Registration = function() {
         <div className="form-body">
             <div className="username">
                 <label className="form__label" htmlFor="firstName">First Name </label>
-                <input className="form__input" onChange={e=>firstNameHandler(e)}  onBlur={e=>firstNameHandler(e)} type="text" value={firstName}  name="firstName" placeholder="First Name" ref={FirstName}/>
+                <input className="form__input" onChange={e=>firstNameHandler(e)}  onBlur={e=>firstNameHandler(e)} type="text" value={firstName}  name="firstName" placeholder="First Name" ref={fieldFirstName}/>
                 {(dirtyFirstName && errorFirstName) && <div style = {{color: 'red'}}>{errorFirstName}</div>}
             </div>
             <div className="lastname">
                 <label className="form__label" htmlFor="lastName">Last Name </label>
-                <input  onChange={e=>lastNameHandler(e)} onBlur={e=>lastNameHandler(e)} type="text"  name="lastName" value={lastName}  className="form__input" placeholder="LastName" ref={LastName}/>
+                <input  onChange={e=>lastNameHandler(e)} onBlur={e=>lastNameHandler(e)} type="text"  name="lastName" value={lastName}  className="form__input" placeholder="LastName" ref={fieldLastName}/>
                 {(dirtyLastName && errorLastName) && <div style = {{color: 'red'}}>{errorLastName}</div>}
             </div>
             <div className="email">
                 <label className="form__label" htmlFor="email">Email </label>
-                <input  onChange={e=>emailHandler(e)} value = {email} onBlur={e=>emailHandler(e)} type="email" name="email" className="form__input"   placeholder="Email" ref={Email}/>
+                <input  onChange={e=>emailHandler(e)} value = {email} onBlur={e=>emailHandler(e)} type="email" name="email" className="form__input"   placeholder="Email" ref={fieldEmail}/>
                 {(dirtyEmail && errorEmail) && <div style = {{color: 'red'}}>{errorEmail}</div>}
             </div>
             <div>
             <label className="form__label" htmlFor="date">Birth date </label>
-            <input type = 'date' onChange = {e=>setDate(e.target.value)} value = {date}  name = 'date' placeholder = 'Pick your birth date...'/>
+            <input type = 'date' onChange = {e=>setDate(e.target.value)} value = {date}  name = 'date' placeholder = 'Pick your birth date...' ref={fieldDate}/>
             </div>
             <div className="password">
                 <label className="form__label" htmlFor="password">Password </label>
-                <input className="form__input" onChange={e=>passwordHandler(e)} value = {password} onBlur={e=>passwordHandler(e)} type="password"  name="password"   placeholder="Password" ref={Password}/>
+                <input className="form__input" onChange={e=>passwordHandler(e)} value = {password} onBlur={e=>passwordHandler(e)} type="password"  name="password"   placeholder="Password" />
                 {(dirtyPassword && errorPassword) && <div style = {{color: 'red'}}>{errorPassword}</div>}
             </div>
             <div className="password">
@@ -204,7 +208,7 @@ export const Registration = function() {
         </div>
         <div className="footer">
            
-            <button disabled = {!formValid && isLoading} type = 'submit' onClick={()=>handleSubmit()}>{formType}</button>
+            <button disabled = {!formValid || isLoading} type = 'submit' onClick={()=>handleSubmit()}>{formCaption}</button>
             { <div style = {{color: 'red'}}>{serverEror}</div>}
 
         </div>
@@ -212,14 +216,11 @@ export const Registration = function() {
               
     );
     
-     
     
-
-      
      return(
         <div className="Login">
         <div className="login-onClick={()=>handleSubmit()}m">
-        <div><Header word={formType}></Header></div> 
+        <div><Header word={formCaption}></Header></div> 
         {isLoading ? <LoadingSpinner />  : registrationForm}
         </div>
     </div>

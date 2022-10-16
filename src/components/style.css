@@ -336,4 +336,5 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     border-top: 10px solid #b4702d; /* Black */
     border-radius: 80%;
     animation: spinner 1.5s linear infinite;
+    margin-left: 50%;
   }

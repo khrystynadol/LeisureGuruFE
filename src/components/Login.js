@@ -1,6 +1,8 @@
-import React, {useEffect, useState } from "react";
+import React, {useEffect, useState, useRef } from "react";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
+import 'whatwg-fetch';
 
 export const Login = function() {
   const[password, setPassword] = useState('')
@@ -11,6 +13,9 @@ export const Login = function() {
   const[errorPassword, setErrorPassword] = useState('Password field can`t be empty')
   const[formValid, setFormValid] = useState(false)
   const [loginErrorMessage, setLoginErrorMessage] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const fieldEmail = useRef();
+  const[serverEror, setServerEror] = useState('');
 
   const navigate = useNavigate();
 
@@ -58,19 +63,56 @@ export const Login = function() {
     //Prevent page reload
     event.preventDefault();
 
-    var { email, pass } = document.forms[0];
-    // Find user login info
-    const userData = database.find((user) => user.email === email.value);
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        setLoginErrorMessage("Invalid password");
-      } else {
+    // var { email, pass } = document.forms[0];
+    // // Find user login info
+    // const userData = database.find((user) => user.email === email.value);
+    // // Compare user info
+    // if (userData) {
+    //   if (userData.password !== pass.value) {
+    //     setLoginErrorMessage("Invalid password");
+    //   } else {
+    //     navigate("/homepage");
+    //   }
+    // } else {
+    //   setLoginErrorMessage("Email not found");
+    // }
+
+    setIsLoading(true);
+    fetch('http://127.0.0.1:5000/tanya_login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+        {
+          email: email,
+          password: password
+        }
+      )
+    })
+      .then((response) => {
+       if (response.status >= 200 && response.status <= 299) {
+        setServerEror('')
+        localStorage.setItem("email", fieldEmail.value);
+
         navigate("/homepage");
-      }
-    } else {
-      setLoginErrorMessage("Email not found");
-    }
+       } else if (response.status == 400) {
+        setServerEror('Bad Request')
+       } else if (response.status == 404) {
+        setServerEror('Not Found')
+       } else if (response.status == 500) {
+        setServerEror ('Internal Server Error')
+       } else if (response.status == 502) {
+        setServerEror('Bad Gateway')
+       } else if (response.status == 503) {
+        setServerEror('Service Unavailable')
+       } else if (response.status == 503) {
+        setServerEror ('Gateway Timeout')
+        }
+        setIsLoading(false);
+      })
+
+    
   };
     
   const renderForm = (
@@ -79,7 +121,7 @@ export const Login = function() {
       <form onSubmit={handleSubmit}>
         <div className="username">
           <label className="form__label">Email</label>
-          <input onChange={e => emailHandler(e)}  onBlur={e=>emailHandler(e)} type="text" name="email" required />
+          <input onChange={e => emailHandler(e)}  onBlur={e=>emailHandler(e)} type="text" name="email" required ref={fieldEmail}/>
           {(dirtyEmail && errorEmail) && <div style = {{color: 'red'}}>{errorEmail}</div>}
         </div>
         <div className="password">
@@ -87,30 +129,30 @@ export const Login = function() {
           <input onChange={e=>passwordHandler(e)} onBlur={e=>passwordHandler(e)} type="password" name="pass" required />
           {(dirtyPassword && errorPassword) && <div style = {{color: 'red'}}>{errorPassword}</div>}
         </div>
-          <button disabled = {!formValid} type="submit">Login</button>
-          {(loginErrorMessage) && <div style = {{color: 'red'}}>{loginErrorMessage}</div>}
+          <button disabled = {!formValid || isLoading} type="submit">Login</button>
+          {(serverEror) && <div style = {{color: 'red'}}>{serverEror}</div>}
       </form>
       </div>
     </div>
   );
     
   // User Login info
-  const database = [
-    {
-      email: "jonny.hehheh.kn.2021@lpnu.ua",
-      password: "pass1234"
-    },
-    {
-      email: "leisure.guru@lpnu.ua",
-      password: "pass2"
-    }
-  ];
+  // const database = [
+  //   {
+  //     email: "jonny.hehheh.kn.2021@lpnu.ua",
+  //     password: "pass1234"
+  //   },
+  //   {
+  //     email: "leisure.guru@lpnu.ua",
+  //     password: "pass2"
+  //   }
+  // ];
 
     return(
     <div className="Login">
       <div className="login-form">
         <div>{Header("Log in")}</div>
-        {renderForm}
+        {isLoading ? <LoadingSpinner />  : renderForm}
       </div>
     </div>
   );
