@@ -12,7 +12,8 @@ import { Profile } from './components/Profile';
 import { Settings } from './components/Settings';
 import { NavigationBar } from './components/NavigationBar';
 import {Notifications} from './components/Notifications';
-import { Protected } from './components/Protected';
+import { Authorized } from './components/Authorized';
+import { NotAuthorized } from './components/NotAuthorized';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -21,14 +22,14 @@ root.render(
     <BrowserRouter>
     <NavigationBar />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/registration' element={<Registration />} />
-        <Route path='/editprofile' element={<Protected><Registration /></Protected>} />
-        <Route path='/homepage' element={<Protected> <Main /> </Protected>} />
-        <Route path='/profile' element={  <Protected> <Profile /></Protected>}  />
-        <Route path='/settings' element={<Protected> <Settings /></Protected>} />
-        <Route path='/notifications' element={<Protected> <Notifications /></Protected>} />
+        <Route path='/' element={<NotAuthorized><Home /></NotAuthorized>} />
+        <Route path='/login' element={<NotAuthorized><Login /></NotAuthorized>} />
+        <Route path='/registration' element={<NotAuthorized><Registration formType="registration" /></NotAuthorized>} />
+        <Route path='/editprofile' element={<Authorized><Registration formType="editprofile" /></Authorized>} />
+        <Route path='/homepage' element={<Authorized> <Main /> </Authorized>} />
+        <Route path='/profile' element={  <Authorized> <Profile /></Authorized>}  />
+        <Route path='/settings' element={<Authorized> <Settings /></Authorized>} />
+        <Route path='/notifications' element={<Authorized> <Notifications /></Authorized>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
