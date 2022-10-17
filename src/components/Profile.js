@@ -4,6 +4,9 @@ import { Link, useHistory } from "react-router-dom";
 
 
 export const Profile = function () {
+    const[serverEror, setServerEror] = useState('');
+    const navigate = useNavigate();
+    const id = 0;
     function LogOut(){
         localStorage.clear();
         fetch('http://127.0.0.1:5000/user', {
@@ -41,8 +44,6 @@ export const Profile = function () {
     const HandleDelete = (e) => {
         e.stopPropagation();
            if(window.confirm('Are sure want to delete?')) {
-               alert('We now don`t have any information about you');
-               localStorage.clear();
                 fetch('http://127.0.0.1:5000/user', {
                     method: 'DELETE',
                     headers: {
@@ -56,6 +57,8 @@ export const Profile = function () {
                 })
                 .then((response) => {
                     if (response.status >= 200 && response.status <= 299) {
+                        alert('We now don`t have any information about you');
+                        localStorage.clear();
                         setServerEror('')
                         navigate("/homepage");
                     } else if (response.status == 400) {
@@ -74,7 +77,7 @@ export const Profile = function () {
                 })
             navigate("/");
            } else {
-                <Link to="/profile"></Link>
+               navigate("/profile")
            }
 
            
