@@ -5,6 +5,9 @@ import { Link} from "react-router-dom";
 
 
 export const Profile = function () {
+    const[serverEror, setServerEror] = useState('');
+    const navigate = useNavigate();
+    const id = 0;
     function LogOut(){
         localStorage.clear();
         fetch('http://127.0.0.1:5000/user/'+ id, {
@@ -44,6 +47,8 @@ export const Profile = function () {
                 })
                 .then((response) => {
                     if (response.status >= 200 && response.status <= 299) {
+                        alert('We now don`t have any information about you');
+                        localStorage.clear();
                         setServerEror('')
                         navigate("/");
                         alert('We now don`t have any information about you');
