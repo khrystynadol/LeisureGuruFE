@@ -1,3 +1,4 @@
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import { useEffect, useState, history, location } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Link} from "react-router-dom";
@@ -6,21 +7,15 @@ import { Link} from "react-router-dom";
 export const Profile = function () {
     function LogOut(){
         localStorage.clear();
-        fetch('http://127.0.0.1:5000/user', {
+        fetch('http://127.0.0.1:5000/user/'+ id, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(
-          {
-            id:id
-          }
-        )
       })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
           setServerEror('')
-            navigate("/homepage");
          } else if (response.status == 400) {
           setServerEror('Bad Request')
          } else if (response.status == 404) {
@@ -41,23 +36,18 @@ export const Profile = function () {
     const HandleDelete = (e) => {
         e.stopPropagation();
            if(window.confirm('Are sure want to delete?')) {
-               alert('We now don`t have any information about you');
-               localStorage.clear();
-                fetch('http://127.0.0.1:5000/user', {
+                fetch('http://127.0.0.1:5000/user/' + id, {
                     method: 'DELETE',
                     headers: {
                     'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(
-                    {
-                        id:id
-                    }
-                    )
                 })
                 .then((response) => {
                     if (response.status >= 200 && response.status <= 299) {
                         setServerEror('')
-                        navigate("/homepage");
+                        navigate("/");
+                        alert('We now don`t have any information about you');
+                        localStorage.clear();
                     } else if (response.status == 400) {
                         setServerEror('Bad Request')
                     } else if (response.status == 404) {
@@ -70,11 +60,13 @@ export const Profile = function () {
                         setServerEror('Service Unavailable')
                     } else if (response.status == 503) {
                         setServerEror ('Gateway Timeout')
+                    }else{
+                        setServerEror('Unknown error')
+                        navigate("/profile");
                     }
                 })
-            navigate("/");
            } else {
-                <Link to="/profile"></Link>
+                navigate("/profile");
            }
 
            
