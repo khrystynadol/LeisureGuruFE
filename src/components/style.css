@@ -1,11 +1,17 @@
+@font-face {
+    
+    font-family: "Poly-Regular";
+    src: url("Fonts/Poly-Regular.ttf")
+}
+
 body{
-    background: #bdc3c7;  /* fallback for old browsers */
+    background: #EBE7C4;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #ecd09f, #e5ceab);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #ecd09f, #e5ceab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .form{
-    background-color: white;
+    background-color: #EBE7C4;
     border-radius: 5px;
     width: 550px;
     margin: 20px auto;
@@ -42,10 +48,9 @@ body{
 /*Стилизуем хедер*/
 header{
     display:flex;
-    
     justify-content: center;
     height: 60px;
-    background: rgba(229, 159, 9, 0.781);
+    background: #EE8E57;
 }
 
 /*Стилизуем список элементов*/
@@ -60,7 +65,7 @@ header{
   font-family:Arial, Helvetica, sans-serif ;
   padding: 0 30px;
   border: none;
-  background: rgba(229, 159, 9, 0.781);
+  background: #EE8E57;
   color: #fff;
   border-radius: 10px;
   vertical-align: middle;
@@ -70,10 +75,10 @@ header{
 /*Стилизуем логотип*/
 .logo {
     font-size: 30px;
-  font-family:Arial, Helvetica, sans-serif ;
+  font-family:"Poly-Regular";
   padding: 0 30px;
   border: none;
-  background: rgba(229, 159, 9, 0.781);
+  background: #EE8E57;
   color: #fff;
   vertical-align: middle;
   display: inline-block;
@@ -95,7 +100,7 @@ header{
     block-size:30px;
     top:2.5px;
     width: 500px;
-    background:#fff;
+    background:1. 000000;
     border-radius: 10px;
     padding: 10px;
     left:20%;
@@ -104,10 +109,10 @@ header{
 /*Стилизуем кнопку поиска после ввода запроса*/
 .searchButton{
     font-size: 20px;
-    font-family:Arial, Helvetica, sans-serif ;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 0 25px;
     background: #fff;
-    color: rgba(229, 159, 9, 0.781);
+    color: #EE8E57;
     display:block;
     position: absolute;
     left:56.5%;
@@ -121,10 +126,10 @@ header{
 /*Стилизуем кнопку пользователя*/
 .user{
     font-size: 20px;
-    font-family:Arial, Helvetica, sans-serif ;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 0 25px;
     align-items: center;
-    background: rgba(229, 159, 9, 0.781);
+    background: #EE8E57;
     color: #fff;
     display:block;
     position: absolute;
@@ -140,9 +145,9 @@ header{
 /*Стилизуем кнопку уведомлений*/
 .notification{
     font-size: 20px;
-    font-family:Arial, Helvetica, sans-serif ;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 0 25px;
-    background: rgba(229, 159, 9, 0.781);
+    background: #EE8E57;
     color: #fff;
     display:block;
     position: absolute;
@@ -158,9 +163,9 @@ header{
 
 .login{
     font-size: 20px;
-    font-family:Arial, Helvetica, sans-serif ;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 0 25px;
-    background: rgba(229, 159, 9, 0.781);
+    background: #EE8E57;
     color: #fff;
     display:block;
     position: absolute;
@@ -176,34 +181,34 @@ header{
 
 .login:hover{
     background: #fff;
-    color: rgba(229, 159, 9, 0.781);
+    color: #EE8E57;
     transition: all .3s ease;
 }
 
 /*Стилизуем кнопку пользователя при наведении на неё*/
 .user:hover{
     background: #fff;
-    color: rgba(229, 159, 9, 0.781);
+    color: #EE8E57;
     transition: all .3s ease;
 }
 
 /*Стилизуем кнопку уведомлений при наведении на неё*/
 .notification:hover{
     background: #fff;
-    color: rgba(229, 159, 9, 0.781);
+    color: #EE8E57;
     transition: all .3s ease;
 }
 
 /*Стилизуем кнопку логотипа при наведении на неё*/
 .logo:hover{
     background: #fff;
-    color: rgba(229, 159, 9, 0.781);
+    color: #EE8E57;
     transition: all .3s ease;
 }
 
 /*Стилизуем кнопку начала поиска при наведении на неё*/
 .searchButton:hover{
-    background: rgba(229, 159, 9, 0.781);
+    background: #EE8E57;
     color: #fff;
     transition: all .3s ease;
 }
@@ -247,10 +252,10 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     margin-top: 15em;
     text-decoration: none;
     font-size: 20px;
-    font-family:Arial, Helvetica, sans-serif ;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 0 25px;
     align-items: center;
-    background: rgba(229, 159, 9, 0.781);
+    background: #EE8E57;
     color: #fff;
     display:flex;
     position: absolute;
@@ -265,10 +270,10 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     margin-top: 1em;
     text-decoration: none;
     font-size: 20px;
-    font-family:Arial, Helvetica, sans-serif ;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 0 25px;
     align-items: center;
-    background: rgba(229, 159, 9, 0.781);
+    background: #EE8E57;
     color: #fff;
     display:flex;
     position: absolute;
@@ -283,10 +288,10 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     margin-top: 1em;
     text-decoration: none;
     font-size: 20px;
-    font-family:Arial, Helvetica, sans-serif ;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 0 25px;
     align-items: center;
-    background: rgba(229, 159, 9, 0.781);
+    background: #EE8E57;
     color: #fff;
     display:flex;
     position: absolute;
@@ -299,24 +304,24 @@ input:not(:placeholder-shown) + input[type="Submit"]{
 
 .logOut:hover{
     background: #fff;
-    color: rgba(229, 159, 9, 0.781);
+    color: #EE8E57;
     transition: all .3s ease;
     border: solid 2px;
-    border-color: rgba(229, 159, 9, 0.781);
+    border-color: #EE8E57;
 }
 .settings:hover{
     background: #fff;
-    color: rgba(229, 159, 9, 0.781);
+    color: #EE8E57;
     transition: all .3s ease;
     border: solid 2px;
-    border-color: rgba(229, 159, 9, 0.781);
+    border-color: #EE8E57;
 }
 .editProfile:hover{
     background: #fff;
-    color: rgba(229, 159, 9, 0.781);
+    color: #EE8E57;
     transition: all .3s ease;
     border: solid 2px;
-    border-color: rgba(229, 159, 9, 0.781);
+    border-color: #EE8E57;
 }
 
 .emailConfirm{
@@ -338,7 +343,7 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     margin-left:37em;
     text-decoration: none;
     font-size: 20px;
-    font-family:Arial, Helvetica, sans-serif ;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 0 25px;
     align-items: center;
     background: rgba(245, 13, 13, 0.781);
