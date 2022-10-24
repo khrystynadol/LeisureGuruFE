@@ -48,11 +48,7 @@ export const Login = function() {
     setDirtyPassword(true)
     setPassword(e.target.value)
     if (e.target.value.length < 5) {
-
       setErrorPassword('Make it more than 5')
-
-      setErrorPassword('Your password should have at least 5 characters')
->
       if (!e.target.value) {
         setErrorPassword('Field can`t be empty');
       }
@@ -133,8 +129,6 @@ export const Login = function() {
           <label className="form__label">Email</label>
 
           <input onChange={e => emailHandler(e)}  onBlur={e=>emailHandler(e)} type="text" className="form__input" placeholder = "Email" name="email" required ref={fieldEmail}/>
-
-          <input onChange={e => emailHandler(e)}  onBlur={e=>emailHandler(e)} type="text" name="email" required />
 
           {(dirtyEmail && errorEmail) && <div style = {{color: 'red'}}>{errorEmail}</div>}
         </div>
