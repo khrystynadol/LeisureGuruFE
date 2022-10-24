@@ -7,8 +7,8 @@ import {DeleteConfirmation} from "./DeleteConfirmation";
 
 export const Profile = function () {
     const[serverEror, setServerEror] = useState('');
-    const [deleteMessage, setDeleteMessage] = useState(null);
-    const [displayConfirmationModal, setDisplayConfirmationModal] = useState(false);
+    /*const [deleteMessage, setDeleteMessage] = useState(null);
+    const [displayConfirmationModal, setDisplayConfirmationModal] = useState(false);*/
     const navigate = useNavigate();
     const id = 0;
     function LogOut(){
@@ -78,56 +78,6 @@ export const Profile = function () {
            }
      }*/
 
-     const showDeleteModal = () => {
-        setDeleteMessage("Are you sure you want to delete your account on LeisureGuru?")
-        setDisplayConfirmationModal(true);
-      };
-      
-
-      const hideConfirmationModal = () => {
-        setDisplayConfirmationModal(false);
-      };
-
-
-      const submitDelete = (e) => {
-        setDisplayConfirmationModal(false);
-        e.stopPropagation();
-           if(window.confirm('Are sure want to delete?')) {
-                fetch('http://127.0.0.1:5000/user/' + id, {
-                    method: 'DELETE',
-                    headers: {
-                    'Content-Type': 'application/json'
-                    },
-                })
-                .then((response) => {
-                    if (response.status >= 200 && response.status <= 299) {
-                        alert('We now don`t have any information about you');
-                        localStorage.clear();
-                        setServerEror('')
-                        navigate("/");
-                        alert('We now don`t have any information about you');
-                        localStorage.clear();
-                    } else if (response.status == 400) {
-                        setServerEror('Bad Request')
-                    } else if (response.status == 404) {
-                        setServerEror('Not Found')
-                    } else if (response.status == 500) {
-                        setServerEror ('Internal Server Error')
-                    } else if (response.status == 502) {
-                        setServerEror('Bad Gateway')
-                    } else if (response.status == 503) {
-                        setServerEror('Service Unavailable')
-                    } else if (response.status == 503) {
-                        setServerEror ('Gateway Timeout')
-                    }else{
-                        setServerEror('Unknown error')
-                        navigate("/profile");
-                    }
-                })
-           } else {
-                navigate("/profile");
-           }
-      };
     return (
     <main>
         <div className = "Container emp-profile">
@@ -155,7 +105,7 @@ export const Profile = function () {
                     </div>
                 </div>
                 <div>
-                    <button className = "deleteButton" DeleteConfirmation showModal = {displayConfirmationModal} confirmModal = {submitDelete} hideModal = {hideConfirmationModal} message = {deleteMessage}>
+                    <button className = "deleteButton" onClick={DeleteConfirmation}>
                         Delete my account
                     </button>
                 </div>

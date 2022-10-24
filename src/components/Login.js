@@ -9,8 +9,8 @@ export const Login = function() {
   const[email, setEmail] = useState('')
   const[dirtyEmail, setDirtyEmail] = useState(false)
   const[dirtyPassword, setDirtyPassword] = useState(false)
-  const[errorEmail, setErrorEmail] = useState('Email field can`t be empty')
-  const[errorPassword, setErrorPassword] = useState('Password field can`t be empty')
+  const[errorEmail, setErrorEmail] = useState('Field can`t be empty')
+  const[errorPassword, setErrorPassword] = useState('Field can`t be empty')
   const[formValid, setFormValid] = useState(false)
   const [loginErrorMessage, setLoginErrorMessage] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +34,7 @@ export const Login = function() {
       const re =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (!e.target.value) {
-      setErrorEmail('Email can`t be empty')
+      setErrorEmail('Field can`t be empty')
     } else if(!re.test(String(e.target.value).toLowerCase())) {
         setErrorEmail('Incorrect email')
     } else {
@@ -46,10 +46,10 @@ export const Login = function() {
   const passwordHandler = (e) => {
     setDirtyPassword(true)
     setPassword(e.target.value)
-    if (e.target.value.length < 8) {
-      setErrorPassword('Your password should have at least 8 characters')
+    if (e.target.value.length < 5) {
+      setErrorPassword('Make it more than 5')
       if (!e.target.value) {
-        setErrorPassword('Password can`t be empty');
+        setErrorPassword('Field can`t be empty');
       }
     }else{
       setErrorPassword("")
@@ -119,18 +119,21 @@ export const Login = function() {
     <div className="form">
         <div className="form-body">
       <form onSubmit={handleSubmit}>
-        <div className="username">
+        <div className="form__element">
           <label className="form__label">Email</label>
-          <input onChange={e => emailHandler(e)}  onBlur={e=>emailHandler(e)} type="text" name="email" required ref={fieldEmail}/>
+          <input onChange={e => emailHandler(e)}  onBlur={e=>emailHandler(e)} type="text" className="form__input" placeholder = "Email" name="email" required ref={fieldEmail}/>
           {(dirtyEmail && errorEmail) && <div style = {{color: 'red'}}>{errorEmail}</div>}
         </div>
-        <div className="password">
+        <div className="form__element">
           <label className="form__label">Password </label>
-          <input onChange={e=>passwordHandler(e)} onBlur={e=>passwordHandler(e)} type="password" name="pass" required />
+          <input onChange={e=>passwordHandler(e)} onBlur={e=>passwordHandler(e)} type="password" className="form__input" placeholder = "Password" name="pass" required />
           {(dirtyPassword && errorPassword) && <div style = {{color: 'red'}}>{errorPassword}</div>}
-        </div>
-          <button disabled = {!formValid || isLoading} type="submit">Login</button>
+        </div >
+        <div className = "submitDiv">
+          <button disabled = {!formValid || isLoading} className = "submitButton" type="submit">Login</button>
           {(serverEror) && <div style = {{color: 'red'}}>{serverEror}</div>}
+        </div>
+          
       </form>
       </div>
     </div>
