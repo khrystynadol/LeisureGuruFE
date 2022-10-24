@@ -31,6 +31,7 @@ export const Login = function() {
 
   const emailHandler = (e) => {
     setDirtyEmail(true)
+    setEmail(e.target.value)
       const re =
   /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     if (!e.target.value) {
@@ -46,8 +47,8 @@ export const Login = function() {
   const passwordHandler = (e) => {
     setDirtyPassword(true)
     setPassword(e.target.value)
-    if (e.target.value.length < 8) {
-      setErrorPassword('Your password should have at least 8 characters')
+    if (e.target.value.length < 5) {
+      setErrorPassword('Your password should have at least 5 characters')
       if (!e.target.value) {
         setErrorPassword('Password can`t be empty');
       }
@@ -78,8 +79,8 @@ export const Login = function() {
     // }
 
     setIsLoading(true);
-    fetch('http://127.0.0.1:5000/tanya_login', {
-      method: 'POST',
+    fetch('http://127.0.0.1:5000/login', {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -93,7 +94,12 @@ export const Login = function() {
       .then((response) => {
        if (response.status >= 200 && response.status <= 299) {
         setServerEror('')
-        localStorage.setItem("email", fieldEmail.value);
+        //localStorage.setItem("email", fieldEmail.value);
+      //  localStorage.setItem("id", response.json.id)///?
+      response.json().then((jsonResponse) => {
+        localStorage.setItem("id", jsonResponse.id)
+        localStorage.setItem("email", jsonResponse.email)
+      })
 
         navigate("/homepage");
        } else if (response.status == 400) {
@@ -121,7 +127,7 @@ export const Login = function() {
       <form onSubmit={handleSubmit}>
         <div className="username">
           <label className="form__label">Email</label>
-          <input onChange={e => emailHandler(e)}  onBlur={e=>emailHandler(e)} type="text" name="email" required ref={fieldEmail}/>
+          <input onChange={e => emailHandler(e)}  onBlur={e=>emailHandler(e)} type="text" name="email" required />
           {(dirtyEmail && errorEmail) && <div style = {{color: 'red'}}>{errorEmail}</div>}
         </div>
         <div className="password">

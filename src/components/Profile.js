@@ -7,10 +7,10 @@ import { Link} from "react-router-dom";
 export const Profile = function () {
     const[serverEror, setServerEror] = useState('');
     const navigate = useNavigate();
-    const id = 0;
+  //  const id = 0;
     function LogOut(){
         localStorage.clear();
-        fetch('http://127.0.0.1:5000/user/'+ id, {
+        fetch('http://127.0.0.1:5000/user/'+ localStorage.getItem("id"), {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ export const Profile = function () {
     const HandleDelete = (e) => {
         e.stopPropagation();
            if(window.confirm('Are sure want to delete?')) {
-                fetch('http://127.0.0.1:5000/user/' + id, {
+                fetch('http://127.0.0.1:5000/user/' + localStorage.getItem("id"), {
                     method: 'DELETE',
                     headers: {
                     'Content-Type': 'application/json'

@@ -130,7 +130,7 @@ export const Registration = function(props) {
 //http://127.0.0.1:5000/
     const handleSubmit  = () => {
       setIsLoading(true);
-      fetch('http://127.0.0.1:5000/test', {
+      fetch('http://127.0.0.1:5000/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
