@@ -29,15 +29,66 @@ body{
 }
 
 .form__label{
-    width: 40%;
+    width: 30%;
+    display:flex;
+    justify-content: left;
+    align-content: center;
+    margin-top:1em;
 }
 
-.form_input{
-    width: 60%;
-}
-
-.footer{
+.form__input {
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    width:40%;
+    border-radius: 10px;
+    height:30px;
+    padding: 2px 2px;
+    border-color: #ee8e57;
+    border: 3px solid;
     text-align: center;
+}
+
+.form__element{
+    display:flex;
+    justify-content: left;
+    align-content: center;
+    margin-bottom:1em;
+}
+  
+.submitDiv{
+margin-top:2em;
+display:flex;
+justify-content: center;
+align-content: center;
+text-align: center;
+font-size: 20px;
+font-family: Arial, Helvetica, sans-serif;
+padding: 0 25px;
+align-items: center;
+background: #ee8e57;
+color: #fff;
+transition: all 0.3s ease;
+border-radius: 10px;
+height: 40px;
+border-color: rgb(80, 47, 1);
+line-height: 3em;
+width:40%;
+margin-left:25%;
+}
+  
+.submitButton{
+font-size: 20px;
+font-family: Arial, Helvetica, sans-serif;
+padding: 0 25px;
+align-items: center;
+background: #ee8e57;
+color: #fff;
+transition: all 0.3s ease;
+height: 40px;
+border:none;
+width:100%;
+line-height: 1em;
 }
 
 /*Сбрасываем базовые настройки сайта*/

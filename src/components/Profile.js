@@ -2,10 +2,13 @@ import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import { useEffect, useState, history, location } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Link} from "react-router-dom";
+import {DeleteConfirmation} from "./DeleteConfirmation";
 
 
 export const Profile = function () {
     const[serverEror, setServerEror] = useState('');
+    /*const [deleteMessage, setDeleteMessage] = useState(null);
+    const [displayConfirmationModal, setDisplayConfirmationModal] = useState(false);*/
     const navigate = useNavigate();
   //  const id = 0;
     function LogOut(){
@@ -36,7 +39,7 @@ export const Profile = function () {
       navigate("/");
     }
 
-    const HandleDelete = (e) => {
+    /*const HandleDelete = (e) => {
         e.stopPropagation();
            if(window.confirm('Are sure want to delete?')) {
                 fetch('http://127.0.0.1:5000/user/' + localStorage.getItem("id"), {
@@ -73,10 +76,8 @@ export const Profile = function () {
            } else {
                 navigate("/profile");
            }
+     }*/
 
-           
-     }
-      
     return (
     <main>
         <div className = "Container emp-profile">
@@ -104,7 +105,7 @@ export const Profile = function () {
                     </div>
                 </div>
                 <div>
-                    <button className = "deleteButton" onClick={(e) =>HandleDelete(e)}>
+                    <button className = "deleteButton" onClick={DeleteConfirmation}>
                         Delete my account
                     </button>
                 </div>
