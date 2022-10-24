@@ -130,7 +130,7 @@ export const Registration = function(props) {
 //http://127.0.0.1:5000/
     const handleSubmit  = () => {
       setIsLoading(true);
-      fetch('http://127.0.0.1:5000/', {
+      fetch('http://127.0.0.1:5000/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -148,10 +148,14 @@ export const Registration = function(props) {
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
           setServerEror('')
-          localStorage.setItem("email", fieldEmail.value);
-          localStorage.setItem("firstName", fieldFirstName.value);
-          localStorage.setItem("lastName", fieldLastName.value);
-          localStorage.setItem("date", fieldDate.value);
+          response.json().then((jsonResponse) => {
+            localStorage.setItem("id", jsonResponse.id)
+            localStorage.setItem("email", jsonResponse.email)
+          })
+          // localStorage.setItem("email", fieldEmail.value);
+          // localStorage.setItem("firstName", fieldFirstName.value);
+          // localStorage.setItem("lastName", fieldLastName.value);
+          // localStorage.setItem("date", fieldDate.value);
 
           navigate("/homepage");
          } else if (response.status == 400) {
