@@ -10,6 +10,10 @@ export const Profile = function () {
     /*const [deleteMessage, setDeleteMessage] = useState(null);
     const [displayConfirmationModal, setDisplayConfirmationModal] = useState(false);*/
     const navigate = useNavigate();
+    const[dialog, setDialog] = useState({
+        message:"",
+        isLoading:false
+    });
   //  const id = 0;
     function LogOut(){
         localStorage.clear();
@@ -39,7 +43,18 @@ export const Profile = function () {
       navigate("/");
     }
 
-    /*const HandleDelete = (e) => {
+    const HandleDelete = (e) => {
+        setDialog({
+            message: "Are you sure you want to delete your aacount in LeisureGuru?",
+            isLoading:true
+        })
+     }
+
+     const ConfirmDelete = (choise) =>{
+        setDialog({
+            message:"",
+            isLoading:false
+        })
         e.stopPropagation();
            if(window.confirm('Are sure want to delete?')) {
                 fetch('http://127.0.0.1:5000/user/' + localStorage.getItem("id"), {
@@ -76,7 +91,7 @@ export const Profile = function () {
            } else {
                 navigate("/profile");
            }
-     }*/
+     }
 
     return (
     <main>
@@ -105,10 +120,11 @@ export const Profile = function () {
                     </div>
                 </div>
                 <div>
-                    <button className = "deleteButton" onClick={DeleteConfirmation}>
+                    <button className = "deleteButton">
                         Delete my account
                     </button>
                 </div>
+                {dialog.isLoading && <DeleteConfirmation onDialog = {ConfirmDelete} message = {dialog.message}/>}
             </div>
         </div>
     </main>
