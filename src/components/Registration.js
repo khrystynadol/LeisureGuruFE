@@ -33,7 +33,7 @@ export const Registration = function(props) {
 
     const [date, setDate] = useState('')
     const[formValid, setFormValid] = useState(false)
-    const formCaption = (formType == 'editprofile' ? 'Edit Profile' : 'Registration');
+    const formCaption = (formType === 'editprofile' ? 'Edit Profile' : 'Registration');
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -163,17 +163,17 @@ export const Registration = function(props) {
           // localStorage.setItem("date", fieldDate.value);
 
           navigate("/homepage");
-         } else if (response.status == 400) {
+         } else if (response.status === 400) {
           setServerEror('Bad Request')
-         } else if (response.status == 404) {
+         } else if (response.status === 404) {
           setServerEror('Not Found')
-         } else if (response.status == 500) {
+         } else if (response.status === 500) {
           setServerEror ('Internal Server Error')
-         } else if (response.status == 502) {
+         } else if (response.status === 502) {
           setServerEror('Bad Gateway')
-         } else if (response.status == 503) {
+         } else if (response.status === 503) {
           setServerEror('Service Unavailable')
-         } else if (response.status == 503) {
+         } else if (response.status === 503) {
           setServerEror ('Gateway Timeout')
           }
           setIsLoading(false);
