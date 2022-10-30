@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Rating } from "./filters/Rating";
 import { Activities } from "./filters/Activities";
 import { PlacesPanel } from "./PlacesPanel";
+import {PlaceComponent} from "./PlaceComponent"
 
 export const Main = function () {
     const [sating, setRating] = useState(0);
@@ -22,6 +23,17 @@ export const Main = function () {
     4) Main: state for "rating". "setState" 
     
     */
+
+    const [info, setInfo] = useState([]);// create useState for info thet we GET from db
+    useEffect(()=>{
+        const getInformation = async() => {
+            const conn = await fetch('http://127.0.0.1:5000'); //create connection with db
+            const getdata = await conn.json();
+            setInfo(getdata);
+        }
+        getInformation();
+    },[]);
+    
     return (
         <div className="wrapper">
             <div className="left-panel">
@@ -31,9 +43,29 @@ export const Main = function () {
 
             </div>
             <div className="places-panel">
-                <h1>Welcome to our home page !</h1>
+                
                 <PlacesPanel selectedActivities={selectedActivities}/>
             </div>
+            <ul style = {{display:'block', left:'40%'}}>
+                <li style = {{display:'inline-block'}}><PlaceComponent 
+                    name={'Lviv'} 
+                    photo={'https://picsum.photos/900/180'} 
+                    description={'Beautiful place'} 
+                    rate={5} 
+                    locationCountry={'Ukraine'}
+                    locationCity = {'Lviv'}/></li>
+            
+                <li style = {{display:'inline-block'}}><PlaceComponent 
+                    name={'Zaporizhzhia'} 
+                    photo={'https://picsum.photos/900/180'} 
+                    description={'Beautiful place as well'} 
+                    rate={4} 
+                    locationCountry={'Ukraine'}
+                    locationCity={'Zaporizhzhia'}/></li>
+            </ul>
+            
+            
+            
         </div>
     );
 }
