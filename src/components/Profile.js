@@ -2,7 +2,7 @@ import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import { useEffect, useState, history, location } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Link} from "react-router-dom";
-import {DeleteConfirmation} from "./DeleteConfirmation";
+import DeleteConfirmation from "./DeleteConfirmation";
 
 
 export const Profile = function () {
@@ -55,7 +55,7 @@ export const Profile = function () {
             message:"",
             isLoading:false
         })
-        e.stopPropagation();
+        choise.stopPropagation();
            if(window.confirm('Are sure want to delete?')) {
                 fetch('http://127.0.0.1:5000/user/' + localStorage.getItem("id"), {
                     method: 'DELETE',
