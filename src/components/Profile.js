@@ -5,6 +5,7 @@ import { Link} from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 export const Profile = function () {
     const[serverEror, setServerEror] = useState('');
     const navigate = useNavigate();
@@ -67,6 +68,7 @@ export const Profile = function () {
                 setServerEror ('Gateway Timeout')
             }else{
                 setServerEror('Unknown error')
+
                 navigate("/profile");
             }
         })
