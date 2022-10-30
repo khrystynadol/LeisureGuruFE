@@ -13,7 +13,19 @@ code {
 }
 
 .wrapper {
-  padding-top: 5rem;
-  margin: 0 auto;
-  width: 600px;
+  /* padding-top: 5rem;
+  margin: 0 auto; */
+  display: flex;
+  /* width: 600px; */
+}
+
+.left-panel {
+  flex: 0 200px;
+  background-color: #EE8E57;
+}
+
+.main-panel {
+  flex: 1;
+  background-color: green;
+  margin-right: 0;
 }

@@ -94,7 +94,7 @@ line-height: 1em;
 /*Сбрасываем базовые настройки сайта*/
 *{
     margin: 0;
-    padding: 0;
+    /* padding: 0; */
 }
 /*Стилизуем хедер*/
 header{
@@ -435,3 +435,49 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     animation: spinner 1.5s linear infinite;
     margin-left: 50%;
   }
+
+.deleteWindow{
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: #fff;
+}
+
+.deleteDialog{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding:50px;
+}
+
+.dialog{
+    display: flex;
+    align-items: center;
+    color:white;
+}
+
+.dialogButtonYes{
+    background: red;
+    color:white;
+    padding:10px;
+    margin-right: 4px;
+    border:none;
+    cursor: pointer;
+}
+
+.dialogButtonNo{
+    background: green;
+    color:white;
+    padding:10px;
+    margin-left: 4px;
+    border:none;
+    cursor: pointer;
+}
