@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";import "./filter.css";
+import React, { useState, useEffect } from "react";
+import "./filter.css";
 
 export const  Filter = function ({ children, onApply, label }) {
 
