@@ -15,7 +15,8 @@ export const Activities = function(props) {
                     {"id" : 2, "name" : "Mountain biking"},
                     {"id" : 3, "name" : "Rowing"}, 
                     {"id" : 4, "name" : "Cycling"},
-                    {"id" : 5, "name" : "Swimming"}
+                    {"id" : 5, "name" : "Swimming"},
+                    {"id" : 6, "name" : "Sightseeing"}
                 ]), 1000
             );
         }).then((json) => {
