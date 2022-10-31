@@ -125,7 +125,8 @@ header{
 
 /*Стилизуем логотип*/
 .logo {
-    font-size: 30px;
+  font-size: 30px;
+  width: 250px;
   font-family:"Poly-Regular";
   padding: 0 30px;
   border: none;
@@ -422,4 +423,43 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     border-radius: 80%;
     animation: spinner 1.5s linear infinite;
     margin-left: 50%;
+  }
+
+  .filterTitle {
+    font-size: 20px;
+    font-family:"Poly-Regular";
+    /* padding: 0 30px; */
+    /* border: none; */
+    /* background: #EE8E57; */
+    color: #fff;
+    /* vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    position: absolute;
+    left:0px;
+    top:0px;
+    height:60px;
+    transition: all .3s ease;
+    text-decoration: none;
+    align-items: center;
+    line-height: 2em; */
+  }
+  .filterItem {
+    font-size: 12px;
+    font-family:"Poly-Regular";
+    /* padding: 0 30px; */
+    /* border: none; */
+    /* background: #EE8E57; */
+    color: #fff;
+    /* vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    position: absolute;
+    left:0px;
+    top:0px;
+    height:60px;
+    transition: all .3s ease;
+    text-decoration: none;
+    align-items: center;
+    line-height: 2em; */
   }

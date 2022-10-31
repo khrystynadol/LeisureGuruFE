@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import {Input, Label} from 'reactstrap';
+
 
 export const Activities = function(props) {
     const setSelectedActivities = props.setSelectedActivities;
@@ -22,7 +24,7 @@ export const Activities = function(props) {
     }, []);
 
     const renderActivities = () => {
-        return activities.map((act) => (<li key={act.id}><input type="checkbox" onChange={() => handleOnChange(act.id)}></input>{act.name}</li>))
+        return activities.map((act) => (<li key={act.id}><Input type="checkbox" onChange={() => handleOnChange(act.id)}></Input><Label className="filterItem" >{act.name}</Label></li>))
     }
 
     const handleOnChange = (id) => {
@@ -34,7 +36,7 @@ export const Activities = function(props) {
 
     return (
         <div className="Activities">
-        <h3>Activities</h3>
+        <span className="filterTitle" style={{paddingLeft:30}}>Activities</span>
         <form>
             <ul style={{listStyle: 'none'}}>
                 {renderActivities()}
