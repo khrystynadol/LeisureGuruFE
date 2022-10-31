@@ -39,15 +39,14 @@ export const Main = function () {
             <div className="left-panel">
                 <Rating setRating={setRating} />
                 <Activities selectedActivities={selectedActivities} setSelectedActivities={setSelectedActivities}/>
-                <h3>Date of visit</h3>
+                
 
             </div>
             <div className="places-panel">
                 
                 <PlacesPanel selectedActivities={selectedActivities}/>
-            </div>
-            <ul style = {{display:'block', left:'40%'}}>
-                <li style = {{display:'inline-block'}}><PlaceComponent 
+                <ul style={{listStyle: 'none'}}>
+                <li style = {{listItem:'none'}}><PlaceComponent 
                     name={'Lviv'} 
                     photo={'https://picsum.photos/900/180'} 
                     description={'Beautiful place'} 
@@ -55,7 +54,7 @@ export const Main = function () {
                     locationCountry={'Ukraine'}
                     locationCity = {'Lviv'}/></li>
             
-                <li style = {{display:'inline-block'}}><PlaceComponent 
+                <li><PlaceComponent 
                     name={'Zaporizhzhia'} 
                     photo={'https://picsum.photos/900/180'} 
                     description={'Beautiful place as well'} 
@@ -63,6 +62,8 @@ export const Main = function () {
                     locationCountry={'Ukraine'}
                     locationCity={'Zaporizhzhia'}/></li>
             </ul>
+            </div>
+
             
             
             
