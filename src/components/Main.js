@@ -24,6 +24,19 @@ export const Main = function () {
     
     */
 
+    /*{
+        info.map((infoIndex)=>(
+            <PlaceComponent 
+            name={infoIndex.name} 
+            photo={infoIndex.photo} 
+            description={infoIndex.description} 
+            raiting={infoIndex.raiting} 
+            locationCountry={infoIndex.country}
+            locationCity={infoIndex.city}
+            authorized = {true}/>
+        ))
+    }*/
+
     const [info, setInfo] = useState([]);// create useState for info thet we GET from db
     useEffect(()=>{
         const getInformation = async() => {
@@ -39,31 +52,31 @@ export const Main = function () {
             <div className="left-panel">
                 <Rating setRating={setRating} />
                 <Activities selectedActivities={selectedActivities} setSelectedActivities={setSelectedActivities}/>
-                
+                <h3>Date of visit</h3>
 
             </div>
             <div className="places-panel">
                 
                 <PlacesPanel selectedActivities={selectedActivities}/>
-                <ul style={{listStyle: 'none'}}>
-                <li style = {{listItem:'none'}}><PlaceComponent 
-                    name={'Lviv'} 
-                    photo={'https://picsum.photos/900/180'} 
-                    description={'Beautiful place'} 
-                    rate={5} 
-                    locationCountry={'Ukraine'}
-                    locationCity = {'Lviv'}/></li>
-            
-                <li><PlaceComponent 
-                    name={'Zaporizhzhia'} 
-                    photo={'https://picsum.photos/900/180'} 
-                    description={'Beautiful place as well'} 
-                    rate={4} 
-                    locationCountry={'Ukraine'}
-                    locationCity={'Zaporizhzhia'}/></li>
-            </ul>
             </div>
+            <ul style = {{display:'block'}}>
+                <li style = {{display:'inline-block'}}>
 
+                {
+                    info.map((infoIndex)=>(
+                        <PlaceComponent 
+                        name={infoIndex.name} 
+                        photo={infoIndex.photo} 
+                        description={infoIndex.description} 
+                        raiting={infoIndex.raiting} 
+                        locationCountry={infoIndex.country}
+                        locationCity={infoIndex.city}
+                        authorized = {true}/>
+                    ))
+                }
+                    
+                </li>
+            </ul>
             
             
             

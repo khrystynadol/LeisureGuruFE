@@ -1,4 +1,4 @@
-
+import {PlaceComponent} from "./PlaceComponent"
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 export const Home = function() {
@@ -6,6 +6,23 @@ export const Home = function() {
         {/* <div><Link to='/registration'>Registration</Link> </div> 
       
         <div><Link to='/login'>Login</Link> </div>  */}
-        <a>Some background</a>
+        <ul style = {{display:'block'}}>
+                <li style = {{display:'inline-block'}}>
+
+                {
+                    info.map((infoIndex)=>(
+                        <PlaceComponent 
+                        name={infoIndex.name} 
+                        photo={infoIndex.photo} 
+                        description={infoIndex.description} 
+                        raiting={infoIndex.raiting} 
+                        locationCountry={infoIndex.country}
+                        locationCity={infoIndex.city}
+                        authorized = {false}/>
+                    ))
+                }
+                    
+                </li>
+            </ul>
       </div>);
 }
