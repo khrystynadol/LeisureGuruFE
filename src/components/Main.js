@@ -3,13 +3,16 @@ import { Rating } from "./filters/Rating";
 import { Activities } from "./filters/Activities";
 import { PlacesPanel } from "./PlacesPanel";
 import {PlaceComponent} from "./PlaceComponent"
-
+import { Seasons } from "./filters/Seasons";
 export const Main = function () {
-    const [sating, setRating] = useState(0);
+    const [rating, setRating] = useState(0);
     const [date, setDate] = useState(false);
     // const [activities, setActivities] = useState();
 
     const [selectedActivities, setSelectedActivities] = useState(
+        new Array()
+    );
+    const [selectedSeasons, setSelectedSeasons] = useState(
         new Array()
     );
     /*
@@ -40,8 +43,18 @@ export const Main = function () {
     const [info, setInfo] = useState([]);// create useState for info thet we GET from db
     useEffect(()=>{
         const getInformation = async() => {
-            const conn = await fetch('http://127.0.0.1:5000'); //create connection with db
-            const getdata = await conn.json();
+            //const conn = await fetch('http://127.0.0.1:5000'); //create connection with db
+            //const getdata = await conn.json();
+            const getdata = [
+                {
+                    name: 'abc',
+                    photo: 'https://picsum.photos/900/180',
+                    description: 'desc',
+                    rating: 5,
+                    locationCountry: 'Ukraine',
+                    locationCity: 'Lviv'
+                }
+            ];
             setInfo(getdata);
         }
         getInformation();
@@ -52,12 +65,12 @@ export const Main = function () {
             <div className="left-panel">
                 <Rating setRating={setRating} />
                 <Activities selectedActivities={selectedActivities} setSelectedActivities={setSelectedActivities}/>
-                <h3>Date of visit</h3>
+                <Seasons selectedSeasons={selectedSeasons} setSelectedSeasons={setSelectedSeasons}/>
 
             </div>
             <div className="places-panel">
                 
-                <PlacesPanel selectedActivities={selectedActivities}/>
+                <PlacesPanel selectedActivities={selectedActivities} selectedSeasons={selectedSeasons}/>
             </div>
             <ul style = {{display:'block'}}>
                 <li style = {{display:'inline-block'}}>
