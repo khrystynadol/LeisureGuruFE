@@ -23,6 +23,7 @@ export const Seasons = function(props) {
         const currSeasons = selectedSeasons.slice();
         currSeasons.indexOf(id) === -1 ? currSeasons.push(id) : currSeasons.splice(currSeasons.indexOf(id), 1);
         setSelectedSeasons(currSeasons);
+        
     }
 
     return (
