@@ -102,23 +102,13 @@ export const Login = function() {
       })
 
         navigate("/homepage");
-       } else if (response.status == 400) {
-        setServerEror('Bad Request')
-       } else if (response.status == 404) {
-        setServerEror('Not Found')
-       } else if (response.status == 500) {
-        setServerEror ('Internal Server Error')
-       } else if (response.status == 502) {
-        setServerEror('Bad Gateway')
-       } else if (response.status == 503) {
+      } else if (response.status >= 400 && response.status <= 499) {
+        setServerEror('Incorrect username or password')
+       } else if (response.status >= 500) {
         setServerEror('Service Unavailable')
-       } else if (response.status == 503) {
-        setServerEror ('Gateway Timeout')
-        }
+       }
         setIsLoading(false);
-      })
-
-    
+      }).catch((e) => setServerError("Service unreachable"))
   };
     
   const renderForm = (
