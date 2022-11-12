@@ -42,7 +42,7 @@ export const Registration = function(props) {
     const fieldEmail = useRef();
     //const fieldPassword = useRef();
     const fieldDate = useRef();
-    const[serverEror, setServerEror] = useState('');
+    const[serverEror, setServerError] = useState('');
 
     useEffect(() =>{
       console.log("use effect " + new Date());
@@ -152,7 +152,7 @@ export const Registration = function(props) {
       })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
-          setServerEror('')
+          setServerError('')
           response.json().then((jsonResponse) => {
             localStorage.setItem("id", jsonResponse.id)
             localStorage.setItem("email", jsonResponse.email)
@@ -163,21 +163,13 @@ export const Registration = function(props) {
           // localStorage.setItem("date", fieldDate.value);
 
           navigate("/homepage");
-         } else if (response.status === 400) {
-          setServerEror('Bad Request')
-         } else if (response.status === 404) {
-          setServerEror('Not Found')
-         } else if (response.status === 500) {
-          setServerEror ('Internal Server Error')
-         } else if (response.status === 502) {
-          setServerEror('Bad Gateway')
-         } else if (response.status === 503) {
-          setServerEror('Service Unavailable')
-         } else if (response.status === 503) {
-          setServerEror ('Gateway Timeout')
-          }
+         } else if (response.status >= 400 && response.status <= 499) {
+          setServerError('Incorrect username or password')
+         } else if (response.status >= 500) {
+          setServerError('Service Unavailable')
+         }
           setIsLoading(false);
-        })
+        }).catch((e) => setServerError("Service unreachable"))
     }
 
 

@@ -1,6 +1,6 @@
 export const PlacesPanel = function (props) {
     const selectedActivityIds = props.selectedActivities;
-    const selectedSeasonsIds = props.selectedSeasons;
+    const selectedDateId = props.selectedDate;
     const renderActivityIds = (selectedIds) => {
         return selectedIds.map((actId) => (<li key={actId}> {actId}</li>))
     }
@@ -10,9 +10,9 @@ export const PlacesPanel = function (props) {
         <ul>
             {renderActivityIds(selectedActivityIds)}
         </ul>
-        <span>Seasons</span>
+        <span>Date</span>
         <ul>
-            {renderActivityIds(selectedSeasonsIds)}
+            {selectedDateId}
         </ul>
         </>
     );
