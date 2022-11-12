@@ -29,7 +29,6 @@ export const Activities = function(props) {
     }
 
     const handleOnChange = (id) => {
-        //selectedActivities.includes(id) ? selectedActivities.filter((exId) => {})
         const currActivities = selectedActivities.slice();
         currActivities.indexOf(id) === -1 ? currActivities.push(id) : currActivities.splice(currActivities.indexOf(id), 1);
         setSelectedActivities(currActivities);

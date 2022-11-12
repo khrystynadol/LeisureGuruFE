@@ -2,12 +2,12 @@ import React from "react";
 import {Button, CardColumns, Card, CardBody, CardTitle, CardImg, CardText} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export const PlaceComponent = function({photo, name, rate, description, locationCountry, locationCity, authorized}){
-    const alterText = {name} + ' in ' + {locationCountry} + ', ' + {locationCity};
+export const PlaceComponent = function({image, name, rate, description, country, city, authorized}){
+    const alterText = {name} + ' in ' + {country} + ', ' + {city};
     return(
         <>
         <Card className="my-2"style={{width: '60rem', display:'inline-block'}}>
-            <CardImg src = {photo}
+            <CardImg src = {image}
             alt = {alterText}
             width='100%'/>
             <CardBody>
@@ -19,7 +19,7 @@ export const PlaceComponent = function({photo, name, rate, description, location
             </CardText>
             <CardText>
                 <small className="text-muted">
-                {locationCountry}, {locationCity}
+                {country}, {city}
                 </small>
             </CardText>
             {
@@ -28,8 +28,13 @@ export const PlaceComponent = function({photo, name, rate, description, location
                 <small className="text-muted">
                 Raiting: {rate}
                 </small>
-            </CardText> && 
-            <Button>More</Button> : <></>
+            </CardText>
+             : <></>
+            }
+            {
+            authorized ?
+            <Button>More</Button>
+             : <></>
             }
             </CardBody>
         </Card>

@@ -2,6 +2,7 @@
 import {Input, Label} from 'reactstrap';
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
+import './Calendar.css'
 
 
 export const Date = function(props) {
