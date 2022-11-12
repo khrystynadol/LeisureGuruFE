@@ -68,10 +68,10 @@ export const Main = function () {
                 <Date date={date} setDate={setDate}/>
 
             </div>
-            <div className="places-panel">
+            {/* <div className="places-panel">
                 
                 <PlacesPanel selectedActivities={selectedActivities} selectedDate={date}/>
-            </div>
+            </div> */}
             <ul style = {{display:'block'}}>
                 <li style = {{display:'inline-block'}}>
 
