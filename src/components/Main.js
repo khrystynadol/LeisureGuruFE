@@ -3,18 +3,18 @@ import { Rating } from "./filters/Rating";
 import { Activities } from "./filters/Activities";
 import { PlacesPanel } from "./PlacesPanel";
 import {PlaceComponent} from "./PlaceComponent"
-import { Seasons } from "./filters/Seasons";
+import { Date } from "./filters/Date";
 export const Main = function () {
     const [rating, setRating] = useState(0);
-    const [date, setDate] = useState(false);
+    const [date, setDate] = useState(0);
     // const [activities, setActivities] = useState();
 
     const [selectedActivities, setSelectedActivities] = useState(
         new Array()
     );
-    const [selectedSeasons, setSelectedSeasons] = useState(
-        new Array()
-    );
+    // const [selectedDate, setSelectedDate] = useState(
+    //     new Array()
+    // );
     /*
     1) Main -> FilterPanel & PlacesPanel
     2) FilterPanel -> ActivityFilter, DateFilter & RatingFilter
@@ -43,18 +43,18 @@ export const Main = function () {
     const [info, setInfo] = useState([]);// create useState for info thet we GET from db
     useEffect(()=>{
         const getInformation = async() => {
-            //const conn = await fetch('http://127.0.0.1:5000'); //create connection with db
-            //const getdata = await conn.json();
-            const getdata = [
-                {
-                    name: 'abc',
-                    photo: 'https://picsum.photos/900/180',
-                    description: 'desc',
-                    rating: 5,
-                    locationCountry: 'Ukraine',
-                    locationCity: 'Lviv'
-                }
-            ];
+            const conn = await fetch('http://127.0.0.1:5000'); //create connection with db
+            const getdata = await conn.json();
+            // const getdata = [
+            //     {
+            //         name: 'abc',
+            //         photo: 'https://picsum.photos/900/180',
+            //         description: 'desc',
+            //         rating: 5,
+            //         locationCountry: 'Ukraine',
+            //         locationCity: 'Lviv'
+            //     }
+            // ];
             setInfo(getdata);
         }
         getInformation();
@@ -65,13 +65,13 @@ export const Main = function () {
             <div className="left-panel">
                 <Rating setRating={setRating} />
                 <Activities selectedActivities={selectedActivities} setSelectedActivities={setSelectedActivities}/>
-                <Seasons selectedSeasons={selectedSeasons} setSelectedSeasons={setSelectedSeasons}/>
+                <Date date={date} setDate={setDate}/>
 
             </div>
-            <div className="places-panel">
+            {/* <div className="places-panel">
                 
-                <PlacesPanel selectedActivities={selectedActivities} selectedSeasons={selectedSeasons}/>
-            </div>
+                <PlacesPanel selectedActivities={selectedActivities} selectedDate={date}/>
+            </div> */}
             <ul style = {{display:'block'}}>
                 <li style = {{display:'inline-block'}}>
 
