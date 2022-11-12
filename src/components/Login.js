@@ -106,6 +106,8 @@ export const Login = function() {
         setServerEror('Bad Request')
        } else if (response.status == 404) {
         setServerEror('Not Found')
+      } else if (response.status == 405) {
+        setServerEror('Incorrect email or password')
        } else if (response.status == 500) {
         setServerEror ('Internal Server Error')
        } else if (response.status == 502) {

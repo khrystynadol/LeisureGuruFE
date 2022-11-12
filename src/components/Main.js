@@ -43,8 +43,9 @@ export const Main = function () {
     const [info, setInfo] = useState([]);// create useState for info thet we GET from db
     useEffect(()=>{
         const getInformation = async() => {
-            //const conn = await fetch('http://127.0.0.1:5000'); //create connection with db
-            //const getdata = await conn.json();
+            const conn = await fetch('http://127.0.0.1:5000/homepage'); //create connection with db
+            const getdata = await conn.json();
+            /*
             const getdata = [
                 {
                     name: 'abc',
@@ -55,6 +56,7 @@ export const Main = function () {
                     locationCity: 'Lviv'
                 }
             ];
+            */
             setInfo(getdata);
         }
         getInformation();
@@ -79,11 +81,11 @@ export const Main = function () {
                     info.map((infoIndex)=>(
                         <PlaceComponent 
                         name={infoIndex.name} 
-                        photo={infoIndex.photo} 
+                        image={infoIndex.image} 
                         description={infoIndex.description} 
-                        raiting={infoIndex.raiting} 
-                        locationCountry={infoIndex.country}
-                        locationCity={infoIndex.city}
+                        rate={infoIndex.rate} 
+                        country={infoIndex.country}
+                        city={infoIndex.city}
                         authorized = {true}/>
                     ))
                 }

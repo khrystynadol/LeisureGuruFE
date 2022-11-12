@@ -13,31 +13,32 @@ export const Profile = function () {
     
   //  const id = 0;
     function LogOut(){
-        localStorage.clear();
-        fetch('http://127.0.0.1:5000/user/'+ localStorage.getItem("id"), {
+        fetch('http://127.0.0.1:5000/profile/' + localStorage.getItem("id"), {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
-        },
+        }
       })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
-          setServerEror('')
+            localStorage.clear()
+            setServerEror('')
+            navigate("/");
          } else if (response.status === 400) {
-          setServerEror('Bad Request')
+            setServerEror('Bad Request')
          } else if (response.status === 404) {
-          setServerEror('Not Found')
+            setServerEror('Not Found')
          } else if (response.status === 500) {
-          setServerEror ('Internal Server Error')
+            setServerEror ('Internal Server Error')
          } else if (response.status === 502) {
-          setServerEror('Bad Gateway')
+            setServerEror('Bad Gateway')
          } else if (response.status === 503) {
-          setServerEror('Service Unavailable')
+            setServerEror('Service Unavailable')
          } else if (response.status === 503) {
-          setServerEror ('Gateway Timeout')
+            setServerEror ('Gateway Timeout')
           }
         })
-      navigate("/");
+      navigate("/profile");
     }
     
     const toggleYes = () =>{
