@@ -42,7 +42,7 @@ export const Registration = function(props) {
     const fieldEmail = useRef();
     //const fieldPassword = useRef();
     const fieldDate = useRef();
-    const[serverEror, setServerEror] = useState('');
+    const[serverEror, setServerError] = useState('');
 
     useEffect(() =>{
       console.log("use effect " + new Date());
@@ -152,7 +152,7 @@ export const Registration = function(props) {
       })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
-          setServerEror('')
+          setServerError('')
           response.json().then((jsonResponse) => {
             localStorage.setItem("id", jsonResponse.id)
             localStorage.setItem("email", jsonResponse.email)
@@ -164,9 +164,9 @@ export const Registration = function(props) {
 
           navigate("/homepage");
          } else if (response.status >= 400 && response.status <= 499) {
-          setServerEror('Incorrect username or password')
+          setServerError('Incorrect username or password')
          } else if (response.status >= 500) {
-          setServerEror('Service Unavailable')
+          setServerError('Service Unavailable')
          }
           setIsLoading(false);
         }).catch((e) => setServerError("Service unreachable"))

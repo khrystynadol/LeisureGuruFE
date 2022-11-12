@@ -15,7 +15,7 @@ export const Login = function() {
   const [loginErrorMessage, setLoginErrorMessage] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const fieldEmail = useRef();
-  const[serverEror, setServerEror] = useState('');
+  const[serverEror, setServerError] = useState('');
 
   const navigate = useNavigate();
 
@@ -93,7 +93,7 @@ export const Login = function() {
     })
       .then((response) => {
        if (response.status >= 200 && response.status <= 299) {
-        setServerEror('')
+        setServerError('')
         //localStorage.setItem("email", fieldEmail.value);
       //  localStorage.setItem("id", response.json.id)///?
       response.json().then((jsonResponse) => {
@@ -103,9 +103,9 @@ export const Login = function() {
 
         navigate("/homepage");
       } else if (response.status >= 400 && response.status <= 499) {
-        setServerEror('Incorrect username or password')
+        setServerError('Incorrect username or password')
        } else if (response.status >= 500) {
-        setServerEror('Service Unavailable')
+        setServerError('Service Unavailable')
        }
         setIsLoading(false);
       }).catch((e) => setServerError("Service unreachable"))
