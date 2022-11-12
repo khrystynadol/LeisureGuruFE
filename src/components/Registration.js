@@ -135,18 +135,18 @@ export const Registration = function(props) {
 //http://127.0.0.1:5000/
     const handleSubmit  = () => {
       setIsLoading(true);
-      fetch('http://127.0.0.1:5000/signup', {
+      fetch('http://127.0.0.1:5000/registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(
           {
-            firstName: firstName,
-            lastName: lastName,
+            first_name: firstName,
+            last_name: lastName,
             email: email,
-            date : date,
-            password: password
+            birth_date : date,
+            password1: password
           }
         )
       })
@@ -161,7 +161,7 @@ export const Registration = function(props) {
           // localStorage.setItem("firstName", fieldFirstName.value);
           // localStorage.setItem("lastName", fieldLastName.value);
           // localStorage.setItem("date", fieldDate.value);
-
+          
           navigate("/homepage");
          } else if (response.status === 400) {
           setServerEror('Bad Request')
