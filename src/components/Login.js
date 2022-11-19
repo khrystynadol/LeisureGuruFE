@@ -91,6 +91,7 @@ export const Login = function() {
         }
       )
     })
+
       .then((response) => {
        if (response.status >= 200 && response.status <= 299) {
         setServerError('')
@@ -99,9 +100,9 @@ export const Login = function() {
       response.json().then((jsonResponse) => {
         localStorage.setItem("id", jsonResponse.id)
         localStorage.setItem("email", jsonResponse.email)
+        navigate("/homepage");
       })
 
-        navigate("/homepage");
       } else if (response.status >= 400 && response.status <= 499) {
         setServerError('Incorrect username or password')
        } else if (response.status >= 500) {
