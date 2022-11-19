@@ -21,6 +21,7 @@ export const Profile = function () {
       })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
+
             localStorage.clear()
             setServerEror('')
             navigate("/");

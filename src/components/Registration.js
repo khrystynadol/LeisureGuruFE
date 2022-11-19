@@ -42,7 +42,7 @@ export const Registration = function(props) {
     const fieldEmail = useRef();
     //const fieldPassword = useRef();
     const fieldDate = useRef();
-    const[serverEror, setServerError] = useState('');
+    const[serverError, setServerError] = useState('');
 
     useEffect(() =>{
       console.log("use effect " + new Date());
@@ -135,17 +135,17 @@ export const Registration = function(props) {
 //http://127.0.0.1:5000/
     const handleSubmit  = () => {
       setIsLoading(true);
-      fetch('http://127.0.0.1:5000/signup', {
+      fetch('http://127.0.0.1:5000/registration', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(
           {
-            firstName: firstName,
-            lastName: lastName,
+            first_name: firstName,
+            last_name: lastName,
             email: email,
-            date : date,
+            birth_date : date,
             password: password
           }
         )
@@ -163,7 +163,7 @@ export const Registration = function(props) {
           // localStorage.setItem("date", fieldDate.value);
 
           navigate("/homepage");
-         } else if (response.status >= 400 && response.status <= 499) {
+        } else if (response.status >= 400 && response.status <= 499) {
           setServerError('Incorrect username or password')
          } else if (response.status >= 500) {
           setServerError('Service Unavailable')
@@ -171,6 +171,7 @@ export const Registration = function(props) {
           setIsLoading(false);
         }).catch((e) => setServerError("Service unreachable"))
     }
+    
 
 
 
@@ -210,7 +211,7 @@ export const Registration = function(props) {
         <div className="submitDiv">
            
             <button disabled = {!formValid || isLoading} className = "submitButton" type = 'submit' onClick={()=>handleSubmit()}>{formCaption}</button>
-            { <div style = {{color: 'red'}}>{serverEror}</div>}
+            { <div style = {{color: 'red'}}>{serverError}</div>}
 
         </div>
     </div>
