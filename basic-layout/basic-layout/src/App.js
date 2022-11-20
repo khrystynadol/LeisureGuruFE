@@ -1,7 +1,7 @@
 import './styles.css';
 import {React, useState} from 'react';
 import LoadingSpinner from "./LoadingSpinner";
-import { ResultPage } from '../../../src/components/ResultPage';
+import { ResultPage } from './ResultPage';
 
 function App() {
 const[data, setData] = useState('')
