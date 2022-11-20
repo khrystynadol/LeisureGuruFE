@@ -1,11 +1,63 @@
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-
-
+//import LoadingSpinner from "./LoadingSpinner";
+import { ResultPage } from './ResultPage';
+import {React, useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export const NavigationBar = function () {
   const location = useLocation();
+  const[data, setData] = useState('')
+  const[resp, setResp] = useState('')
+  const[serverEror, setServerError] = useState('');
+  //const[isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+const handleInput = (e) => {
+  setData(e.target.value);
+}
+
+const WorkWithInput = () =>{
+  //setIsLoading(true);
+      fetch('http://127.0.0.1:5000/filter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+          {
+            search_box: data
+          }
+        )
+      })
+        .then((response) => {
+         if (response.status >= 200 && response.status <= 299) {
+          setServerError('')
+          /*response.json().then((jsonResponse) => {
+            setResp(jsonResponse);
+          })*/
+          
+         } else if (response.status === 400) {
+          setServerError('Bad Request')
+         } else if (response.status === 404) {
+          setServerError('Not Found')
+         } else if (response.status === 500) {
+          setServerError ('Internal Server Error')
+         } else if (response.status === 502) {
+          setServerError('Bad Gateway')
+         } else if (response.status === 503) {
+          setServerError('Service Unavailable')
+         } else if (response.status === 503) {
+          setServerError ('Gateway Timeout')
+          }
+          //setIsLoading(false);
+        }).then(information=>{
+          setResp(information);
+          ResultPage({resp});
+          navigate("/result");
+        })
+}
 
   const renderButtons = (pathname) => {
     switch (pathname) {
@@ -32,11 +84,11 @@ export const NavigationBar = function () {
         return (
           <ul>
             <form>
-              <input type="text" placeholder='Browse for places here...' class="searchTxt"></input>
-              <input type="Submit" value="Goooo" class="searchButton"></input>
+              <input type="text" placeholder='Browse for places here...' className="searchTxt" onChange={e => handleInput(e)}></input>
+              <input type="Submit" value="Goooo" className="searchButton" onClick = {WorkWithInput}></input>
             </form>
-            <li><Link to='/notifications' class="notification">Notification</Link></li>
-            <li><Link to='/Profile' class="user">User</Link></li>
+            <li><Link to='/notifications' className="notification">Notification</Link></li>
+            <li><Link to='/Profile' className="user">User</Link></li>
           </ul>
         );
     }
