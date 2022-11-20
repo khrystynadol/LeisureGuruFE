@@ -21,11 +21,12 @@ code {
 
 .left-panel {
   flex: 0 250px;
+  
   background-color: #EE8E57;
 }
 
 .main-panel {
   flex: 1;
-  background-color: green;
+  background-color:#EBE7C4;
   margin-right: 0;
 }
