@@ -2,7 +2,8 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 //import LoadingSpinner from "./LoadingSpinner";
 import { ResultPage } from './ResultPage';
-import {React, useState, useNavigate} from "react";
+import {React, useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export const NavigationBar = function () {
