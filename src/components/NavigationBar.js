@@ -10,7 +10,7 @@ export const NavigationBar = function () {
   const location = useLocation();
   const[data, setData] = useState('')
   const[resp, setResp] = useState('')
-  const[serverEror, setServerError] = useState('');
+  const[serverError, setServerError] = useState('');
   //const[isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -34,10 +34,11 @@ const WorkWithInput = () =>{
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
           setServerError('')
-          /*response.json().then((jsonResponse) => {
+          response.json().then((jsonResponse) => {
             setResp(jsonResponse);
-          })*/
-          
+          })
+          ResultPage({resp});
+          navigate("/result");
          } else if (response.status === 400) {
           setServerError('Bad Request')
          } else if (response.status === 404) {
@@ -52,10 +53,6 @@ const WorkWithInput = () =>{
           setServerError ('Gateway Timeout')
           }
           //setIsLoading(false);
-        }).then(information=>{
-          setResp(information);
-          ResultPage({resp});
-          navigate("/result");
         })
 }
 
