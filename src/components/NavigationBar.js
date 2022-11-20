@@ -2,14 +2,17 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 //import LoadingSpinner from "./LoadingSpinner";
 import { ResultPage } from './ResultPage';
-import {React, useState, navigate, setServerEror} from "react";
+import {React, useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export const NavigationBar = function () {
   const location = useLocation();
   const[data, setData] = useState('')
   const[resp, setResp] = useState('')
+  const[serverEror, setServerError] = useState('');
   //const[isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
 const handleInput = (e) => {
   setData(e.target.value);
@@ -37,17 +40,17 @@ const WorkWithInput = () =>{
           ResultPage({resp});
           navigate("/result");
          } else if (response.status === 400) {
-          setServerEror('Bad Request')
+          setServerError('Bad Request')
          } else if (response.status === 404) {
-          setServerEror('Not Found')
+          setServerError('Not Found')
          } else if (response.status === 500) {
-          setServerEror ('Internal Server Error')
+          setServerError ('Internal Server Error')
          } else if (response.status === 502) {
-          setServerEror('Bad Gateway')
+          setServerError('Bad Gateway')
          } else if (response.status === 503) {
-          setServerEror('Service Unavailable')
+          setServerError('Service Unavailable')
          } else if (response.status === 503) {
-          setServerEror ('Gateway Timeout')
+          setServerError ('Gateway Timeout')
           }
           //setIsLoading(false);
         })

@@ -98,7 +98,7 @@ export const Registration = function(props) {
     if (e.target.value ===''){
       setErrorConfirmPassword('Field can`t be empty')
     } else if(e.target.value !== password) {
-      setErrorConfirmPassword("This password does not match the password you entered above")
+      setErrorConfirmPassword("No match with password above")
     }else{
       setErrorConfirmPassword("")
     }

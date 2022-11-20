@@ -6,7 +6,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const Profile = function () {
-    const[serverEror, setServerEror] = useState('');
+    const[serverEror, setServerError] = useState('');
     const navigate = useNavigate();
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
@@ -23,20 +23,20 @@ export const Profile = function () {
          if (response.status >= 200 && response.status <= 299) {
 
             localStorage.clear()
-            setServerEror('')
+            setServerError('')
             navigate("/");
          } else if (response.status === 400) {
-            setServerEror('Bad Request')
+            setServerError('Bad Request')
          } else if (response.status === 404) {
-            setServerEror('Not Found')
+            setServerError('Not Found')
          } else if (response.status === 500) {
-            setServerEror ('Internal Server Error')
+            setServerError ('Internal Server Error')
          } else if (response.status === 502) {
-            setServerEror('Bad Gateway')
+            setServerError('Bad Gateway')
          } else if (response.status === 503) {
-            setServerEror('Service Unavailable')
+            setServerError('Service Unavailable')
          } else if (response.status === 503) {
-            setServerEror ('Gateway Timeout')
+            setServerError ('Gateway Timeout')
           }
         })
       navigate("/profile");
@@ -53,22 +53,22 @@ export const Profile = function () {
         .then((response) => {
             if (response.status >= 200 && response.status <= 299) {
                 localStorage.clear();
-                setServerEror('')
+                setServerError('')
                 navigate("/");
             } else if (response.status == 400) {
-                setServerEror('Bad Request')
+                setServerError('Bad Request')
             } else if (response.status == 404) {
-                setServerEror('Not Found')
+                setServerError('Not Found')
             } else if (response.status == 500) {
-                setServerEror ('Internal Server Error')
+                setServerError ('Internal Server Error')
             } else if (response.status == 502) {
-                setServerEror('Bad Gateway')
+                setServerError('Bad Gateway')
             } else if (response.status == 503) {
-                setServerEror('Service Unavailable')
+                setServerError('Service Unavailable')
             } else if (response.status == 503) {
-                setServerEror ('Gateway Timeout')
+                setServerError ('Gateway Timeout')
             }else{
-                setServerEror('Unknown error')
+                setServerError('Unknown error')
                 navigate("/profile");
             }
         })

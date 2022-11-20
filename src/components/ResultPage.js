@@ -1,14 +1,14 @@
 import React from "react";
 import {PlaceComponent} from "./PlaceComponent"
 
-export const ResultPage = function({data}){
+export const ResultPage = function({respData}){
     return(
     <div>
         <ul style = {{display:'block'}}>
             <li style = {{display:'inline-block'}}>
 
                 {
-                    data.map((infoIndex)=>(
+                    respData.map((infoIndex)=>(
                         <PlaceComponent 
                         name={infoIndex.name} 
                         image={infoIndex.image} 
