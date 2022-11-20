@@ -1,4 +1,5 @@
 import React from "react";
+import {PlaceComponent} from "./PlaceComponent"
 
 export const ResultPage = function({data}){
     return(
@@ -10,11 +11,11 @@ export const ResultPage = function({data}){
                     data.map((infoIndex)=>(
                         <PlaceComponent 
                         name={infoIndex.name} 
-                        photo={infoIndex.photo} 
+                        image={infoIndex.image} 
                         description={infoIndex.description} 
-                        raiting={infoIndex.raiting} 
-                        locationCountry={infoIndex.country}
-                        locationCity={infoIndex.city}
+                        rate={infoIndex.rate} 
+                        country={infoIndex.country}
+                        city={infoIndex.city}
                         authorized = {false}/>
                     ))
                 }

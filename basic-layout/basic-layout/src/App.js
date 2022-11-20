@@ -14,16 +14,14 @@ const handleInput = (e) => {
 
 const WorkWithInput = () =>{
   setIsLoading(true);
-      fetch('http://127.0.0.1:5000/result', {
+      fetch('http://127.0.0.1:5000/filter', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(
           {
-            name: data,
-            city: data,
-            country: data
+            search_box: data
           }
         )
       })
@@ -34,7 +32,7 @@ const WorkWithInput = () =>{
             setResp(jsonResponse);
           })
           ResultPage(resp);
-          navigate("/resut");
+          navigate("/result");
          } else if (response.status === 400) {
           setServerEror('Bad Request')
          } else if (response.status === 404) {
@@ -59,11 +57,11 @@ const WorkWithInput = () =>{
         <div class="menu">
           <ul>
             <form>
-              <input type="text" placeholder='Browse for places here...' class = "searchTxt" onClick={e => handleInput(e)}></input>
-              <input type="Submit" value="Goooo" class = "searchButton" disabled = {isLoading} onClick = {()=>WorkWithInput()}></input>
+              <input type="text" placeholder='Browse for places here...' className = "searchTxt" onChange={e => handleInput(e)}></input>
+              <input type="Submit" value="Goooo" className = "searchButton" disabled = {isLoading} onClick = {WorkWithInput}></input>
             </form>
-            <li><a href="#" class = "notification">Notification</a></li>
-            <li><a href="#" class = "user">User</a></li>
+            <li><a href="#" className = "notification">Notification</a></li>
+            <li><a href="#" className = "user">User</a></li>
           </ul>
         </div>
       </div>

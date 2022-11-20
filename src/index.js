@@ -14,6 +14,7 @@ import { NavigationBar } from './components/NavigationBar';
 import {Notifications} from './components/Notifications';
 import { Authorized } from './components/Authorized';
 import { NotAuthorized } from './components/NotAuthorized';
+import { ResultPage } from './components/ResultPage';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -30,6 +31,7 @@ root.render(
         <Route path='/profile' element={  <Authorized> <Profile /></Authorized>}  />
         <Route path='/settings' element={<Authorized> <Settings /></Authorized>} />
         <Route path='/notifications' element={<Authorized> <Notifications /></Authorized>} />
+        <Route path='/result' element={<Authorized> <ResultPage /></Authorized>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
