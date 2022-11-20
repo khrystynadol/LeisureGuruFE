@@ -5,7 +5,7 @@ import { PlacesPanel } from "./PlacesPanel";
 import {PlaceComponent} from "./PlaceComponent"
 import { Date } from "./filters/Date";
 export const Main = function () {
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(5);
     const [date, setDate] = useState(0);
     // const [activities, setActivities] = useState();
 
@@ -61,6 +61,40 @@ export const Main = function () {
         }
         getInformation();
     },[]);
+
+    useEffect( () => {
+        console.log("filter changed " + rating + ", " + date + ", " + selectedActivities);
+        // fetch(
+        //     'http://127.0.0.1:5000/filter?' + new URLSearchParams({
+        //         rate: rating,
+        //         activities: selectedActivities,
+        //     }),
+        //     {
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         }
+                
+        //     }
+        // )
+    fetch('http://127.0.0.1:5000/filter', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(
+        {
+            rate: rating,
+            activities: selectedActivities,
+        }
+      )
+    })
+
+        .then(response => response.json())
+        .then(jsonResponse => setInfo(jsonResponse));
+        //'server/filter?param=value&param2=value2' 
+    }, [rating, date, selectedActivities]
+
+    );
     
     return (
         <div className="wrapper">
