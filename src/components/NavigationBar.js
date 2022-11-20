@@ -49,8 +49,8 @@ const WorkWithInput = () =>{
           setServerEror ('Gateway Timeout')
           }
           //setIsLoading(false);
-        }).then(resp=>{
-          setResp(resp);
+        }).then(information=>{
+          setResp(information);
           ResultPage({resp});
           navigate("/result");
         })
