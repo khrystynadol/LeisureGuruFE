@@ -10,7 +10,7 @@ export const NavigationBar = function () {
   const location = useLocation();
   const[data, setData] = useState('')
   const[resp, setResp] = useState('')
-  const[serverEror, setServerError] = useState('');
+  const[serverError, setServerError] = useState('');
   //const[isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 

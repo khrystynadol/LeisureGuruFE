@@ -108,6 +108,7 @@ export const Main = function () {
                 
                 <PlacesPanel selectedActivities={selectedActivities} selectedDate={date}/>
             </div> */}
+            <div className="main-panel">
             <ul style = {{display:'block'}}>
                 <li style = {{display:'inline-block'}}>
 
@@ -129,7 +130,8 @@ export const Main = function () {
             </ul>
             
             
-            
+            </div>
         </div>
+    
     );
 }
