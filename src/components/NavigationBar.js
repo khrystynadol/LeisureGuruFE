@@ -2,13 +2,14 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 //import LoadingSpinner from "./LoadingSpinner";
 import { ResultPage } from './ResultPage';
-import {React, useState, navigate, setServerError} from "react";
+import {React, useState, navigate} from "react";
 
 
 export const NavigationBar = function () {
   const location = useLocation();
   const[data, setData] = useState('')
   const[resp, setResp] = useState('')
+  const[serverEror, setServerError] = useState('');
   //const[isLoading, setIsLoading] = useState(false);
 
 const handleInput = (e) => {

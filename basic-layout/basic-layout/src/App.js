@@ -27,24 +27,24 @@ const WorkWithInput = () =>{
       })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
-          setServerEror('')
+          setServerError('')
           response.json().then((jsonResponse) => {
             setResp(jsonResponse);
           })
           ResultPage(resp);
           navigate("/result");
          } else if (response.status === 400) {
-          setServerEror('Bad Request')
+          setServerError('Bad Request')
          } else if (response.status === 404) {
-          setServerEror('Not Found')
+          setServerError('Not Found')
          } else if (response.status === 500) {
-          setServerEror ('Internal Server Error')
+          setServerError ('Internal Server Error')
          } else if (response.status === 502) {
-          setServerEror('Bad Gateway')
+          setServerError('Bad Gateway')
          } else if (response.status === 503) {
-          setServerEror('Service Unavailable')
+          setServerError('Service Unavailable')
          } else if (response.status === 503) {
-          setServerEror ('Gateway Timeout')
+          setServerError ('Gateway Timeout')
           }
           setIsLoading(false);
         })
