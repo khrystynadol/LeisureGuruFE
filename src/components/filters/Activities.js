@@ -8,20 +8,26 @@ export const Activities = function(props) {
     const [activities, setActivities] = useState([]);
 
     useEffect(() => {
-        new Promise((resolve, reject) => {
-            setTimeout(
-                resolve([
-                    {"id" : 1, "name" : "Hiking"}, 
-                    {"id" : 2, "name" : "Mountain biking"},
-                    {"id" : 3, "name" : "Rowing"}, 
-                    {"id" : 4, "name" : "Cycling"},
-                    {"id" : 5, "name" : "Swimming"},
-                    {"id" : 6, "name" : "Sightseeing"}
-                ]), 1000
-            );
-        }).then((json) => {
-            setActivities(json);
-        });
+        // new Promise((resolve, reject) => {
+        //     setTimeout(
+        //         resolve([
+        //             {"id" : 1, "name" : "Hiking"}, 
+        //             {"id" : 2, "name" : "Mountain biking"},
+        //             {"id" : 3, "name" : "Rowing"}, 
+        //             {"id" : 4, "name" : "Cycling"},
+        //             {"id" : 5, "name" : "Swimming"},
+        //             {"id" : 6, "name" : "Sightseeing"}
+        //         ]), 1000
+        //     );
+        // }).then((json) => {
+        //     setActivities(json);
+        // });
+
+        fetch ('http://127.0.0.1:5000/activities')
+        .then(response => response.json())
+        .then(jsonResponse => setActivities(jsonResponse));
+
+    
     }, []);
 
     const renderActivities = () => {
