@@ -33,7 +33,7 @@ const WorkWithInput = () =>{
       })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
-          setServerEror('')
+          setServerError('')
           response.json().then((jsonResponse) => {
             setResp(jsonResponse);
           })
@@ -104,4 +104,3 @@ const WorkWithInput = () =>{
     </header>
   );
 }
-
