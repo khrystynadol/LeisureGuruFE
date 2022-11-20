@@ -31,10 +31,11 @@ const WorkWithInput = () =>{
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
           setServerEror('')
-          /*response.json().then((jsonResponse) => {
+          response.json().then((jsonResponse) => {
             setResp(jsonResponse);
-          })*/
-          
+          })
+          ResultPage({resp});
+          navigate("/result");
          } else if (response.status === 400) {
           setServerEror('Bad Request')
          } else if (response.status === 404) {
@@ -49,10 +50,6 @@ const WorkWithInput = () =>{
           setServerEror ('Gateway Timeout')
           }
           //setIsLoading(false);
-        }).then(information=>{
-          setResp(information);
-          ResultPage({resp});
-          navigate("/result");
         })
 }
 
