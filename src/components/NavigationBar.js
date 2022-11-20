@@ -33,11 +33,11 @@ const WorkWithInput = () =>{
       })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
-          setServerEror('')
-          response.json().then((jsonResponse) => {
+          setServerError('')
+          response.json().then((jsonResponse) =>{
             setResp(jsonResponse);
           })
-          ResultPage({resp});
+          ResultPage(resp);
           navigate("/result");
          } else if (response.status === 400) {
           setServerError('Bad Request')
