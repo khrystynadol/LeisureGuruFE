@@ -37,7 +37,11 @@ const WorkWithInput = () =>{
           /*response.json().then((jsonResponse) => {
             setResp(jsonResponse);
           })*/
-          
+          response.json().then((jsonResponse) =>{
+            setResp(jsonResponse);
+          })
+          ResultPage(resp);
+          navigate("/result");
          } else if (response.status === 400) {
           setServerError('Bad Request')
          } else if (response.status === 404) {
@@ -52,10 +56,6 @@ const WorkWithInput = () =>{
           setServerError ('Gateway Timeout')
           }
           //setIsLoading(false);
-        }).then(information=>{
-          setResp(information);
-          ResultPage({resp});
-          navigate("/result");
         })
 }
 
