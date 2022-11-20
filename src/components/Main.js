@@ -45,18 +45,18 @@ export const Main = function () {
         const getInformation = async() => {
             const conn = await fetch('http://127.0.0.1:5000/homepage'); //create connection with db
             const getdata = await conn.json();
-            /*
-            const getdata = [
+            
+            /*const getdata = [
                 {
                     name: 'abc',
-                    photo: 'https://picsum.photos/900/180',
-                    description: 'desc',
-                    rating: 5,
-                    locationCountry: 'Ukraine',
-                    locationCity: 'Lviv'
+                    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Латинський_кафедральний_собор_%28Львів%29_16.jpg/270px-Латинський_кафедральний_собор_%28Львів%29_16.jpg',
+                    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem. Veritatisobcaecati tenetur iure eius earum ut molestias architecto voluptate aliquamnihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,quia.',
+                    rate: 5,
+                    country: 'Ukraine',
+                    city: 'Lviv'
                 }
-            ];
-            */
+            ];*/
+            
             setInfo(getdata);
         }
         getInformation();
@@ -88,6 +88,7 @@ export const Main = function () {
                         city={infoIndex.city}
                         authorized = {true}/>
                     ))
+
                 }
                     
                 </li>
