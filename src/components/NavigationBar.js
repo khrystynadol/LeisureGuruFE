@@ -10,7 +10,7 @@ export const NavigationBar = function () {
   const location = useLocation();
   const[data, setData] = useState('')
   const[resp, setResp] = useState('')
-  const[serverEror, setServerError] = useState('');
+  const[serverError, setServerError] = useState('');
   //const[isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -18,7 +18,9 @@ const handleInput = (e) => {
   setData(e.target.value);
 }
 
-const WorkWithInput = () =>{
+const WorkWithInput = (e) =>{
+  debugger;
+  e.preventDefault();
   //setIsLoading(true);
       fetch('http://127.0.0.1:5000/filter', {
         method: 'POST',
@@ -32,13 +34,17 @@ const WorkWithInput = () =>{
         )
       })
         .then((response) => {
+          debugger;
          if (response.status >= 200 && response.status <= 299) {
           setServerError('')
           response.json().then((jsonResponse) => {
+            console.log(jsonResponse);
             setResp(jsonResponse);
+            ResultPage(jsonResponse);
+            navigate("/result");
           })
-          ResultPage({resp});
-          navigate("/result");
+          // ResultPage({resp});
+          // navigate("/result");
          } else if (response.status === 400) {
           setServerError('Bad Request')
          } else if (response.status === 404) {
@@ -80,9 +86,10 @@ const WorkWithInput = () =>{
       default:
         return (
           <ul>
-            <form>
+            <form onSubmit={WorkWithInput}>
               <input type="text" placeholder='Browse for places here...' className="searchTxt" onChange={e => handleInput(e)}></input>
-              <input type="Submit" value="Goooo" className="searchButton" onClick = {WorkWithInput}></input>
+              {/* <input type="Submit" value="Goooo" className="searchButton" onClick = {e => WorkWithInput}></input> */}
+              <input type="Submit" value="Goooo" className="searchButton"></input>
             </form>
             <li><Link to='/notifications' className="notification">Notification</Link></li>
             <li><Link to='/Profile' className="user">User</Link></li>
