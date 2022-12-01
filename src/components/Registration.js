@@ -40,7 +40,6 @@ export const Registration = function(props) {
     const fieldFirstName = useRef();
     const fieldLastName = useRef();
     const fieldEmail = useRef();
-    //const fieldPassword = useRef();
     const fieldDate = useRef();
     const[serverError, setServerError] = useState('');
 
@@ -75,7 +74,8 @@ export const Registration = function(props) {
 //перевірка для форми password на довжину
   const passwordHandler = (e) => {
     setDirtyPassword(true)
-    setPassword(e.target.value);
+    setPassword(e.target.value)
+    localStorage.setItem("password", e.target.value)
     if(e.target.value.length < 5 ){
       setErrorPassword('Make it more than 5')
       if(!e.target.value){
@@ -116,7 +116,7 @@ export const Registration = function(props) {
     }else{
       setErrorFirstName('')
     }
-    //localStorage.setItem("firstName", FirstName.current.value);
+
   }
 
   //функція перевірки форми surname на правильність написання і відсутність неправльних знаків
@@ -150,30 +150,26 @@ export const Registration = function(props) {
           }
         )
       })
-        .then((response) => {
-         if (response.status >= 200 && response.status <= 299) {
-          setServerError('')
-          response.json().then((jsonResponse) => {
-            localStorage.setItem("id", jsonResponse.id)
-            localStorage.setItem("email", jsonResponse.email)
-          })
-          // localStorage.setItem("email", fieldEmail.value);
-          // localStorage.setItem("firstName", fieldFirstName.value);
-          // localStorage.setItem("lastName", fieldLastName.value);
-          // localStorage.setItem("date", fieldDate.value);
-
-          navigate("/homepage");
-        } else if (response.status >= 400 && response.status <= 499) {
-          setServerError('Incorrect username or password')
-         } else if (response.status >= 500) {
-          setServerError('Service Unavailable')
-         }
+      .catch(e => {
+        throw new Error('Service Unreachable')
+      })
+      .then(response => response.json())
+      .then(jsonResponse => {
+        if (jsonResponse.status) {
+          throw new Error(jsonResponse.message)
+        } else {
+          localStorage.setItem("id", jsonResponse.id)
+          localStorage.setItem("email", jsonResponse.email)
           setIsLoading(false);
-        }).catch((e) => setServerError("Service unreachable"))
+          navigate("/homepage");
+        }
+      })
+      .catch(e => {
+        setIsLoading(false);
+        setServerError(e.message);  
+      });
+
     }
-    
-
-
 
     const registrationForm = (
         <div className="form">
