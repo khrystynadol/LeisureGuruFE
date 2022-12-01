@@ -13,12 +13,15 @@ export const Profile = function () {
     
   //  const id = 0;
     function LogOut(){
-        fetch('http://127.0.0.1:5000/profile/' + localStorage.getItem("id"), {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+        var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
+        console.log(credentials)
+        var auth = { "Authorization" : `Basic ${credentials}` }
+        let id = localStorage.getItem("id")
+        fetch(`http://127.0.0.1:5000/profile/${id}`,  {
+            method: 'GET',
+            headers : auth,
+            mode:'cors'
+        })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
 

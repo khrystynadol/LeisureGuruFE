@@ -47,6 +47,7 @@ export const Login = function() {
   const passwordHandler = (e) => {
     setDirtyPassword(true)
     setPassword(e.target.value)
+    localStorage.setItem("password", e.target.value)
     if (e.target.value.length < 5) {
       setErrorPassword('Make it more than 5')
       if (!e.target.value) {
@@ -91,25 +92,30 @@ export const Login = function() {
         }
       )
     })
-
-      .then((response) => {
-       if (response.status >= 200 && response.status <= 299) {
-        setServerError('')
-        //localStorage.setItem("email", fieldEmail.value);
-      //  localStorage.setItem("id", response.json.id)///?
-      response.json().then((jsonResponse) => {
+    .catch(e => {
+      throw new Error('Service unreachable')
+    })
+    .then(response => {
+      if (response.headers.get('content-type') == 'application/json') {
+        return response.json()
+      } else {
+        throw new Error(response.statusText)
+      }
+    })
+    .then(jsonResponse => {
+      if (jsonResponse.status) {
+        throw new Error(jsonResponse.message)
+      } else {
         localStorage.setItem("id", jsonResponse.id)
         localStorage.setItem("email", jsonResponse.email)
-        navigate("/homepage");
-      })
-
-      } else if (response.status >= 400 && response.status <= 499) {
-        setServerError('Incorrect username or password')
-       } else if (response.status >= 500) {
-        setServerError('Service Unavailable')
-       }
         setIsLoading(false);
-      }).catch((e) => setServerError("Service unreachable"))
+        navigate("/homepage");
+      }
+    })
+    .catch(e => {
+      setIsLoading(false);
+      setServerError(e.message);  
+    });
   };
     
   const renderForm = (

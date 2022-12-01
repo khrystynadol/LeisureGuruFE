@@ -76,21 +76,34 @@ export const Main = function () {
                 
         //     }
         // )
-    fetch('http://127.0.0.1:5000/filter', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(
-        {
-            rate: rating,
-            activities: selectedActivities,
-        }
-      )
-    })
-
+        var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
+        console.log(credentials)
+        var auth = { "Authorization" : `Basic ${credentials}` }
+        fetch('http://127.0.0.1:5000/filter', {
+            method: 'POST',
+            headers: auth,
+            mode: 'cors',
+            body: JSON.stringify(
+                {
+                    rate: rating,
+                    activities: selectedActivities,
+                }
+            )
+        })
+        .then(response => {
+            if (response.status >= 400) {
+                throw Error(400);
+            } else {
+                return response;
+            }
+        })
         .then(response => response.json())
-        .then(jsonResponse => setInfo(jsonResponse));
+        .then(jsonResponse => {
+            let i = 9;
+            console.log("JR: " + jsonResponse);
+            return setInfo(jsonResponse);
+        })
+        .catch(e => console.log("failed: " + e));
         //'server/filter?param=value&param2=value2' 
     }, [rating, date, selectedActivities]
 
