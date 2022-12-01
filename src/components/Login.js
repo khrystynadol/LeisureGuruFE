@@ -144,17 +144,6 @@ export const Login = function() {
     </div>
   );
     
-  // User Login info
-  // const database = [
-  //   {
-  //     email: "jonny.hehheh.kn.2021@lpnu.ua",
-  //     password: "pass1234"
-  //   },
-  //   {
-  //     email: "leisure.guru@lpnu.ua",
-  //     password: "pass2"
-  //   }
-  // ];
 
     return(
     <div className="Login">

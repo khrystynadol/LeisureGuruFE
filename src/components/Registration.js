@@ -40,7 +40,6 @@ export const Registration = function(props) {
     const fieldFirstName = useRef();
     const fieldLastName = useRef();
     const fieldEmail = useRef();
-    //const fieldPassword = useRef();
     const fieldDate = useRef();
     const[serverError, setServerError] = useState('');
 
@@ -117,7 +116,7 @@ export const Registration = function(props) {
     }else{
       setErrorFirstName('')
     }
-    //localStorage.setItem("firstName", FirstName.current.value);
+
   }
 
   //функція перевірки форми surname на правильність написання і відсутність неправльних знаків
@@ -169,23 +168,6 @@ export const Registration = function(props) {
         setIsLoading(false);
         setServerError(e.message);  
       });
-
-
-      // .then((response) => {
-      //   if (response.status >= 200 && response.status <= 299) {
-      //     return response.json();
-      //   } else if (response.status >= 400 && response.status <= 499) {
-      //     throw new Error('Incorrect username or password');
-      //   } else if (response.status >= 500) {
-      //     throw new Error('Service Unavailable');
-      //   }
-      // })
-      // .then((jsonResponse) => {
-      //   localStorage.setItem("id", jsonResponse.id)
-      //   localStorage.setItem("email", jsonResponse.email)
-      //   setIsLoading(false);
-      //   navigate("/homepage");
-      // })
 
     }
 
