@@ -81,7 +81,10 @@ export const Main = function () {
         var auth = { "Authorization" : `Basic ${credentials}` }
         fetch('http://127.0.0.1:5000/filter', {
             method: 'POST',
-            headers: auth,
+            headers: { 
+                        'Authorization' : `Basic ${credentials}`,
+                        'Content-Type': 'application/json'
+                      },
             mode: 'cors',
             body: JSON.stringify(
                 {
