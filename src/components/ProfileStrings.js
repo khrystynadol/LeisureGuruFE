@@ -8,21 +8,21 @@ export const ProfileStrings = function({first_name, second_name, birth_date, ema
       <thead>
         <tr>
           <td>First Name</td>
-          <td>Dima</td>
+          <td>{first_name}</td>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Last Name</td>
-          <td>Rabotiahov</td>
+          <td>{second_name}</td>
         </tr>
         <tr>
           <td>Birth date</td>
-          <td>28.08.2004</td>
+          <td>{birth_date}</td>
         </tr>
         <tr>
           <td>Email</td>
-          <td>mail@gmail.com</td>
+          <td>{email}</td>
         </tr>
       </tbody>
     </Table>

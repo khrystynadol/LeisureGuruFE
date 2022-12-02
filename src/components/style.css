@@ -276,7 +276,7 @@ input:not(:placeholder-shown) + input[type="Submit"]{
 }
 
 .userImage{
-    height: 200px;
+    height: 180px;
     width: 200px;
     display: flex;
     border-radius: 50px;
@@ -288,12 +288,17 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     margin: 60px auto;
     width: 1000px;
     justify-content: center;
-    height: 700px;
+    height: 500px;
     border-radius: 10px;
     background-color: hsl(0, 0%, 100%);
     border: 4px solid hsl(0, 0%, 90%);
   
 }
+
+.listWrapper{
+    text-align: center;
+    align-items: left;
+} 
 
 .nav-item{
     list-style: none;
@@ -301,8 +306,9 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     padding-bottom: 3em;
 }
 
+
 .logOut{
-    margin-top: 13.2em;
+    margin-top: 3em;
     text-decoration: none;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
@@ -317,6 +323,9 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     height: 40px;
     border-color: rgb(80, 47, 1);
     line-height: 3em;
+    width: 160px;
+    padding-left: 40px;
+    margin-left: -12.5px;
 }
 
 .settings{
@@ -335,6 +344,9 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     height: 40px;
     border-color: rgb(80, 47, 1);
     line-height: 3em;
+    width: 160px;
+    padding-left: 35px;
+    margin-left: -12.5px;
 }
 
 .editProfile{
@@ -353,6 +365,9 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     height: 40px;
     border-color: rgb(80, 47, 1);
     line-height: 3em;
+    width: 160px;
+    padding-left: 30px;
+    margin-left: -12.5px;
 }
 
 .logOut:hover{
@@ -361,6 +376,8 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     transition: all .3s ease;
     border: solid 2px;
     border-color: #EE8E57;
+    width: 160px;
+    padding-left: 40px;
 }
 .settings:hover{
     background: #fff;
@@ -368,6 +385,8 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     transition: all .3s ease;
     border: solid 2px;
     border-color: #EE8E57;
+    width: 160px;
+    padding-left: 35px;
 }
 .editProfile:hover{
     background: #fff;
@@ -375,11 +394,13 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     transition: all .3s ease;
     border: solid 2px;
     border-color: #EE8E57;
+    width: 160px;
+    padding-left: 30px;
 }
 
 
 .deleteButton{
-    margin-top: 10em;
+    margin-top: -0.2em;
     margin-left:30em;
     text-decoration: none;
     font-size: 20px;
@@ -465,7 +486,6 @@ input:not(:placeholder-shown) + input[type="Submit"]{
   }
 
 .personData{
-    margin-left: 6em;
     border-radius: 10px;
     background-color: hsl(0, 0%, 100%);
     border: 4px solid hsl(0, 0%, 90%);
@@ -473,4 +493,7 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     width:500px;
     position:absolute;
     height:180px;
+    display: inline;
+    margin-left: 25em;
+    top:185px;
 }

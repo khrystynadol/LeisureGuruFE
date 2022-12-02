@@ -12,7 +12,7 @@ export const Profile = function () {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
-    const[profileData, setProfileData] = useState('')
+
     
     //const id = 0;
 
@@ -20,6 +20,7 @@ export const Profile = function () {
     console.log(credentials)
     var auth = { "Authorization" : `Basic ${credentials}` }
     let id = localStorage.getItem("id")
+    const[profileData, setProfileData] = useState('')
   //  const id = 0;
     function LogOut(){
        
@@ -30,6 +31,7 @@ export const Profile = function () {
         })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
+
             localStorage.clear()
             setServerError('')
             navigate("/");
@@ -47,7 +49,7 @@ export const Profile = function () {
             setServerError ('Gateway Timeout')
           }
         })
-        navigate("/profile");
+      navigate("/profile");
     }
     
     const toggleYes = () =>{
@@ -62,28 +64,29 @@ export const Profile = function () {
                 localStorage.clear();
                 setServerError('')
                 navigate("/");
-            } else if (response.status === 400) {
+            } else if (response.status == 400) {
                 setServerError('Bad Request')
-            } else if (response.status === 404) {
+            } else if (response.status == 404) {
                 setServerError('Not Found')
-            } else if (response.status === 500) {
+            } else if (response.status == 500) {
                 setServerError ('Internal Server Error')
-            } else if (response.status === 502) {
+            } else if (response.status == 502) {
                 setServerError('Bad Gateway')
-            } else if (response.status === 503) {
+            } else if (response.status == 503) {
                 setServerError('Service Unavailable')
-            } else if (response.status === 503) {
+            } else if (response.status == 503) {
                 setServerError ('Gateway Timeout')
             }else{
                 setServerError('Unknown error')
                 navigate("/profile");
             }
         })
+        
     }
 
     useEffect(()=>{
         const getInformation = async() => {
-            const conn = await fetch('http://127.0.0.1:5000/user'+ localStorage.getItem("id")); //create connection with db
+            const conn = await fetch('http://127.0.0.1:5000/profile/'+ localStorage.getItem("id")); //create connection with db
             const getdata = await conn.json();
             setProfileData(getdata);
         }
@@ -98,10 +101,17 @@ export const Profile = function () {
                     <div>
                         <img className = "userImage" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt = "Your profile picture"></img>
                     </div>    
-
+                    <div className="personData">
+                        <ProfileStrings
+                            first_name={profileData.first_name}
+                            second_name={profileData.last_name}
+                            birth_date={profileData.birth_date}
+                            email={profileData.email}
+                        />
+                    </div>
                     <div >
-                        <div >
-                            <ul role = "tablist">
+                        <div className="listWrapper" >
+                            <ul role = "tablist" className="tblist">
                                 <li className = "nav-item">
                                     <Link className = "editProfile"  to= '/editprofile' id = "home-tab" data-toggle = "tab"  role = "tab">Edit profile</Link>
                                 </li>
@@ -115,14 +125,7 @@ export const Profile = function () {
                         </div>
                     </div>
                 </div>
-                <div className="personData">
-                    <ProfileStrings
-                        first_name={profileData.first_name}
-                        second_name={profileData.last_name}
-                        birth_date={profileData.birth_date}
-                        email={profileData.email}
-                    />
-                </div>
+                
                 <div>
                     <button className = "deleteButton" onClick={toggle}>
                         Delete my account

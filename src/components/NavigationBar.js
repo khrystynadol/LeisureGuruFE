@@ -5,19 +5,7 @@ import { ResultPage } from './ResultPage';
 import {React, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
-const dat = [{name:"Lviv Theatre of Opera and Ballet", country:"Ukraine", city:"Lviv",
-            description:`Lviv’s resplendent opera house is one of the city’s symbols and stands alone on 
-            Freedom Square. A design competition in the 1890s was won by Polish architect Zygmunt 
-            Gorgolewski, and he made a few technical innovations: This location had been 
-            marshland, watered by the Poltva River, which was diverted underground. The theatre 
-            was then built onto a concrete platform, and after sinking for a couple of years 
-            eventually stabilised. Almost 120 years later, this marvellous venue remains the 
-            place to get a blast of high culture at a matinee or evening performance, where 
-            seats are implausibly inexpensive. In residence is a 90-piece orchestra, first-class 
-            soloists and a ballet troupe, all with an extensive repertoire.`,
-          rate:5,
-          image:`https://cdn.thecrazytourist.com/wp-content/
-      uploads/2018/08/ccimage-shutterstock_212603344.jpg`}]
+
 export const NavigationBar = function () {
   const location = useLocation();
   const[data, setData] = useState('')
@@ -33,53 +21,46 @@ const handleInput = (e) => {
 const WorkWithInput = (e) =>{
 
   e.preventDefault();
-  <ResultPage respData = {dat}/>
-  //ResultPage(dat);
-  navigate("/result");
-  //setIsLoading(true);
-      // fetch('http://127.0.0.1:5000/filter', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify(
-      //     {
-      //       search_box: data
-      //     }
-      //   )
-      // })
-      //   .then((response) => {
-      //    if (response.status >= 200 && response.status <= 299) {
-      //     setServerError('')
-      //     response.json().then((jsonResponse) => {
-      //       setResp(jsonResponse);
-      //       ResultPage(jsonResponse);
-      //       navigate("/result");
-      //     })
-      //     // ResultPage({resp});
-      //     // navigate("/result");
-      //    } else if (response.status === 400) {
-      //     setServerError('Bad Request')
-      //    } else if (response.status === 404) {
-      //     setServerError('Not Found')
-      //    } else if (response.status === 500) {
-      //     setServerError ('Internal Server Error')
-      //    } else if (response.status === 502) {
-      //     setServerError('Bad Gateway')
-      //    } else if (response.status === 503) {
-      //     setServerError('Service Unavailable')
-      //    } else if (response.status === 503) {
-      //     setServerError ('Gateway Timeout')
-      //     }
-      //     //setIsLoading(false);
-      //   }).then((response) => response.json())
-      //   .then((jsonResponse) => {
-      //       setServerError('')
-      //       //setResp(jsonResponse);
-      //       //ResultPage(resp);
-      //       ResultPage(jsonResponse);
-      //       navigate("/result");
-      //   })
+      fetch('http://127.0.0.1:5000/filter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+          {
+            search_box: data
+          }
+        )
+      })
+        .then((response) => {
+         if (response.status >= 200 && response.status <= 299) {
+          setServerError('')
+          // response.json().then((jsonResponse) => {
+          //   setResp(jsonResponse);
+          //   ResultPage(jsonResponse);
+          //   navigate("/result");
+          // })
+          // ResultPage({resp});
+          // navigate("/result");
+         } else if (response.status === 400) {
+          setServerError('Bad Request')
+         } else if (response.status === 404) {
+          setServerError('Not Found')
+         } else if (response.status === 500) {
+          setServerError ('Internal Server Error')
+         } else if (response.status === 502) {
+          setServerError('Bad Gateway')
+         } else if (response.status === 503) {
+          setServerError('Service Unavailable')
+         } else if (response.status === 503) {
+          setServerError ('Gateway Timeout')
+          }
+        }).then((response) => response.json())
+        .then((jsonResponse) => {
+            setServerError('')
+            ResultPage(jsonResponse);
+            navigate("/result");
+        })
 
 }
 
