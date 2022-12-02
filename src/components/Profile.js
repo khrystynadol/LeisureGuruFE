@@ -11,16 +11,23 @@ export const Profile = function () {
     const navigate = useNavigate();
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
     const[profileData, setProfileData] = useState('')
     
     //const id = 0;
+
+    var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
+    console.log(credentials)
+    var auth = { "Authorization" : `Basic ${credentials}` }
+    let id = localStorage.getItem("id")
+  //  const id = 0;
     function LogOut(){
-        fetch('http://127.0.0.1:5000/profile/' + localStorage.getItem("id"), {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+       
+        fetch(`http://127.0.0.1:5000/profile/${id}`,  {
+            method: 'GET',
+            headers : auth,
+            mode:'cors'
+        })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
             localStorage.clear()
@@ -45,11 +52,10 @@ export const Profile = function () {
     
     const toggleYes = () =>{
         setModal(!modal);
-        fetch('http://127.0.0.1:5000/user/' + localStorage.getItem("id"), {
+        fetch('http://127.0.0.1:5000/profile/' + localStorage.getItem("id"), {
             method: 'DELETE',
-            headers: {
-            'Content-Type': 'application/json'
-            },
+            headers : auth,
+            mode:'cors' 
         })
         .then((response) => {
             if (response.status >= 200 && response.status <= 299) {

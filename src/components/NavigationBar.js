@@ -80,6 +80,7 @@ const WorkWithInput = (e) =>{
       //       ResultPage(jsonResponse);
       //       navigate("/result");
       //   })
+
 }
 
   const renderButtons = (pathname) => {
