@@ -463,3 +463,14 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     align-items: center;
     line-height: 2em; */
   }
+
+.personData{
+    margin-left: 6em;
+    border-radius: 10px;
+    background-color: hsl(0, 0%, 100%);
+    border: 4px solid hsl(0, 0%, 90%);
+    text-align: center;
+    width:500px;
+    position:absolute;
+    height:180px;
+}

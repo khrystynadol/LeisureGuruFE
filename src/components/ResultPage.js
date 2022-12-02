@@ -2,7 +2,6 @@ import React from "react";
 import {PlaceComponent} from "./PlaceComponent"
 
 export const ResultPage = function(respData){
-    debugger;
     return(
     <div>
         <ul style = {{display:'block'}}>

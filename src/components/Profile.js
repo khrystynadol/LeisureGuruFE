@@ -4,12 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import { Link} from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {ProfileStrings} from './ProfileStrings'
 
 export const Profile = function () {
     const[serverEror, setServerError] = useState('');
     const navigate = useNavigate();
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
+    const[profileData, setProfileData] = useState('')
+    
+    //const id = 0;
+
     var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
     console.log(credentials)
     var auth = { "Authorization" : `Basic ${credentials}` }
@@ -24,7 +30,6 @@ export const Profile = function () {
         })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
-
             localStorage.clear()
             setServerError('')
             navigate("/");
@@ -42,7 +47,7 @@ export const Profile = function () {
             setServerError ('Gateway Timeout')
           }
         })
-      navigate("/profile");
+        navigate("/profile");
     }
     
     const toggleYes = () =>{
@@ -57,25 +62,33 @@ export const Profile = function () {
                 localStorage.clear();
                 setServerError('')
                 navigate("/");
-            } else if (response.status == 400) {
+            } else if (response.status === 400) {
                 setServerError('Bad Request')
-            } else if (response.status == 404) {
+            } else if (response.status === 404) {
                 setServerError('Not Found')
-            } else if (response.status == 500) {
+            } else if (response.status === 500) {
                 setServerError ('Internal Server Error')
-            } else if (response.status == 502) {
+            } else if (response.status === 502) {
                 setServerError('Bad Gateway')
-            } else if (response.status == 503) {
+            } else if (response.status === 503) {
                 setServerError('Service Unavailable')
-            } else if (response.status == 503) {
+            } else if (response.status === 503) {
                 setServerError ('Gateway Timeout')
             }else{
                 setServerError('Unknown error')
                 navigate("/profile");
             }
         })
-        
     }
+
+    useEffect(()=>{
+        const getInformation = async() => {
+            const conn = await fetch('http://127.0.0.1:5000/user'+ localStorage.getItem("id")); //create connection with db
+            const getdata = await conn.json();
+            setProfileData(getdata);
+        }
+        getInformation();
+    })
 
     return (
     <main>
@@ -101,6 +114,14 @@ export const Profile = function () {
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div className="personData">
+                    <ProfileStrings
+                        first_name={profileData.first_name}
+                        second_name={profileData.last_name}
+                        birth_date={profileData.birth_date}
+                        email={profileData.email}
+                    />
                 </div>
                 <div>
                     <button className = "deleteButton" onClick={toggle}>
