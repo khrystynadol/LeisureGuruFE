@@ -3,6 +3,7 @@ import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
 import 'whatwg-fetch';
+import { Alert, Form, FormFeedback, FormGroup, Input, Label } from "reactstrap";
 
 export const Login = function() {
   const[password, setPassword] = useState('')
@@ -12,10 +13,9 @@ export const Login = function() {
   const[errorEmail, setErrorEmail] = useState('Field can`t be empty')
   const[errorPassword, setErrorPassword] = useState('Field can`t be empty')
   const[formValid, setFormValid] = useState(false)
-  const [loginErrorMessage, setLoginErrorMessage] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const fieldEmail = useRef();
-  const[serverEror, setServerError] = useState('');
+  const[serverError, setServerError] = useState('');
 
   const navigate = useNavigate();
 
@@ -65,19 +65,6 @@ export const Login = function() {
     //Prevent page reload
     event.preventDefault();
 
-    // var { email, pass } = document.forms[0];
-    // // Find user login info
-    // const userData = database.find((user) => user.email === email.value);
-    // // Compare user info
-    // if (userData) {
-    //   if (userData.password !== pass.value) {
-    //     setLoginErrorMessage("Invalid password");
-    //   } else {
-    //     navigate("/homepage");
-    //   }
-    // } else {
-    //   setLoginErrorMessage("Email not found");
-    // }
 
     setIsLoading(true);
     fetch('http://127.0.0.1:5000/login', {
@@ -103,7 +90,7 @@ export const Login = function() {
       }
     })
     .then(jsonResponse => {
-      if (jsonResponse.status) {
+      if (jsonResponse.code >=300) {
         throw new Error(jsonResponse.message)
       } else {
         localStorage.setItem("id", jsonResponse.id)
@@ -120,27 +107,30 @@ export const Login = function() {
     
   const renderForm = (
     <div className="form">
-        <div className="form-body">
-      <form onSubmit={handleSubmit}>
-        <div className="form__element">
-          <label className="form__label">Email</label>
+        <Form className="form-body" onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}> */}
+        <FormGroup className="form__element">
+          <Label className="form__label">Email</Label>
 
-          <input onChange={e => emailHandler(e)}  onBlur={e=>emailHandler(e)} type="text" className="form__input" placeholder = "Email" name="email" required ref={fieldEmail}/>
+          <Input invalid= {dirtyEmail && errorEmail} onChange={e => emailHandler(e)}  onBlur={e=>emailHandler(e)} type="text" className="form__input" placeholder = "Email" name="email" required ref={fieldEmail}/>
+          <FormFeedback invalid style={{width: '30%'}}>{errorEmail}</FormFeedback>
 
-          {(dirtyEmail && errorEmail) && <div style = {{color: 'red'}}>{errorEmail}</div>}
-        </div>
-        <div className="form__element">
-          <label className="form__label">Password </label>
-          <input onChange={e=>passwordHandler(e)} onBlur={e=>passwordHandler(e)} type="password" className="form__input" placeholder = "Password" name="pass" required />
-          {(dirtyPassword && errorPassword) && <div style = {{color: 'red'}}>{errorPassword}</div>}
-        </div >
+        </FormGroup>
+        <FormGroup className="form__element">
+          <Label className="form__label">Password </Label>
+          <Input invalid={dirtyPassword && errorPassword} onChange={e=>passwordHandler(e)} onBlur={e=>passwordHandler(e)} type="password" className="form__input" placeholder = "Password" name="pass" required />
+          <FormFeedback invalid style={{width: '30%'}}>{errorPassword}</FormFeedback>
+         
+        </FormGroup >
         <div className = "submitDiv">
           <button disabled = {!formValid || isLoading} className = "submitButton" type="submit">Login</button>
-          {(serverEror) && <div style = {{color: 'red'}}>{serverEror}</div>}
         </div>
+        <div style={{width:"35%", "margin-left":"30%"}}>
+             {serverError == '' ? null : <Alert color="danger" style={{width: "100%"}} >{serverError}</Alert>}
+           </div>
           
-      </form>
-      </div>
+      {/* </form> */}
+      </Form>
     </div>
   );
     

@@ -24,7 +24,7 @@ export const Profile = function () {
   //  const id = 0;
     function LogOut(){
        
-        fetch(`http://127.0.0.1:5000/profile/${id}`,  {
+        fetch(`http://127.0.0.1:5000/profile/logout/${id}`,  {
             method: 'GET',
             headers : auth,
             mode:'cors'

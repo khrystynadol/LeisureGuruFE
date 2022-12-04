@@ -4,6 +4,8 @@ import React, {useState,setState, useEffect, useRef} from 'react';
 import { useNavigate } from "react-router-dom";
 import 'whatwg-fetch';
 import LoadingSpinner from "./LoadingSpinner";
+import { Alert, Form, FormFeedback, FormGroup, Input, Label } from "reactstrap";
+import { faLeftLong } from "@fortawesome/free-solid-svg-icons";
 
 
 export const Registration = function(props) {
@@ -146,16 +148,23 @@ export const Registration = function(props) {
             last_name: lastName,
             email: email,
             birth_date : date,
-            password: password
+            password: password,
+            photo: "myphoto"
           }
         )
       })
       .catch(e => {
-        throw new Error('Service Unreachable')
+        throw new Error('Service unreachable')
       })
-      .then(response => response.json())
+      .then(response => {
+        if (response.headers.get('content-type') == 'application/json') {
+          return response.json()
+        } else {
+          throw new Error(response.statusText)
+        }
+      })
       .then(jsonResponse => {
-        if (jsonResponse.status) {
+        if (jsonResponse.code >=300) {
           throw new Error(jsonResponse.message)
         } else {
           localStorage.setItem("id", jsonResponse.id)
@@ -168,48 +177,52 @@ export const Registration = function(props) {
         setIsLoading(false);
         setServerError(e.message);  
       });
-
-    }
+    };
 
     const registrationForm = (
         <div className="form">
-        <div className="form-body">
-            <div className="form__element">
-                <label className="form__label" htmlFor="firstName">First Name </label>
-                <input className="form__input" onChange={e=>firstNameHandler(e)}  onBlur={e=>firstNameHandler(e)} type="text" value={firstName}  name="firstName" placeholder="First Name" ref={fieldFirstName}/>
-                {(dirtyFirstName && errorFirstName) && <div style = {{color: 'red'}}>{errorFirstName}</div>}
-            </div>
-            <div className="form__element">
-                <label className="form__label" htmlFor="lastName">Last Name </label>
-                <input  onChange={e=>lastNameHandler(e)} onBlur={e=>lastNameHandler(e)} type="text"  name="lastName" value={lastName}  className="form__input" placeholder="LastName" ref={fieldLastName}/>
-                {(dirtyLastName && errorLastName) && <div style = {{color: 'red'}}>{errorLastName}</div>}
-            </div>
-            <div className="form__element">
-                <label className="form__label" htmlFor="email">Email </label>
-                <input  onChange={e=>emailHandler(e)} value = {email} onBlur={e=>emailHandler(e)} type="email" name="email" className="form__input"   placeholder="Email" ref={fieldEmail}/>
-                {(dirtyEmail && errorEmail) && <div style = {{color: 'red'}}>{errorEmail}</div>}
-            </div>
-            <div className="form__element">
-                <label className="form__label" htmlFor="date">Birth date </label>
-                <input type = 'date' onChange = {e=>setDate(e.target.value)} value = {date} className = "form__input" name = 'date' placeholder = 'Pick your birth date...' ref={fieldDate}/>
-            </div>
-            <div className="form__element">
-                <label className="form__label" htmlFor="password">Password </label>
-                <input className="form__input" onChange={e=>passwordHandler(e)} value = {password} onBlur={e=>passwordHandler(e)} type="password"  name="password"   placeholder="Password" />
-                {(dirtyPassword && errorPassword) && <div style = {{color: 'red'}}>{errorPassword}</div>}
-            </div>
-            <div className="form__element">
-                <label className="form__label" htmlFor="confirmPassword">Confirm Password </label>
-                <input className="form__input" onChange={e=>confirmPasswordHandler(e)} value = {confirmPassword} onBlur={e=>confirmPasswordHandler(e)} type="password" name="confirmPassword" placeholder="Confirm Password"/>
-                {(dirtyConfirmPassword && errorConfirmPassword) && <div style = {{color: 'red'}}>{errorConfirmPassword}</div>}
-            </div>
-        </div>
-        <div className="submitDiv">
+        <Form className="form-body">
+            <FormGroup className="form__element">
+                <Label className="form__label" htmlFor="firstName">First Name </Label>
+                <Input invalid={dirtyFirstName && errorFirstName} className="form__input" onChange={e=>firstNameHandler(e)}  onBlur={e=>firstNameHandler(e)} type="text" value={firstName}  name="firstName" placeholder="First Name" ref={fieldFirstName}/>
+                <FormFeedback invalid style={{width: '30%'}}>{errorFirstName}</FormFeedback>
+            </FormGroup>
+            <FormGroup className="form__element">
+                <Label className="form__label" htmlFor="lastName">Last Name </Label>
+                <Input invalid={dirtyLastName && errorLastName}  onChange={e=>lastNameHandler(e)} onBlur={e=>lastNameHandler(e)} type="text"  name="lastName" value={lastName}  className="form__input" placeholder="LastName" ref={fieldLastName}/>
+                <FormFeedback invalid style={{width: '30%'}}>{errorLastName}</FormFeedback>
+            </FormGroup>
+            <FormGroup className="form__element">
+                <Label className="form__label" htmlFor="email">Email </Label>
+                <Input invalid={dirtyEmail && errorEmail}  onChange={e=>emailHandler(e)} value = {email} onBlur={e=>emailHandler(e)} type="email" name="email" className="form__input"   placeholder="Email" ref={fieldEmail}/>
+                <FormFeedback invalid style={{width: '30%'}}>{errorEmail}</FormFeedback>
+            </FormGroup>
+            <FormGroup className="form__element">
+                <Label className="form__label" htmlFor="date">Birth date </Label>
+                <Input  type = 'date' onChange = {e=>setDate(e.target.value)} value = {date} className = "form__input" name = 'date' placeholder = 'Pick your birth date...' ref={fieldDate}/>
+                
+            </FormGroup>
+            <FormGroup className="form__element">
+                <Label className="form__label" htmlFor="password">Password </Label>
+                <Input invalid={dirtyPassword && errorPassword} className="form__input" onChange={e=>passwordHandler(e)} value = {password} onBlur={e=>passwordHandler(e)} type="password"  name="password"   placeholder="Password" />
+                <FormFeedback invalid style={{width: '30%'}}>{errorPassword}</FormFeedback>
+            </FormGroup>
+            <FormGroup className="form__element">
+                <Label className="form__label" htmlFor="confirmPassword">Confirm Password </Label>
+                <Input invalid={dirtyConfirmPassword && errorConfirmPassword} className="form__input" onChange={e=>confirmPasswordHandler(e)} value = {confirmPassword} onBlur={e=>confirmPasswordHandler(e)} type="password" name="confirmPassword" placeholder="Confirm Password"/>
+                <FormFeedback invalid style={{width: '30%'}}>{errorConfirmPassword}</FormFeedback>
+            </FormGroup>
+            <div className="submitDiv">
            
-            <button disabled = {!formValid || isLoading} className = "submitButton" type = 'submit' onClick={()=>handleSubmit()}>{formCaption}</button>
-            { <div style = {{color: 'red'}}>{serverError}</div>}
+           <button disabled = {!formValid || isLoading} className = "submitButton" type = 'submit' onClick={()=>handleSubmit()}>{formCaption}</button>
 
-        </div>
+           </div>
+           <div style={{width:"35%", "margin-left":"30%"}}>
+             { serverError == '' ? null : <Alert color="danger" style={{width: "100%"}} >{serverError}</Alert>}
+           </div>
+
+        </Form>
+
     </div>
               
     );
@@ -226,3 +239,19 @@ export const Registration = function(props) {
 }
 
 
+// justify-content: center;
+//     align-content: center;
+
+// font-size: 20px;
+//     font-family: Arial, Helvetica, sans-serif;
+//     padding: 0 25px;
+//     align-items: center;
+//     background: #ee8e57;
+//     color: #fff;
+//     transition: all 0.3s ease;
+//     height: 40px;
+//     border:none;
+//     width:100%;
+//     line-height: 1em;
+
+//style={{"text-align": "center", "font-size": "20px", "padding": "0 25px", "width":"100%","height": "40px"}}
