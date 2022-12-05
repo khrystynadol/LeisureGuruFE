@@ -1,10 +1,11 @@
 import { setSelectionRange } from "@testing-library/user-event/dist/utils";
-import { useEffect, useState, history, location } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState, history, location, useRef } from "react";
+import { json, redirect, useNavigate } from 'react-router-dom';
 import { Link} from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ProfileStrings} from './ProfileStrings'
+
 
 export const Profile = function () {
     const[serverEror, setServerError] = useState('');
@@ -17,10 +18,10 @@ export const Profile = function () {
     //const id = 0;
 
     var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
-    console.log(credentials)
+    //console.log(credentials)
     var auth = { "Authorization" : `Basic ${credentials}` }
     let id = localStorage.getItem("id")
-    const[profileData, setProfileData] = useState('')
+    const[profileData, setProfileData] = useState({})
   //  const id = 0;
     function LogOut(){
        
@@ -35,19 +36,9 @@ export const Profile = function () {
             localStorage.clear()
             setServerError('')
             navigate("/");
-         } else if (response.status === 400) {
+         } else if (response.status >= 400) {
             setServerError('Bad Request')
-         } else if (response.status === 404) {
-            setServerError('Not Found')
-         } else if (response.status === 500) {
-            setServerError ('Internal Server Error')
-         } else if (response.status === 502) {
-            setServerError('Bad Gateway')
-         } else if (response.status === 503) {
-            setServerError('Service Unavailable')
-         } else if (response.status === 503) {
-            setServerError ('Gateway Timeout')
-          }
+         } 
         })
       navigate("/profile");
     }
@@ -64,19 +55,9 @@ export const Profile = function () {
                 localStorage.clear();
                 setServerError('')
                 navigate("/");
-            } else if (response.status == 400) {
+            } else if (response.status >= 400) {
                 setServerError('Bad Request')
-            } else if (response.status == 404) {
-                setServerError('Not Found')
-            } else if (response.status == 500) {
-                setServerError ('Internal Server Error')
-            } else if (response.status == 502) {
-                setServerError('Bad Gateway')
-            } else if (response.status == 503) {
-                setServerError('Service Unavailable')
-            } else if (response.status == 503) {
-                setServerError ('Gateway Timeout')
-            }else{
+            } else{
                 setServerError('Unknown error')
                 navigate("/profile");
             }
@@ -84,14 +65,28 @@ export const Profile = function () {
         
     }
 
-    useEffect(()=>{
-        const getInformation = async() => {
-            const conn = await fetch('http://127.0.0.1:5000/profile/'+ localStorage.getItem("id")); //create connection with db
-            const getdata = await conn.json();
-            setProfileData(getdata);
+    function GetInfo(){
+        fetch(`http://127.0.0.1:5000/profile/${id}`,  {
+            method: 'GET',
+            headers : auth,
+            mode:'cors'
+        })
+        .then(response => response.json())
+        .then(respData => {
+            setProfileData(respData);
+            console.log(respData, "++++++++++++++");
         }
-        getInformation();
-    })
+        )
+        .then((response) => {
+         if (response.status === 200) {
+            setServerError('')
+         } else if (response.status > 200) {
+            setServerError('Bad Request')
+         } 
+        })
+        .catch(e => console.log("failed: " + e));
+    }
+    GetInfo();
 
     return (
     <main>
@@ -99,14 +94,11 @@ export const Profile = function () {
             <div className="forma"> 
                 <div >
                     <div>
-                        <img className = "userImage" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt = "Your profile picture"></img>
+                        <img className = "userImage" src= {profileData.photo || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"} alt = "Your profile picture"></img>
                     </div>    
                     <div className="personData">
                         <ProfileStrings
-                            first_name={profileData.first_name}
-                            second_name={profileData.last_name}
-                            birth_date={profileData.birth_date}
-                            email={profileData.email}
+                            profData={profileData}
                         />
                     </div>
                     <div >

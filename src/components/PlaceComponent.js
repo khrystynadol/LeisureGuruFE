@@ -3,7 +3,7 @@ import {Button, CardColumns, Card, CardBody, CardTitle, CardImg, CardText} from 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const PlaceComponent = function({image, name, rate, description, country, city, authorized}){
-    const alterText = toString({name}) + ' in ' + toString({country}) + ', ' + toString({city});
+    const alterText = toString(name) + ' in ' + toString(country) + ', ' + toString(city);
     return(
         <>
         <Card className="my-2"style={{ width: '60rem', display:'inline-block'}}>
