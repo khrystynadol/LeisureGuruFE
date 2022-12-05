@@ -74,7 +74,6 @@ export const Profile = function () {
         .then(response => response.json())
         .then(respData => {
             setProfileData(respData);
-            console.log(respData, "++++++++++++++");
         }
         )
         .then((response) => {
