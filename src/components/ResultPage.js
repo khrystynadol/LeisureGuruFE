@@ -1,13 +1,13 @@
 import React from "react";
 import {PlaceComponent} from "./PlaceComponent"
 
-export const ResultPage = function(respData){
+export const ResultPage = function({respName, respImage, respDescription, respRate, respCountry, respCity}){
     return(
     <div>
         <ul style = {{display:'block'}}>
             <li style = {{display:'inline-block'}}>
 
-                {
+                {/* {
                     respData &&
                     respData.map((infoIndex)=>(
                         <PlaceComponent 
@@ -17,8 +17,20 @@ export const ResultPage = function(respData){
                         rate={infoIndex.rate} 
                         country={infoIndex.country}
                         city={infoIndex.city}
-                        authorized = {false}/>
+                        authorized = {true}/>
                     ))
+                } */}
+
+                {
+                    respName && respCity && respCountry && respDescription && respImage && respRate &&
+                        <PlaceComponent 
+                        name={respName} 
+                        image={respImage} 
+                        description={respDescription} 
+                        rate={respRate} 
+                        country={respCountry}
+                        city={respCity}
+                        authorized = {true}/>
                 }
                 
             </li>

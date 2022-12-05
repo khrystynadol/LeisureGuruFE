@@ -492,7 +492,7 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     text-align: center;
     width:500px;
     position:absolute;
-    height:180px;
+    height:210px;
     display: inline;
     margin-left: 25em;
     top:185px;
