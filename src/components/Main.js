@@ -102,8 +102,8 @@ export const Main = function () {
         })
         .then(response => response.json())
         .then(jsonResponse => {
-            let i = 9;
-            console.log("JR: " + jsonResponse);
+          // let i = 9;
+           //console.log("JR: " + jsonResponse);
             return setInfo(jsonResponse);
         })
         .catch(e => console.log("failed: " + e));
@@ -131,6 +131,7 @@ export const Main = function () {
                 {
                     info.map((infoIndex)=>(
                         <PlaceComponent 
+                        id={infoIndex.id}
                         name={infoIndex.name} 
                         image={infoIndex.image} 
                         description={infoIndex.description} 

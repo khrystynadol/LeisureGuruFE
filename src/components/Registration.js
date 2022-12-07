@@ -149,7 +149,7 @@ export const Registration = function(props) {
             email: email,
             birth_date : date,
             password: password,
-            photo: "myphoto"
+            photo: "https://static.wikia.nocookie.net/disney/images/d/da/Profile_-_Judy_Hopps.jpeg/revision/latest?cb=20190415002656"
           }
         )
       })
