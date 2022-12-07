@@ -1,9 +1,16 @@
 import React from "react";
 import {Button, CardColumns, Card, CardBody, CardTitle, CardImg, CardText} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navigate, useNavigate } from "react-router-dom";
 
-export const PlaceComponent = function({image, name, rate, description, country, city, authorized}){
+export const PlaceComponent = function({id, image, name, rate, description, country, city, authorized}){
+    const navigate = useNavigate();
     const alterText = toString(name) + ' in ' + toString(country) + ', ' + toString(city);
+    const more_handler = () => {
+        navigate(`/details/${id}`)
+    
+    }
+
     return(
         <>
         <Card className="my-2"style={{ width: '60rem', display:'inline-block'}}>
@@ -33,7 +40,7 @@ export const PlaceComponent = function({image, name, rate, description, country,
             }
             {
             authorized ?
-            <Button>More</Button>
+            <Button onClick={() => more_handler()}>More</Button>
              : <></>
             }
             </CardBody>
