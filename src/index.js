@@ -15,6 +15,7 @@ import {Notifications} from './components/Notifications';
 import { Authorized } from './components/Authorized';
 import { NotAuthorized } from './components/NotAuthorized';
 import { ResultPage } from './components/ResultPage';
+import { ConfirmEmailPage } from './components/ConfirmEmailPage';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -32,6 +33,7 @@ root.render(
         <Route path='/settings' element={<Authorized> <Settings /></Authorized>} />
         <Route path='/notifications' element={<Authorized> <Notifications /></Authorized>} />
         <Route path='/result' element={<Authorized> <ResultPage /></Authorized>} />
+        <Route path='/confirm' element={<Authorized> <ConfirmEmailPage /></Authorized>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
