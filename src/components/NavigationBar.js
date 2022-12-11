@@ -37,17 +37,17 @@ const WorkWithInput = (e) =>{
           }
         )
       }).then(response => response.json())
-        .then((jsonResponse) => {
+        .then(responseData => {
             setServerError('')
-            jsonResponse.map((infoIndex)=>(
-              ResultPage (
-              infoIndex.name ,
-              infoIndex.image ,
-              infoIndex.description ,
-              infoIndex.rate ,
-              infoIndex.country,
-              infoIndex.city
-            )
+            responseData.map((infoIndex)=>(
+              <ResultPage 
+              name={infoIndex.name} 
+              image={infoIndex.image} 
+              description={infoIndex.description} 
+              rate ={infoIndex.rate} 
+              country={infoIndex.country}
+              city={infoIndex.city}
+            />
             ))
             //ResultPage(jsonResponse);
             
@@ -84,6 +84,12 @@ const WorkWithInput = (e) =>{
           <ul>
             <li><Link to='/login' className="user">Login</Link></li>
           </ul>
+        );
+      case '/confirm':
+        return(
+          <div>
+            
+          </div>
         );
       default:
         return (

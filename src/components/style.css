@@ -516,3 +516,27 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     width: 40px;
     height: 40px;
 }
+
+.wordBox{
+    margin-top: 20px;
+    font-family: "Poly-Regular";
+    font-size: 18px;
+    text-align: center;
+    border: 5px solid hsl(0, 0%, 90%);
+    background-color:#EBE7C4;
+    width:600px;
+    border-radius: 10px;
+    height:200px;
+    color: #ee8e57;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+  
+  .bodyConfirmEmail{
+    background-color: #ee8e57;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
