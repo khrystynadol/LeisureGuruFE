@@ -498,6 +498,25 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     top:185px;
 }
 
+.detailsWeatherPanel {
+    display: flex;
+    background-color: #EE8E57;
+}
+
+.detailsWeatherPanel .weatherCard {
+    width: 10%;
+    margin: 10px;
+    border-radius: 30px;
+    flex-grow: 1;
+    background-color: white;
+    text-align: center;
+}
+
+.detailsWeatherPanel .weatherIcon svg {
+    width: 40px;
+    height: 40px;
+}
+
 .wordBox{
     margin-top: 20px;
     font-family: "Poly-Regular";
