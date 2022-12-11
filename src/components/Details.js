@@ -10,6 +10,8 @@ import {
     CarouselControl,
     CarouselIndicators,
 } from 'reactstrap';
+import { WiDayCloudyGusts, WiDayCloudy, WiNightShowers, WiDaySleetStorm} from "react-icons/wi";
+import './style.css'
 
 
 export const Details = function () {
@@ -98,11 +100,49 @@ export const Details = function () {
                     onExiting={() => setAnimating(true)}
                     onExited={() => setAnimating(false)}
                 >
-                    <img src={item.src} alt={item.altText} style={{ height: '300px', display: 'block', margin: 'auto' }} />
+                    <img src={item.src} alt={item.altText} style={{ height: '600px', display: 'block', margin: 'auto' }} />
                 </CarouselItem>
             );
         });
     }
+
+    const dailyWeather = [
+        {
+            title: 'Today',
+            icon: <WiDayCloudyGusts/>,
+            temperature: '2°'
+        },
+        {
+            title: '21.12.2022',
+            icon: <WiDayCloudy/>,
+            temperature: '4°'
+        },
+        {
+            title: '22.12.2022',
+            icon: <WiNightShowers/>,
+            temperature: '-1°'
+        },
+        {
+            title: '23.12.2022',
+            icon: <WiNightShowers/>,
+            temperature: '-3°'
+        },
+        {
+            title: '24.12.2022',
+            icon: <WiDaySleetStorm/>,
+            temperature: '0°'
+        },
+        {
+            title: '25.12.2022',
+            icon: <WiNightShowers/>,
+            temperature: '-1°'
+        },
+        {
+            title: '26.12.2022',
+            icon: <WiDaySleetStorm/>,
+            temperature: '1°'
+        }
+    ];
 
     return (
         <div>
@@ -145,6 +185,15 @@ export const Details = function () {
                     </CardText>
                 </CardBody>
             </Card>
+
+            <div className="detailsWeatherPanel">
+                {dailyWeather.map(item => 
+                    <div className="weatherCard">
+                        <div>{item.title}</div>
+                        <div className="weatherIcon">{item.icon}{item.temperature}</div>
+                    </div>
+                )}
+            </div>
 
         </div>
 
