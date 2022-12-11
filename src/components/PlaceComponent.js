@@ -2,6 +2,7 @@ import React from "react";
 import {Button, CardColumns, Card, CardBody, CardTitle, CardImg, CardText} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navigate, useNavigate } from "react-router-dom";
+import { WiDayThunderstorm } from "react-icons/wi";
 
 export const PlaceComponent = function({id, image, name, rate, description, country, city, authorized}){
     const navigate = useNavigate();
@@ -31,11 +32,19 @@ export const PlaceComponent = function({id, image, name, rate, description, coun
             </CardText>
             {
             authorized ?
+            <>
             <CardText>
                 <small className="text-muted">
                 Raiting: {rate}
                 </small>
             </CardText>
+            <CardText className="text-muted" style={{marginLeft : '1%'}}>
+                
+            <WiDayThunderstorm style={{width: '30px',height: '30px'}}></WiDayThunderstorm> 
+            <small style={{}}>4°</small>
+                
+            </CardText>
+            </>
              : <></>
             }
             {
