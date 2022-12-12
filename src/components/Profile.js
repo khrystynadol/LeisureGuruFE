@@ -65,27 +65,62 @@ export const Profile = function () {
         
     }
 
-    function GetInfo(){
-        fetch(`http://127.0.0.1:5000/profile/${id}`,  {
-            method: 'GET',
-            headers : auth,
-            mode:'cors'
-        })
-        .then(response => response.json())
-        .then(respData => {
-            setProfileData(respData);
-        }
-        )
-        .then((response) => {
-         if (response.status === 200) {
-            setServerError('')
-         } else if (response.status > 200) {
-            setServerError('Bad Request')
-         } 
-        })
-        .catch(e => console.log("failed: " + e));
-    }
-    GetInfo();
+    // function GetInfo(){
+    //     fetch(`http://127.0.0.1:5000/profile/${id}`,  {
+    //         method: 'GET',
+    //         headers : auth,
+    //         mode:'cors'
+    //     })
+    //     .then(response => response.json())
+    //     .then(respData => {
+    //         setProfileData(respData);
+    //     }
+    //     )
+    //     .then((response) => {
+    //      if (response.status === 200) {
+    //         setServerError('')
+    //      } else if (response.status > 200) {
+    //         setServerError('Bad Request')
+    //      } 
+    //     })
+    //     .catch(e => console.log("failed: " + e));
+    // }
+    // GetInfo();
+
+    useEffect(()=>{
+        // var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
+        // var auth = { "Authorization" : `Basic ${credentials}` }
+        // let id = localStorage.getItem("id")
+        // fetch(`http://127.0.0.1:5000/profile/${id}`,  {
+        //     method: 'GET',
+        //     headers : auth,
+        //     mode:'cors'
+        // })
+        // .then(response => response.json())
+        // .then(respData => setProfileData(respData))
+        // .catch(e => console.log("failed: " + e));
+        function GetInfo(){
+            fetch(`http://127.0.0.1:5000/profile/${id}`,  {
+                method: 'GET',
+                headers : auth,
+                mode:'cors'
+            })
+            .then(response => response.json())
+            .then(respData => {
+                setProfileData(respData);
+            }
+            )
+            .then((response) => {
+             if (response.status === 200) {
+                setServerError('')
+             } else if (response.status > 200) {
+                setServerError('Bad Request')
+             } 
+            })
+            .catch(e => console.log("failed: " + e));
+        };
+        GetInfo();
+    }, []);
 
     return (
     <main>

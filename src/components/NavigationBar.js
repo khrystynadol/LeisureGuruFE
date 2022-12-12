@@ -5,10 +5,9 @@ import { ResultPage } from './ResultPage';
 import {React, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
-
 export const NavigationBar = function () {
   const location = useLocation();
-  const[data, setData] = useState('')
+  const[data, setData] = useState([])
   const[resp, setResp] = useState('')
   const[serverError, setServerError] = useState('');
   const navigate = useNavigate();
@@ -16,52 +15,47 @@ export const NavigationBar = function () {
   var auth = { "Authorization" : `Basic ${credentials}` }
   let id = localStorage.getItem("id")
 
-const handleInput = (e) => {
-  setData(e.target.value);
-}
+  const handleInput = (e) => {
+    setData(e.target.value);
+  }
 
 const WorkWithInput = (e) =>{
-
-  e.preventDefault();
-      fetch(`http://127.0.0.1:5000/filter`, {
-        method: 'POST',
-            headers: { 
-                        'Authorization' : `Basic ${credentials}`,
-                        'Content-Type': 'application/json'
-                      },
-            mode: 'cors',
+  // console.log(data);
+  // ResultPage(data);
+  // navigate("/result");
+  // e.preventDefault();
+  //     fetch(`http://127.0.0.1:5000/filter`, {
+  //       method: 'POST',
+  //           headers: { 
+  //                       'Authorization' : `Basic ${credentials}`,
+  //                       'Content-Type': 'application/json'
+  //                     },
+  //           mode: 'cors',
     
-        body: JSON.stringify(
-          {
-            search_box: data
-          }
-        )
-      }).then(response => response.json())
-        .then(responseData => {
-            setServerError('')
-            responseData.map((infoIndex)=>(
-              <ResultPage 
-              name={infoIndex.name} 
-              image={infoIndex.image} 
-              description={infoIndex.description} 
-              rate ={infoIndex.rate} 
-              country={infoIndex.country}
-              city={infoIndex.city}
-            />
-            ))
-            //ResultPage(jsonResponse);
-            
-            navigate("/result");
-        })
-        .then((response) => {
-         if (response.status === 200) {
-          setServerError('')
-         } else if (response.status === 401) {
-          setServerError('Bad Request')
-          alert("Not authourized")
-         }
-        })
-        .catch(e => console.log("failed: " + e));
+  //       body: JSON.stringify(
+  //         {
+  //           search_box: data
+  //         }
+  //       )
+  //     }).then(response => response.json())
+  //       .then(responseData => {
+  //           setServerError('')
+  //           // responseData.map((infoIndex)=>(
+  //           //   <ResultPage 
+  //           //   name={infoIndex.name} 
+  //           //   image={infoIndex.image} 
+  //           //   description={infoIndex.description} 
+  //           //   rate ={infoIndex.rate} 
+  //           //   country={infoIndex.country}
+  //           //   city={infoIndex.city}
+  //           // />
+  //           // ))
+  //           setResp(responseData);
+  //       })
+  //       .catch(e => console.log("failed: " + e));
+        navigate("/result");
+        ResultPage(data);
+        console.log(data);
 }
 
   const renderButtons = (pathname) => {
@@ -97,7 +91,7 @@ const WorkWithInput = (e) =>{
             <form onSubmit={WorkWithInput}>
               <input type="text" placeholder='Browse for places here...' className="searchTxt" onChange={e => handleInput(e)}></input>
               {/* <input type="Submit" value="Goooo" className="searchButton" onClick = {e => WorkWithInput}></input> */}
-              <input type="Submit" value="Goooo" className="searchButton" onClick = {e => WorkWithInput}></input>
+              <input type="Submit" value="Goooo" className="searchButton" onClick = {e => WorkWithInput(e)}></input>
             </form>
             <li><Link to='/notifications' className="notification">Notification</Link></li>
             <li><Link to='/Profile' className="user">User</Link></li>
