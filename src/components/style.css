@@ -542,7 +542,7 @@ input:not(:placeholder-shown) + input[type="Submit"]{
   }
 
   .invalid-feedback {
-    margin-left: 40px;
+    margin-left: 10px;
   }
 
   .formError {
