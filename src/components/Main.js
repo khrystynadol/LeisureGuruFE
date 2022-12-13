@@ -3,6 +3,8 @@ import { Rating } from "./filters/Rating";
 import { Activities } from "./filters/Activities";
 import {PlaceComponent} from "./PlaceComponent"
 import { Date } from "./filters/Date";
+
+import {AlertComponent} from "./AlertComponent"
 import { SearchContext } from "./context/SearchContext";
 
 export const Main = function (props) {
@@ -116,7 +118,9 @@ export const Main = function (props) {
                 </li>
             </ul>
             </div>
-            
+            <div>
+                <AlertComponent authorized={true}/>
+            </div>
             
             
         </div>

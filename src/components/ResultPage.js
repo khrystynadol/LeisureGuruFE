@@ -50,10 +50,9 @@ useEffect( () =>{
     // ResultRequest();
     return(
         
-    <div /*onShow={e=>ResultRequest(e)}*/>
+    <div >
         <ul style = {{display:'block'}}>
             <li style = {{display:'inline-block'}}>
-
                 {
                     result &&
                     result.map(
@@ -68,7 +67,6 @@ useEffect( () =>{
                                 authorized = {true}/>
                     ))
                 }
-
                 {/* {
                     respName && respCity && respCountry && respDescription && respImage && respRate &&
                         <PlaceComponent 
