@@ -125,7 +125,7 @@ export const Login = function() {
         <div className = "submitDiv">
           <button disabled = {!formValid || isLoading} className = "submitButton" type="submit">Login</button>
         </div>
-        <div style={{width:"35%", "margin-left":"30%"}}>
+        <div className="formError">
              {serverError == '' ? null : <Alert color="danger" style={{width: "100%"}} >{serverError}</Alert>}
            </div>
           

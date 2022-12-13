@@ -1,39 +1,55 @@
-import {React, useEffect, useState} from "react";
+import {React, useState, useEffect} from "react";
 import {PlaceComponent} from "./PlaceComponent"
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
-export const ResultPage = function(responseData){
+export const ResultPage = function(){
+const location = useLocation();
+let responseData = location.state.responseData;
+const param = useParams();
 
-    const[result, setResult] = useState([]);
-    var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
-    var auth = { "Authorization" : `Basic ${credentials}` }
-    let id = localStorage.getItem("id")
+let [searchParams, setSearchParams] = useSearchParams();
+let i = 0;
 
-    useEffect(()=>{
-        const ResultRequest = (e) =>{
-            //e.preventDefault();
-                fetch(`http://127.0.0.1:5000/filter`, {
-                    method: 'POST',
-                        headers: { 
-                                    'Authorization' : `Basic ${credentials}`,
-                                    'Content-Type': 'application/json'
-                                },
-                        mode: 'cors',
-                    body: JSON.stringify(
-                    {
-                        search_box: "Opera"
-                    }
-                    )
-                }).then(response => response.json())
-                    .then(respData => setResult(respData))
-                    .catch(e => console.log("failed: " + e));
-                    console.log(result);
-        }
+const [searchQuery, setSearchQuery] = useState(location.state.responseData);
 
-        ResultRequest();
-    }, responseData)
+//const responseData = props.responseData;
+//console.log(JSON.stringify(responseData));
+const[result, setResult] = useState([]);
+var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
+var auth = { "Authorization" : `Basic ${credentials}` }
+let id = localStorage.getItem("id")
 
+useEffect( () =>{
+    //e.preventDefault();
+        fetch(`http://127.0.0.1:5000/filter`, {
+            method: 'POST',
+                headers: { 
+                            'Authorization' : `Basic ${credentials}`,
+                            'Content-Type': 'application/json'
+                        },
+                mode: 'cors',
+        
+            body: JSON.stringify(
+            {
+                search_box: param.search
+            }
+            )
+        })
+            .then(response => response.json())
+            .then(respData => {
+                setResult(respData)
+            })
+            .catch(e => console.log("failed: " + e));
+       // console.log(result);
+    }, [] )
 
+    useEffect(() => {
+        console.log("result in useEffect: " + result);
+    }, [result]);
+
+    // ResultRequest();
     return(
+        
     <div >
         <ul style = {{display:'block'}}>
             <li style = {{display:'inline-block'}}>

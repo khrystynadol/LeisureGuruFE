@@ -1,61 +1,24 @@
-import { json, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-//import LoadingSpinner from "./LoadingSpinner";
-import { ResultPage } from './ResultPage';
-import {React, useState} from "react";
-import { useNavigate } from "react-router-dom";
+import {React, useContext, useState} from "react";
+import { SearchContext } from "./context/SearchContext";
 
-export const NavigationBar = function () {
+export const NavigationBar = function (props) {
   const location = useLocation();
   const[data, setData] = useState([])
-  const[resp, setResp] = useState('')
-  const[serverError, setServerError] = useState('');
-  const navigate = useNavigate();
   var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
   var auth = { "Authorization" : `Basic ${credentials}` }
   let id = localStorage.getItem("id")
+  const searchContext = useContext(SearchContext);
 
   const handleInput = (e) => {
     setData(e.target.value);
   }
 
 const WorkWithInput = (e) =>{
-  // console.log(data);
-  // ResultPage(data);
-  // navigate("/result");
-  // e.preventDefault();
-  //     fetch(`http://127.0.0.1:5000/filter`, {
-  //       method: 'POST',
-  //           headers: { 
-  //                       'Authorization' : `Basic ${credentials}`,
-  //                       'Content-Type': 'application/json'
-  //                     },
-  //           mode: 'cors',
-    
-  //       body: JSON.stringify(
-  //         {
-  //           search_box: data
-  //         }
-  //       )
-  //     }).then(response => response.json())
-  //       .then(responseData => {
-  //           setServerError('')
-  //           // responseData.map((infoIndex)=>(
-  //           //   <ResultPage 
-  //           //   name={infoIndex.name} 
-  //           //   image={infoIndex.image} 
-  //           //   description={infoIndex.description} 
-  //           //   rate ={infoIndex.rate} 
-  //           //   country={infoIndex.country}
-  //           //   city={infoIndex.city}
-  //           // />
-  //           // ))
-  //           setResp(responseData);
-  //       })
-  //       .catch(e => console.log("failed: " + e));
-        navigate("/result");
-        <ResultPage responseData={data}/>
-        console.log(data);
+  e.preventDefault();
+  searchContext.setSearchString(data);
+  console.log(data);
 }
 
   const renderButtons = (pathname) => {
@@ -88,10 +51,10 @@ const WorkWithInput = (e) =>{
       default:
         return (
           <ul>
-            <form onSubmit={WorkWithInput}>
+            <form onSubmit={e => WorkWithInput(e)}>
               <input type="text" placeholder='Browse for places here...' className="searchTxt" onChange={e => handleInput(e)}></input>
               {/* <input type="Submit" value="Goooo" className="searchButton" onClick = {e => WorkWithInput}></input> */}
-              <input type="Submit" value="Goooo" className="searchButton" onClick = {e => WorkWithInput(e)}></input>
+              <input type="submit" value="Goooo" className="searchButton"></input>
             </form>
             <li><Link to='/notifications' className="notification">Notification</Link></li>
             <li><Link to='/Profile' className="user">User</Link></li>
