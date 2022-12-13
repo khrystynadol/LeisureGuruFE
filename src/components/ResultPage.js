@@ -1,15 +1,25 @@
-import {React, useState} from "react";
+import {React, useState, useEffect} from "react";
 import {PlaceComponent} from "./PlaceComponent"
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
-export const ResultPage = function(responseData){
+export const ResultPage = function(){
+const location = useLocation();
+let responseData = location.state.responseData;
+const param = useParams();
 
+let [searchParams, setSearchParams] = useSearchParams();
+let i = 0;
+
+const [searchQuery, setSearchQuery] = useState(location.state.responseData);
+
+//const responseData = props.responseData;
 //console.log(JSON.stringify(responseData));
 const[result, setResult] = useState([]);
 var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
 var auth = { "Authorization" : `Basic ${credentials}` }
 let id = localStorage.getItem("id")
 
-const ResultRequest = (e) =>{
+useEffect( () =>{
     //e.preventDefault();
         fetch(`http://127.0.0.1:5000/filter`, {
             method: 'POST',
@@ -21,17 +31,25 @@ const ResultRequest = (e) =>{
         
             body: JSON.stringify(
             {
-                search_box: responseData
+                search_box: param.search
             }
             )
-        }).then(response => response.json())
-            .then(respData => setResult(respData))
+        })
+            .then(response => response.json())
+            .then(respData => {
+                setResult(respData)
+            })
             .catch(e => console.log("failed: " + e));
-            console.log(result);
-    }
+       // console.log(result);
+    }, [] )
 
-    ResultRequest();
+    useEffect(() => {
+        console.log("result in useEffect: " + result);
+    }, [result]);
+
+    // ResultRequest();
     return(
+        
     <div /*onShow={e=>ResultRequest(e)}*/>
         <ul style = {{display:'block'}}>
             <li style = {{display:'inline-block'}}>

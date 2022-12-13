@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Home } from './components/Home';
@@ -17,29 +16,32 @@ import { NotAuthorized } from './components/NotAuthorized';
 import { ResultPage } from './components/ResultPage';
 import { ConfirmEmailPage } from './components/ConfirmEmailPage';
 import { Details } from './components/Details';
+import { SearchContextProvider } from './components/context/SearchContext';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <NavigationBar />
-      <Routes>
-        <Route path='/' element={<NotAuthorized><Home /></NotAuthorized>} />
-        <Route path='/login' element={<NotAuthorized><Login /></NotAuthorized>} />
-        <Route path='/registration' element={<NotAuthorized><Registration formType="registration" /></NotAuthorized>} />
-        <Route path='/editprofile' element={<Authorized><Registration formType="editprofile" /></Authorized>} />
-        <Route path='/homepage' element={<Authorized> <Main /> </Authorized>} />
-        <Route path='/profile' element={  <Authorized> <Profile /></Authorized>}  />
-        <Route path='/settings' element={<Authorized> <Settings /></Authorized>} />
-        <Route path='/notifications' element={<Authorized> <Notifications /></Authorized>} />
-        <Route path='/result' element={<Authorized> <ResultPage /></Authorized>} />
-        <Route path='/confirm' element={<Authorized> <ConfirmEmailPage /></Authorized>} />
-        <Route path='/details' element={<Authorized> <Details /></Authorized>}></Route>
-        <Route path='/details/:id' element={<Authorized> <Details /></Authorized>}></Route>
-      </Routes>
-    </BrowserRouter>
+    <SearchContextProvider>
+      <BrowserRouter>
+        <NavigationBar />
+        <Routes>
+          <Route path='/' element={<NotAuthorized><Home /></NotAuthorized>} />
+          <Route path='/login' element={<NotAuthorized><Login /></NotAuthorized>} />
+          <Route path='/registration' element={<NotAuthorized><Registration formType="registration" /></NotAuthorized>} />
+          <Route path='/editprofile' element={<Authorized><Registration formType="editprofile" /></Authorized>} />
+          <Route path='/homepage' element={<Authorized> <Main /> </Authorized>} />
+          <Route path='/profile' element={  <Authorized> <Profile /></Authorized>}  />
+          <Route path='/settings' element={<Authorized> <Settings /></Authorized>} />
+          <Route path='/notifications' element={<Authorized> <Notifications /></Authorized>} />
+          <Route path='/result/:search' element={<Authorized> <ResultPage /></Authorized>} />
+          <Route path='/confirm' element={<Authorized> <ConfirmEmailPage /></Authorized>} />
+          <Route path='/details' element={<Authorized> <Details /></Authorized>}></Route>
+          <Route path='/details/:id' element={<Authorized> <Details /></Authorized>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </SearchContextProvider>
   </React.StrictMode>
 );
 

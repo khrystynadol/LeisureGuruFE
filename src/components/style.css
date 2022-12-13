@@ -468,7 +468,7 @@ input:not(:placeholder-shown) + input[type="Submit"]{
   .filterItem {
     font-size: 12px;
     font-family:"Poly-Regular";
-    /* padding: 0 30px; */
+    padding: 0 3px;
     /* border: none; */
     /* background: #EE8E57; */
     color: #fff;
@@ -540,3 +540,14 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     align-items: center;
     justify-content: center;
   }
+
+  .invalid-feedback {
+    margin-left: 40px;
+  }
+
+  .formError {
+    width: 35%;
+    margin-left: 30%;
+    margin-top: 20px;
+    text-align: center;
+}
