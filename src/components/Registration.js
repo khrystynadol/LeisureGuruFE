@@ -217,7 +217,7 @@ export const Registration = function(props) {
            <button disabled = {!formValid || isLoading} className = "submitButton" type = 'submit' onClick={()=>handleSubmit()}>{formCaption}</button>
 
            </div>
-           <div style={{width:"35%", "margin-left":"30%"}}>
+           <div className="formError">
              { serverError == '' ? null : <Alert color="danger" style={{width: "100%"}} >{serverError}</Alert>}
            </div>
 
@@ -238,20 +238,3 @@ export const Registration = function(props) {
      );
 }
 
-
-// justify-content: center;
-//     align-content: center;
-
-// font-size: 20px;
-//     font-family: Arial, Helvetica, sans-serif;
-//     padding: 0 25px;
-//     align-items: center;
-//     background: #ee8e57;
-//     color: #fff;
-//     transition: all 0.3s ease;
-//     height: 40px;
-//     border:none;
-//     width:100%;
-//     line-height: 1em;
-
-//style={{"text-align": "center", "font-size": "20px", "padding": "0 25px", "width":"100%","height": "40px"}}
