@@ -54,7 +54,7 @@ const WorkWithInput = (e) =>{
   //       })
   //       .catch(e => console.log("failed: " + e));
         navigate("/result");
-        ResultPage(data);
+        <ResultPage responseData={data}/>
         console.log(data);
 }
 

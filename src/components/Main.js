@@ -4,6 +4,9 @@ import { Activities } from "./filters/Activities";
 import { PlacesPanel } from "./PlacesPanel";
 import {PlaceComponent} from "./PlaceComponent"
 import { Date } from "./filters/Date";
+import {AlertComponent} from "./AlertComponent"
+
+
 export const Main = function () {
     const [rating, setRating] = useState(5);
     const [date, setDate] = useState(0);
@@ -124,6 +127,7 @@ export const Main = function () {
                 
                 <PlacesPanel selectedActivities={selectedActivities} selectedDate={date}/>
             </div> */}
+            
             <div className="main-panel">
             <ul style = {{display:'block'}}>
                 <li style = {{display:'inline-block'}}>
@@ -146,7 +150,9 @@ export const Main = function () {
                 </li>
             </ul>
             </div>
-            
+            <div>
+                <AlertComponent authorized={true}/>
+            </div>
             
             
         </div>
