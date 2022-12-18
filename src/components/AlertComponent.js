@@ -4,7 +4,7 @@ import { Alert } from 'reactstrap';
 export const AlertComponent = function({authorized}) {
   return (
     <div>
-      <Alert color="primary" style={{width:"300px"}}>
+      <Alert color="primary" style={{width:"240px"}}>
         
         {
             authorized ?
@@ -23,6 +23,7 @@ export const AlertComponent = function({authorized}) {
             <p className="mb-0">
                 With the subscribtion you can forget about annoying ads 
                 and create your personal calendar to plan your vacations and many more
+                other functions. Enjoy!
             </p>
             :
             <p className="mb-0">
