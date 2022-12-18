@@ -23,6 +23,7 @@ export const AlertComponent = function({authorized}) {
             <p className="mb-0">
                 With the subscribtion you can forget about annoying ads 
                 and create your personal calendar to plan your vacations and many more
+                other functions. Enjoy!
             </p>
             :
             <p className="mb-0">
