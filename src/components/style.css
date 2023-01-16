@@ -16,6 +16,10 @@ body{
     width: 1000px;
     margin: 20px auto;
     padding: 20px;
+    position: relative;
+    /* display: flex;
+    
+    flex-direction: row; */
     /* height: 600px; */
 }
 
@@ -97,12 +101,15 @@ body{
     /* padding: 0; */
 }
 /*Стилизуем хедер*/
-header{
+/* header{
+    
     display:flex;
+    position: relative;
+    flex-direction: row;
     justify-content: center;
     height: 60px;
     background: #EE8E57;
-}
+} */
 
 /*Стилизуем список элементов*/
 .menu li{
@@ -112,7 +119,7 @@ header{
 
 /*Стилизуем ссылки*/
 .menu a{
-    font-size: 20px;
+font-size: 20px;
   font-family:Arial, Helvetica, sans-serif ;
   padding: 0 30px;
   border: none;
@@ -121,6 +128,7 @@ header{
   border-radius: 10px;
   vertical-align: middle;
   text-decoration: none;
+  /* position: relative; */
 }
 
 /*Стилизуем логотип*/
@@ -146,7 +154,7 @@ header{
 }
 
 /*Стилизуем поисковую строку*/
-.searchTxt{
+/* .searchTxt{
     position:absolute;
     inset-inline-start:15%;
     block-size:30px;
@@ -157,7 +165,7 @@ header{
     border-radius: 10px;
     padding: 10px;
     left:20%;
-}
+} */
   
 /*Стилизуем кнопку поиска после ввода запроса*/
 .searchButton{
@@ -177,12 +185,12 @@ header{
 }
 
 /*Стилизуем кнопку пользователя*/
-.user{
+/* .user{
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     padding: 0 25px;
     align-items: center;
-    background: #EE8E57;
+    background: black;
     color: #fff;
     display:block;
     position: absolute;
@@ -193,7 +201,7 @@ header{
     height: 60px;
     border-color: rgb(80, 47, 1);
     line-height: 3em;
-}
+} */
 
 /*Стилизуем кнопку уведомлений*/
 .notification{
@@ -202,16 +210,13 @@ header{
     padding: 0 25px;
     background: #EE8E57;
     color: #fff;
-    display:block;
-    position: absolute;
-    right:7%;
-    top:0px;
+    display:inline-block;
     transition: all .3s ease;
     border-radius: 10px;
     height: 60px;
-    vertical-align: middle;
     border-color: rgb(80, 47, 1);
     line-height: 3em;
+    /* width: 100%; */
 }
 
 .login{

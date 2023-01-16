@@ -1,0 +1,4 @@
+
+.offcanvas { /* add Responsivenes to default offcanvas */
+    --bs-offcanvas-width: min(95vw, 320px) !important;
+}

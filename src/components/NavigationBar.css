@@ -1,0 +1,238 @@
+.logo {
+    display: inline;
+}
+
+.logoSmall {
+    display: none;
+}
+.myDropdown {
+    display: none;
+    
+}
+.bigButtons {
+    display: inline;
+}
+.bigButtons ul {
+    height: 100%;
+}
+.bigButtons li {
+    height: 100%;
+}
+.userMenu {
+    /* background: blue; */
+    height: 100%;
+}
+.userButton {
+    height : 100%;
+    background : #EE8E57
+}
+
+
+
+
+
+
+/*Стилизуем кнопку поиска после ввода запроса*/
+.searchButton{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 25px;
+    background: #fff;
+    color: #EE8E57;
+    display:block;
+    position: absolute;
+    right:0;
+    bottom:0;
+    height: 100%;
+    border-radius: 10px;
+    border-color: rgb(133, 78, 1);
+    line-height: 3em;
+    /* width: 270px; */
+}
+
+.user{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 25px;
+    align-items: center;
+    background: #EE8E57;
+    color: white;
+    display:inline-block;
+    transition: all .3s ease;
+    border-radius: 10px;
+    height: 60px;
+    border-color: rgb(80, 47, 1);
+    line-height: 3em;
+    /* width: 100%; */
+    text-align: center;
+}
+.myDropdown .user {
+    width: 100%;
+}
+.dpMenu {
+--bs-dropdown-bg: #EE8E57;
+--bs-dropdown-item-padding-x: 0rem;
+--bs-dropdown-item-padding-y: 0rem;
+}
+.menu ul {
+    height: 100%;
+}
+.menu form {
+    height: 100%;
+}
+/* header {
+    position: relative;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+} */
+header{
+    
+    display:flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    height: 60px;
+    background: #EE8E57;
+}
+header>div {
+    height: 100%;
+}
+.logoMenu {
+    width: 250px;
+    text-align: center;
+
+}
+.menu {
+    background: green;
+    flex-grow: 1;
+    position: relative;
+}
+.searchMenu {
+    /* background: yellow; */
+    flex-grow: 1;
+    position: relative;
+}
+.searchMenu form {
+    height: 100%;
+}
+.searchMenu .searchTxt{
+    
+    inset-inline-start:15%;
+    block-size:30px;
+    background:1. 000000;
+    border-radius: 10px;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    /* left:20%; */
+    
+}
+
+
+
+
+.myHeader {
+    height: 60px;
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+}
+.myHeader div {
+    height: 100%;
+}
+
+.myLogo {
+    background: red;
+    width: 250px;
+}
+.myLogo .logoSmall {
+    display: none;
+}
+.mySearch {
+    background: green;
+    flex-grow: 1;
+    position: relative;
+}
+
+.mySearch form {
+    height: 100%;
+}
+.mySearch .mySearchTxt {
+    inset-inline-start:15%;
+    block-size:30px;
+    background:1. 000000;
+    border-radius: 10px;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+}
+.mySearch .mySearchButton{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 25px;
+    background: #fff;
+    color: #EE8E57;
+    display:block;
+    position: absolute;
+    right:0;
+    bottom:0;
+    height: 100%;
+    border-radius: 10px;
+    border-color: rgb(133, 78, 1);
+    line-height: 3em;
+}
+.myButtons {
+    background: blue;
+    width: 270px;
+}
+
+@media (max-width: 979px) {
+    .myLogo {
+        width: 80px;
+    }
+    .myLogo .logo {
+        display: none;
+    }
+    .myLogo .logoSmall {
+        display: inline-block;
+    }
+    .myButtons {
+        width: 60px;
+    }
+
+    .logoSmall {
+        font-size: 30px;
+        font-family:"Poly-Regular";
+       
+        border: none;
+        background: #EE8E57;
+        color: #fff;
+        vertical-align: middle;
+        display: inline-block;
+        text-align: center;
+        transition: all .3s ease;
+        text-decoration: none;
+        align-items: center;
+        line-height: 2em;
+        height: 100%;
+
+    }
+   
+    .myDropdown {
+        display: inline;
+        height: 100%;
+
+        
+    }
+    .logoMenu {
+        width: 80px;
+    }
+    .bigButtons {
+        display: none;
+    }
+    .logo {
+        display: none;
+    }
+}

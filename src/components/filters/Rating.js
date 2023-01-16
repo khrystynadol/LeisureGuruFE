@@ -2,6 +2,12 @@ import {Input, Label} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-regular-svg-icons'
 import {  useState } from "react";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
 
 export const Rating = function (props) {
     const setRating = props.setRating;
@@ -20,7 +26,7 @@ export const Rating = function (props) {
     return (
         <>
         <div>
-        <span className="filterTitle" style={{paddingLeft:30}}>Rating</span>
+        <span className="filterTitle" >Rating</span>
         <form>
             <ul style={{listStyle: 'none'}}>
             <li><Input type="radio" name="radio1" onChange={(e) => setRating(1)}></Input><Label>{getStars(1)}</Label></li>
@@ -34,8 +40,8 @@ export const Rating = function (props) {
     
 
     
-    {/* <div className="d-flex p-4">
-      <Dropdown isOpen={dropdownOpen} toggle={toggle} >
+    
+      {/* <Dropdown isOpen={dropdownOpen} toggle={toggle} >
 
       <DropdownToggle caret>Dropdown</DropdownToggle>
         <DropdownMenu >
@@ -48,8 +54,8 @@ export const Rating = function (props) {
           <DropdownItem>Bar Action</DropdownItem>
           <DropdownItem>Quo Action</DropdownItem>
         </DropdownMenu>
-      </Dropdown>
-    </div> */}
+      </Dropdown> */}
+  
 
 
 

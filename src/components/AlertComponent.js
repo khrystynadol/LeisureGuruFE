@@ -4,7 +4,7 @@ import { Alert } from 'reactstrap';
 export const AlertComponent = function({authorized}) {
   return (
     <div>
-      <Alert color="primary" style={{width:"240px"}}>
+      <Alert color="primary" style={{position: 'fixed', right: 0, width:"240px"}}>
         
         {
             authorized ?
