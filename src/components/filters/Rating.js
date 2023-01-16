@@ -26,7 +26,7 @@ export const Rating = function (props) {
     return (
         <>
         <div>
-        <span className="filterTitle" >Rating</span>
+        <span className="filterTitle" style={{paddingLeft:30}}>Rating</span>
         <form>
             <ul style={{listStyle: 'none'}}>
             <li><Input type="radio" name="radio1" onChange={(e) => setRating(1)}></Input><Label>{getStars(1)}</Label></li>

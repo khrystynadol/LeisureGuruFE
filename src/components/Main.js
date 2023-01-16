@@ -8,6 +8,7 @@ import { AlertComponent } from "./AlertComponent"
 import { SearchContext } from "./context/SearchContext";
 
 import styles from './Main.css';
+import { AiOutlineBars } from "react-icons/ai";
 
 import {
     Button,
@@ -28,7 +29,7 @@ export const Main = function (props) {
     const [selectedActivities, setSelectedActivities] = useState(
         new Array()
     );
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+
     const [sideBarOpen, setSideBarOpen] = useState(false);
 
     const searchContext = useContext(SearchContext);
@@ -38,7 +39,7 @@ export const Main = function (props) {
 
     const [info, setInfo] = useState([]);// create useState for info thet we GET from db
 
-    const toggle = () => setDropdownOpen((prevState) => !prevState);
+   
     useEffect(() => {
         const getInformation = async () => {
             const conn = await fetch('http://127.0.0.1:5000/homepage'); //create connection with db
@@ -112,36 +113,15 @@ export const Main = function (props) {
 
     return (
         <>
-            <Button onClick={toggleSideBar}>Show sidebar</Button>
+            <Button onClick={toggleSideBar} className="bigFilter">Filters</Button>
+            <Button onClick={toggleSideBar} className="smallFilter"><AiOutlineBars/></Button>
             <div className="wrapper">
                 <Offcanvas toggle={toggleSideBar} isOpen={sideBarOpen} size="lg">
-                    <OffcanvasHeader toggle={toggleSideBar}>Header</OffcanvasHeader>
-                    <OffcanvasBody>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
-                        <div>Body</div>
+                    <OffcanvasHeader toggle={toggleSideBar} className="offcanvHeader">Filters</OffcanvasHeader>
+                    <OffcanvasBody className="offcanvBody">
+                    <Rating setRating={setRating} />
+                    <Activities selectedActivities={selectedActivities} setSelectedActivities={setSelectedActivities}/>
+                    <Date date={date} setDate={setDate}/>
                     </OffcanvasBody>
                 </Offcanvas>
                 {/* <div className="left-panel">

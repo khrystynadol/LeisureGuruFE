@@ -24,7 +24,11 @@
 }
 .userButton {
     height : 100%;
-    background : #EE8E57
+    background : #EE8E57;
+    --bs-btn-border-color: none;
+    --bs-btn-hover-bg: white;
+    --bs-btn-hover-color: #EE8E57;
+
 }
 
 
@@ -217,7 +221,8 @@ header>div {
         align-items: center;
         line-height: 2em;
         height: 100%;
-
+        width: 100%;
+        
     }
    
     .myDropdown {
