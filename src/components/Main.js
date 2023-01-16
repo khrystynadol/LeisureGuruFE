@@ -3,9 +3,11 @@ import { Rating } from "./filters/Rating";
 import { Activities } from "./filters/Activities";
 import { PlaceComponent } from "./PlaceComponent"
 import { Date } from "./filters/Date";
+import { Filters } from "./filters/Filters";
 
 import { AlertComponent } from "./AlertComponent"
 import { SearchContext } from "./context/SearchContext";
+import { FilterContext } from "./context/FilterContext";
 
 import styles from './Main.css';
 import { AiOutlineBars } from "react-icons/ai";
@@ -21,18 +23,18 @@ import {
     OffcanvasHeader,
 } from 'reactstrap';
 
-export const Main = function (props) {
-    const input = props.setSearchString;
-    const [rating, setRating] = useState(5);
-    const [date, setDate] = useState(0);
-    const [searchString, setSearchString] = useState(input);
-    const [selectedActivities, setSelectedActivities] = useState(
-        new Array()
-    );
+export const Main = function () {
+    
+    // const [rating, setRating] = useState(5);
+    // const [date, setDate] = useState(0);
+    // const [selectedActivities, setSelectedActivities] = useState(
+    //     new Array()
+    // );
 
-    const [sideBarOpen, setSideBarOpen] = useState(false);
+    // const [sideBarOpen, setSideBarOpen] = useState(false);
 
     const searchContext = useContext(SearchContext);
+    const filterContext = useContext(FilterContext);
 
     var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
 
@@ -50,7 +52,7 @@ export const Main = function (props) {
     }, []);
 
     useEffect(() => {
-        console.log("filter changed " + rating + ", " + date + ", " + selectedActivities);
+        console.log("filter changed from main " + filterContext.rating + ", " + filterContext.date + ", " +filterContext. selectedActivities);
 
         console.log(credentials)
         var auth = { "Authorization": `Basic ${credentials}` }
@@ -63,8 +65,8 @@ export const Main = function (props) {
             mode: 'cors',
             body: JSON.stringify(
                 {
-                    rate: rating,
-                    activities: selectedActivities,
+                    rate: filterContext.rating,
+                    activities: filterContext.selectedActivities,
                 }
             )
         })
@@ -80,7 +82,7 @@ export const Main = function (props) {
                 return setInfo(jsonResponse);
             })
             .catch(e => console.log("failed: " + e));
-    }, [rating, date, selectedActivities]
+    }, [filterContext.rating, filterContext.date, filterContext.selectedActivities]
 
     );
 
@@ -107,23 +109,15 @@ export const Main = function (props) {
             .catch(e => console.log("failed: " + e));
     }, [searchContext.searchString]);
 
-    const toggleSideBar = () => {
-        setSideBarOpen(!sideBarOpen);
-    };
+    // const toggleSideBar = () => {
+    //     setSideBarOpen(!sideBarOpen);
+    // };
 
     return (
         <>
-            <Button onClick={toggleSideBar} className="bigFilter">Filters</Button>
-            <Button onClick={toggleSideBar} className="smallFilter"><AiOutlineBars/></Button>
+
             <div className="wrapper">
-                <Offcanvas toggle={toggleSideBar} isOpen={sideBarOpen} size="lg">
-                    <OffcanvasHeader toggle={toggleSideBar} className="offcanvHeader">Filters</OffcanvasHeader>
-                    <OffcanvasBody className="offcanvBody">
-                    <Rating setRating={setRating} />
-                    <Activities selectedActivities={selectedActivities} setSelectedActivities={setSelectedActivities}/>
-                    <Date date={date} setDate={setDate}/>
-                    </OffcanvasBody>
-                </Offcanvas>
+               
                 {/* <div className="left-panel">
                 <Rating setRating={setRating} />
                 <Activities selectedActivities={selectedActivities} setSelectedActivities={setSelectedActivities}/>

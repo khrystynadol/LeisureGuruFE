@@ -17,6 +17,7 @@ import { ResultPage } from './components/ResultPage';
 import { ConfirmEmailPage } from './components/ConfirmEmailPage';
 import { Details } from './components/Details';
 import { SearchContextProvider } from './components/context/SearchContext';
+import { FilterContextProvider } from './components/context/FilterContext';
 
 
 
@@ -24,6 +25,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <SearchContextProvider>
+      <FilterContextProvider>
       <BrowserRouter>
         <NavigationBar />
         <Routes>
@@ -41,6 +43,7 @@ root.render(
           <Route path='/details/:id' element={<Authorized> <Details /></Authorized>}></Route>
         </Routes>
       </BrowserRouter>
+      </FilterContextProvider>
     </SearchContextProvider>
   </React.StrictMode>
 );

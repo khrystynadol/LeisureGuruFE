@@ -1,8 +1,8 @@
-/* 
-.offcanvas { 
+
+.offcanvas { /* add Responsivenes to default offcanvas */
     --bs-offcanvas-width: min(95vw, 320px) !important;
 }
-.bigFilter {
+/* .bigFilter {
     display: inline;
     width: 250px;
     --bs-btn-bg: #EE8E57;
@@ -11,25 +11,41 @@
     --bs-btn-hover-color: #EE8E57;
     --bs-btn-border-radius: 0.5rem;
     font-size: 20px;
+} */
+.filterMenu {
+    height: 100%;
+    width: 80px;
 }
-
 .smallFilter {
-    display: none;
+    display: inline;
+    width: 80px;
+    height: 100%;
+    --bs-btn-bg: #EE8E57;
+    --bs-btn-border-color: none;
+    --bs-btn-hover-bg: white;
+    --bs-btn-hover-color: #EE8E57;
+    --bs-btn-border-radius: 10px;
 }
 
 .offcanvHeader  {
     background: #EE8E57;
     color: white;
-
+   /* font-size: 10px; */
     font-family:"Poly-Regular";
     
-} */
+}
 
-/* .offcanvBody {
+.offcanvBody {
     background: #EE8E57;
     color: white;
 }
-@media (max-width: 979px) {
+
+.filterLines {
+    width: 70%;
+    height: 70%;
+}
+
+/* @media (max-width: 979px) {
     .bigFilter {
         display: none;
     }

@@ -1,5 +1,5 @@
 .logo {
-    display: inline;
+    display: inline-block;;
 }
 
 .logoSmall {
@@ -28,6 +28,7 @@
     --bs-btn-border-color: none;
     --bs-btn-hover-bg: white;
     --bs-btn-hover-color: #EE8E57;
+    --bs-btn-active-bg: white;
 
 }
 
@@ -63,7 +64,7 @@
     color: white;
     display:inline-block;
     transition: all .3s ease;
-    border-radius: 10px;
+    border-radius: 0;
     height: 60px;
     border-color: rgb(80, 47, 1);
     line-height: 3em;
@@ -222,7 +223,8 @@ header>div {
         line-height: 2em;
         height: 100%;
         width: 100%;
-        
+        border-radius: 10px;
+
     }
    
     .myDropdown {

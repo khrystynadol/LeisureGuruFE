@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { React, useContext, useState } from "react";
+import { Filters } from "./filters/Filters";
 import { SearchContext } from "./context/SearchContext";
 import style from './NavigationBar.css'
 import {
@@ -75,7 +76,7 @@ export const NavigationBar = function (props) {
           
             <div className="myDropdown">
               <Dropdown  isOpen={dropdownOpen} toggle={toggle} direction="down" className="userButton">
-                <DropdownToggle caret size="lg" color="primary" className="userButton">Me</DropdownToggle>
+                <DropdownToggle caret size="lg" color="primary" className="userButton">Profile</DropdownToggle>
                 <DropdownMenu className="dpMenu">
                   <DropdownItem ><Link to='/notifications' className="notification" style={{ textDecoration: 'none' }}>Notifications</Link></DropdownItem>
                   <DropdownItem divider />
@@ -171,6 +172,9 @@ export const NavigationBar = function (props) {
         <div className="myButtons"></div>
       </div> */}
       <header>
+        <div className="filterMenu">
+          <Filters/>
+        </div>
         <div className="logoMenu">
           {location.pathname === '/' || location.pathname === '/login' || location.pathname === '/registration' ? <Link to='/' className="logo">LeisureGuru</Link> :
             <>
