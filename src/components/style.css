@@ -16,7 +16,7 @@ body{
     width: 1000px;
     margin: 20px auto;
     padding: 20px;
-    /* height: 600px; */
+    position: relative;
 }
 
 .form-body{
@@ -94,15 +94,17 @@ body{
 /*Сбрасываем базовые настройки сайта*/
 *{
     margin: 0;
-    /* padding: 0; */
 }
 /*Стилизуем хедер*/
-header{
+/* header{
+    
     display:flex;
+    position: relative;
+    flex-direction: row;
     justify-content: center;
     height: 60px;
     background: #EE8E57;
-}
+} */
 
 /*Стилизуем список элементов*/
 .menu li{
@@ -112,7 +114,7 @@ header{
 
 /*Стилизуем ссылки*/
 .menu a{
-    font-size: 20px;
+font-size: 20px;
   font-family:Arial, Helvetica, sans-serif ;
   padding: 0 30px;
   border: none;
@@ -121,163 +123,9 @@ header{
   border-radius: 10px;
   vertical-align: middle;
   text-decoration: none;
+
 }
 
-/*Стилизуем логотип*/
-.logo {
-  font-size: 30px;
-  width: 250px;
-  font-family:"Poly-Regular";
-  padding: 0 30px;
-  border: none;
-  background: #EE8E57;
-  color: #fff;
-  vertical-align: middle;
-  display: inline-block;
-  text-align: center;
-  position: absolute;
-  left:0px;
-  top:0px;
-  height:60px;
-  transition: all .3s ease;
-  text-decoration: none;
-  align-items: center;
-  line-height: 2em;
-}
-
-/*Стилизуем поисковую строку*/
-.searchTxt{
-    position:absolute;
-    inset-inline-start:15%;
-    block-size:30px;
-    top:0px;
-    width: 500px;
-    height:60px;
-    background:1. 000000;
-    border-radius: 10px;
-    padding: 10px;
-    left:20%;
-}
-  
-/*Стилизуем кнопку поиска после ввода запроса*/
-.searchButton{
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 0 25px;
-    background: #fff;
-    color: #EE8E57;
-    display:block;
-    position: absolute;
-    left:56.5%;
-    top:0px;
-    height: 60px;
-    border-radius: 10px;
-    border-color: rgb(133, 78, 1);
-    line-height: 3em;
-}
-
-/*Стилизуем кнопку пользователя*/
-.user{
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 0 25px;
-    align-items: center;
-    background: #EE8E57;
-    color: #fff;
-    display:block;
-    position: absolute;
-    right:0%;
-    top:0px;
-    transition: all .3s ease;
-    border-radius: 10px;
-    height: 60px;
-    border-color: rgb(80, 47, 1);
-    line-height: 3em;
-}
-
-/*Стилизуем кнопку уведомлений*/
-.notification{
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 0 25px;
-    background: #EE8E57;
-    color: #fff;
-    display:block;
-    position: absolute;
-    right:7%;
-    top:0px;
-    transition: all .3s ease;
-    border-radius: 10px;
-    height: 60px;
-    vertical-align: middle;
-    border-color: rgb(80, 47, 1);
-    line-height: 3em;
-}
-
-.login{
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 0 25px;
-    background: #EE8E57;
-    color: #fff;
-    display:block;
-    position: absolute;
-    right:11%;
-    top:0px;
-    transition: all .3s ease;
-    border-radius: 10px;
-    height: 60px;
-    vertical-align: middle;
-    border-color: rgb(80, 47, 1);
-    line-height: 3em;
-}
-
-.login:hover{
-    background: #fff;
-    color: #EE8E57;
-    transition: all .3s ease;
-}
-
-/*Стилизуем кнопку пользователя при наведении на неё*/
-.user:hover{
-    background: #fff;
-    color: #EE8E57;
-    transition: all .3s ease;
-}
-
-/*Стилизуем кнопку уведомлений при наведении на неё*/
-.notification:hover{
-    background: #fff;
-    color: #EE8E57;
-    transition: all .3s ease;
-}
-
-/*Стилизуем кнопку логотипа при наведении на неё*/
-.logo:hover{
-    background: #fff;
-    color: #EE8E57;
-    transition: all .3s ease;
-}
-.main-panel{
-    background: -webkit-linear-gradient(to right, #ecd09f, #e5ceab);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #ecd09f, #e5ceab);
-}
-
-/*Стилизуем кнопку начала поиска при наведении на неё*/
-.searchButton:hover{
-    background: #EE8E57;
-    color: #fff;
-    transition: all .3s ease;
-}
-
-input[type="Submit"]{
-    opacity:0;
-    transition: 1s;
-}
-
-input:not(:placeholder-shown) + input[type="Submit"]{
-    opacity: 1;
-}
 
 .userImage{
     height: 180px;
@@ -309,7 +157,6 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     text-decoration: none;
     padding-bottom: 3em;
 }
-
 
 .logOut{
     margin-top: 3em;
@@ -430,7 +277,7 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     border-color: rgba(245, 13, 13, 0.781);
 }
 
-
+/*Spinner*/
 
 @keyframes spinner {
     0% {
@@ -450,43 +297,158 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     margin-left: 50%;
   }
 
-  .filterTitle {
-    font-size: 20px;
+  /* Nav bar*/
+
+/*Стилизуем логотип*/
+.logo {
+    font-size: 30px;
+    width: 250px;
     font-family:"Poly-Regular";
-    /* padding: 0 30px; */
-    /* border: none; */
-    /* background: #EE8E57; */
+    padding: 0 30px;
+    border: none;
+    background: #EE8E57;
     color: #fff;
-    /* vertical-align: middle;
+    vertical-align: middle;
     display: inline-block;
     text-align: center;
-    position: absolute;
     left:0px;
     top:0px;
     height:60px;
     transition: all .3s ease;
     text-decoration: none;
     align-items: center;
-    line-height: 2em; */
+    line-height: 2em;
+    border-radius: 10px;
+  }
+  /*Стилизуем кнопку поиска после ввода запроса*/
+.searchButton{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 25px;
+    background: #fff;
+    color: #EE8E57;
+    display:block;
+    position: absolute;
+    top:0px;
+    height: 60px;
+    border-radius: 10px;
+    border-color: rgb(133, 78, 1);
+    line-height: 3em;
+}
+
+/*Стилизуем кнопку пользователя*/
+.user{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 25px;
+    align-items: center;
+    background: #EE8E57;
+    color: white;
+    display:inline-block;
+    transition: all .3s ease;
+    border-radius: 0;
+    height: 60px;
+    border-color: rgb(80, 47, 1);
+    line-height: 3em;
+    text-align: center;
+}
+
+/*Стилизуем кнопку уведомлений*/
+.notification{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 25px;
+    background: #EE8E57;
+    color: #fff;
+    display:inline-block;
+    transition: all .3s ease;
+    border-radius: 0;
+    height: 60px;
+    border-color: rgb(80, 47, 1);
+    line-height: 3em;
+    /* width: 100%; */
+}
+
+.login{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 25px;
+    background: #EE8E57;
+    color: #fff;
+    display:block;
+    position: absolute;
+    right:11%;
+    top:0px;
+    transition: all .3s ease;
+    border-radius: 10px;
+    height: 60px;
+    vertical-align: middle;
+    border-color: rgb(80, 47, 1);
+    line-height: 3em;
+}
+
+.login:hover{
+    background: #fff;
+    color: #EE8E57;
+    transition: all .3s ease;
+}
+
+/*Стилизуем кнопку пользователя при наведении на неё*/
+.user:hover{
+    background: #fff;
+    color: #EE8E57;
+    transition: all .3s ease;
+}
+
+/*Стилизуем кнопку уведомлений при наведении на неё*/
+.notification:hover{
+    background: #fff;
+    color: #EE8E57;
+    transition: all .3s ease;
+}
+
+/*Стилизуем кнопку логотипа при наведении на неё*/
+.logo:hover{
+    background: #fff;
+    color: #EE8E57;
+    transition: all .3s ease;
+}
+.logoSmall:hover{
+    background: #fff;
+    color: #EE8E57;
+    transition: all .3s ease;
+}
+.main-panel{
+    background: -webkit-linear-gradient(to right, #ecd09f, #e5ceab);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ecd09f, #e5ceab);
+}
+
+/*Стилизуем кнопку начала поиска при наведении на неё*/
+.searchButton:hover{
+    background: #EE8E57;
+    color: #fff;
+    transition: all .3s ease;
+}
+
+input[type="Submit"]{
+    opacity:0;
+    transition: 1s;
+}
+
+input:not(:placeholder-shown) + input[type="Submit"]{
+    opacity: 1;
+}
+
+  .filterTitle {
+    font-size: 20px;
+    font-family:"Poly-Regular";
+    color: #fff;
   }
   .filterItem {
     font-size: 12px;
     font-family:"Poly-Regular";
     padding: 0 3px;
-    /* border: none; */
-    /* background: #EE8E57; */
     color: #fff;
-    /* vertical-align: middle;
-    display: inline-block;
-    text-align: center;
-    position: absolute;
-    left:0px;
-    top:0px;
-    height:60px;
-    transition: all .3s ease;
-    text-decoration: none;
-    align-items: center;
-    line-height: 2em; */
   }
 
 .personData{
@@ -520,7 +482,6 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     width: 40px;
     height: 40px;
 }
-
 .wordBox{
     margin-top: 20px;
     font-family: "Poly-Regular";
@@ -555,3 +516,195 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     margin-top: 20px;
     text-align: center;
 }
+
+
+.offcanvas {
+    --bs-offcanvas-width: min(95vw, 320px) !important;
+}
+
+.filterMenu {
+    height: 100%;
+    width: 80px;
+}
+.smallFilter {
+    display: inline;
+    width: 80px;
+    height: 100%;
+    --bs-btn-bg: #EE8E57;
+    --bs-btn-border-color: none;
+    --bs-btn-hover-bg: white;
+    --bs-btn-hover-color: #EE8E57;
+    --bs-btn-border-radius: 10px;
+}
+
+.offcanvHeader  {
+    background: #EE8E57;
+    color: white;
+    font-family:"Poly-Regular";
+    
+}
+
+.offcanvBody {
+    background: #EE8E57;
+    color: white;
+}
+
+.filterLines {
+    width: 70%;
+    height: 70%;
+}
+
+.logo {
+    display: inline-block;
+}
+
+.logoSmall {
+    display: none;
+}
+.myDropdown {
+    display: none;
+    
+}
+.bigButtons {
+    display: inline;
+}
+.bigButtons ul {
+    height: 100%;
+}
+.bigButtons li {
+    height: 100%;
+}
+.userMenu {
+    height: 100%;
+}
+.userButton {
+    height : 100%;
+    background : #EE8E57;
+    --bs-btn-border-color: none;
+    --bs-btn-hover-bg: white;
+    --bs-btn-hover-color: #EE8E57;
+    --bs-btn-active-bg: white;
+
+}
+
+/*Стилизуем кнопку поиска после ввода запроса*/
+.searchButton{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 25px;
+    background: #fff;
+    color: #EE8E57;
+    display:block;
+    position: absolute;
+    right:0;
+    bottom:0;
+    height: 100%;
+    border-radius: 10px;
+    border-color: rgb(133, 78, 1);
+    line-height: 3em;
+}
+
+
+
+.myDropdown .user {
+    width: 100%;
+}
+
+.dpMenu {
+--bs-dropdown-bg: #EE8E57;
+--bs-dropdown-item-padding-x: 0rem;
+--bs-dropdown-item-padding-y: 0rem;
+}
+
+.menu ul {
+    height: 100%;
+}
+
+.menu form {
+    height: 100%;
+}
+
+header{
+    display:flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    height: 60px;
+    background: #EE8E57;
+}
+
+header>div {
+    height: 100%;
+}
+
+.logoMenu {
+    width: 250px;
+    text-align: center;
+}
+
+.menu {
+    background: green;
+    flex-grow: 1;
+    position: relative;
+}
+
+.searchMenu {
+    flex-grow: 1;
+    position: relative;
+}
+
+.searchMenu form {
+    height: 100%;
+}
+
+/*Стилизуем поисковую строку*/
+.searchMenu .searchTxt{
+    inset-inline-start:15%;
+    block-size:30px;
+    background:1. 000000;
+    border-radius: 10px;
+    padding: 10px;
+    height: 100%;
+    width: 100%;    
+}
+
+@media (max-width: 979px) {
+    .logoSmall {
+        font-size: 30px;
+        font-family:"Poly-Regular";
+        border: none;
+        background: #EE8E57;
+        color: #fff;
+        vertical-align: middle;
+        display: inline-block;
+        text-align: center;
+        transition: all .3s ease;
+        text-decoration: none;
+        align-items: center;
+        line-height: 2em;
+        height: 100%;
+        width: 100%;
+        border-radius: 10px;
+
+    }
+    
+    .myDropdown {
+        display: inline;
+        height: 100%;
+        
+    }
+
+    .logoMenu {
+        width: 80px;
+    }
+
+    .bigButtons {
+        display: none;
+    }
+
+    .logo {
+        display: none;
+    }
+}
+
+
