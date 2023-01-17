@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 import { AiOutlineBars } from "react-icons/ai";
 import { FilterContext } from "../context/FilterContext";
-import styles from './Filters.css';
+import styles from '../style.css';
 export const Filters = function() {
     const filterContext = useContext(FilterContext);
 

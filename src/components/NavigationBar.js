@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { React, useContext, useState } from "react";
 import { Filters } from "./filters/Filters";
 import { SearchContext } from "./context/SearchContext";
-import style from './NavigationBar.css'
+import style from './style.css'
 import {
-  Button,
   Dropdown,
   DropdownToggle,
   DropdownMenu,
@@ -43,7 +42,6 @@ export const NavigationBar = function (props) {
       return (
         <form onSubmit={e => WorkWithInput(e)}>
           <input type="text" placeholder='Browse for places here...' className="searchTxt" onChange={e => handleInput(e)}></input>
-          {/* <input type="Submit" value="Goooo" className="searchButton" onClick = {e => WorkWithInput}></input> */}
           <input type="submit" value="Goooo" className="searchButton"></input>
         </form>
       );
@@ -97,80 +95,9 @@ export const NavigationBar = function (props) {
 
     }
   }
-  // const renderButtons = (pathname) => {
-  //   switch (pathname) {
-  //     case '/':
-  //       return (
-  //         <ul>
-  //           <li><Link to='/login' className="login">Login</Link></li>
-  //           <li><Link to='/registration' className="user">Registration</Link></li>
-  //         </ul>
-  //       );
-  //     case '/login':
-  //       return (
-  //         <ul>
-  //           <li><Link to='/registration' className="user">Registration</Link></li>
-  //         </ul>
-  //       );
-  //     case '/registration':
-  //       return (
-  //         <ul>
-  //           <li><Link to='/login' className="user">Login</Link></li>
-  //         </ul>
-  //       );
 
-  //     default:
-  //       return (
-  //         <>
-  //           <div className="searchMenu">
-  //             <form onSubmit={e => WorkWithInput(e)}>
-  //               <input type="text" placeholder='Browse for places here...' className="searchTxt" onChange={e => handleInput(e)}></input>
-  //               {/* <input type="Submit" value="Goooo" className="searchButton" onClick = {e => WorkWithInput}></input> */}
-  //               <input type="submit" value="Goooo" className="searchButton"></input>
-  //             </form>
-  //           </div>
-
-  //           <div className="userMenu">
-  //             <div>
-  //               <div className="dropdown">
-  //                 <Dropdown isOpen={dropdownOpen} toggle={toggle} direction="down">
-  //                   <DropdownToggle caret size="lg" color="primary">Me</DropdownToggle>
-  //                   <DropdownMenu >
-  //                     <DropdownItem><Link to='/notifications' >Notification</Link></DropdownItem>
-  //                     <DropdownItem divider />
-  //                     <DropdownItem><Link to='/Profile' >User</Link></DropdownItem>
-  //                   </DropdownMenu>
-  //                 </Dropdown>
-  //               </div>
-
-  //               <div className="bigButtons">
-  //                 <ul style={{listStyle: 'none'}}>
-  //                   <li><Link to='/notifications' className="notification">Notification</Link></li>
-  //                   <li><Link to='/Profile' className="user">User</Link></li>
-  //                 </ul>
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </>
-  //       );
-  //   }
-  // };
 
   return (
-    <>
-      {/* <div className="myHeader">
-        <div className="myLogo">
-          <Link to='/homepage' className="logo">LeisureGuru</Link>
-          <Link to='/homepage' className="logoSmall">LG</Link>
-        </div>
-        <div className="mySearch">
-          <form onSubmit={e => WorkWithInput(e)}>
-            <input type="text" placeholder='Browse for places here...' className="mySearchTxt" onChange={e => handleInput(e)}></input>
-            <input type="submit" value="Goooo" className="mySearchButton"></input>
-          </form>
-        </div>
-        <div className="myButtons"></div>
-      </div> */}
       <header>
         <div className="filterMenu">
           <Filters/>
@@ -190,6 +117,5 @@ export const NavigationBar = function (props) {
         </div>
 
       </header>
-    </>
   );
 }

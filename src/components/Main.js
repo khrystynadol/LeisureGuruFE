@@ -1,47 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { Rating } from "./filters/Rating";
-import { Activities } from "./filters/Activities";
 import { PlaceComponent } from "./PlaceComponent"
-import { Date } from "./filters/Date";
-import { Filters } from "./filters/Filters";
-
 import { AlertComponent } from "./AlertComponent"
 import { SearchContext } from "./context/SearchContext";
 import { FilterContext } from "./context/FilterContext";
 
-import styles from './Main.css';
-import { AiOutlineBars } from "react-icons/ai";
-
-import {
-    Button,
-    Dropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    Offcanvas,
-    OffcanvasBody,
-    OffcanvasHeader,
-} from 'reactstrap';
-
 export const Main = function () {
-    
-    // const [rating, setRating] = useState(5);
-    // const [date, setDate] = useState(0);
-    // const [selectedActivities, setSelectedActivities] = useState(
-    //     new Array()
-    // );
-
-    // const [sideBarOpen, setSideBarOpen] = useState(false);
-
     const searchContext = useContext(SearchContext);
     const filterContext = useContext(FilterContext);
-
+    const [info, setInfo] = useState([]);// create useState for info thet we GET from db
     var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
 
-
-    const [info, setInfo] = useState([]);// create useState for info thet we GET from db
-
-   
     useEffect(() => {
         const getInformation = async () => {
             const conn = await fetch('http://127.0.0.1:5000/homepage'); //create connection with db
@@ -109,38 +77,10 @@ export const Main = function () {
             .catch(e => console.log("failed: " + e));
     }, [searchContext.searchString]);
 
-    // const toggleSideBar = () => {
-    //     setSideBarOpen(!sideBarOpen);
-    // };
-
     return (
-        <>
-
+        
             <div className="wrapper">
-               
-                {/* <div className="left-panel">
-                <Rating setRating={setRating} />
-                <Activities selectedActivities={selectedActivities} setSelectedActivities={setSelectedActivities}/>
-                <Date date={date} setDate={setDate}/>
-
-            </div> */}
-
-
-                {/* <Dropdown isOpen={dropdownOpen} toggle={toggle} direction="down">
-                    <DropdownToggle caret size="lg" color="primary">Filters</DropdownToggle>
-                    <DropdownMenu color="primary">
-                        <DropdownItem><Rating setRating={setRating} /></DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem><Activities selectedActivities={selectedActivities} setSelectedActivities={setSelectedActivities} /></DropdownItem>
-                        <DropdownItem divider />
-                        <DropdownItem><Date date={date} setDate={setDate} /></DropdownItem>
-                    </DropdownMenu>
-                </Dropdown> */}
-
-
                 <div className="main-panel">
-
-
                             {
                                 info.map((infoIndex) => (
                                     <PlaceComponent
@@ -155,15 +95,11 @@ export const Main = function () {
                                 ))
 
                             }
-
-
                 </div>
                 <div>
                     <AlertComponent authorized={true} />
                 </div>
-
-
             </div>
-        </>
+        
     );
 }
