@@ -208,11 +208,11 @@ export const Profile = function () {
     return(
         <>
             <div className="forma">
-                <div className="container-fluid">
-                    <div className="row">
+                <div className="row">
+                    <div className="row" >
                         <div className="row">
-                            <div className="col-sm">
-                                <div className="imageContainer col d-flex ">
+                            <div className="col justify-content-right align-items-right">
+                                <div className="imageContainer col d-flex">
                                     <img 
                                     className = "userImage" 
                                     src= {profileData.photo || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"} 
@@ -220,7 +220,7 @@ export const Profile = function () {
                                     </img>
                                 </div>
                             </div>
-                            <div className="col d-flex">
+                            <div className="personDataContainer col d-flex justify-content-right">
                                 <div className="personData">
                                     <ProfileStrings
                                         profData={profileData}
@@ -228,49 +228,42 @@ export const Profile = function () {
                                 </div>
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col d-flex align-items-center justify-content-left">
-                                <div className="">
-                                    <div className="listWrapper mt-5" >
-                                        <ul role = "tablist" className="tblist">
-                                            <li className = "nav-item">
-                                                <Link className = "editProfile"  to= '/editprofile' id = "home-tab" data-toggle = "tab"  role = "tab">Edit profile</Link>
-                                            </li>
-                                            <li className = "nav-item">
-                                                <Link className = "settings"  to='/settings' id = "profile-tab" data-toggle = "tab" href = "#" role = "tab">Settings</Link>
-                                            </li>
-                                            <li className = "nav-item">
-                                                <Link className = "logOut " to = "/" onClick={LogOut}>Log out </Link>
-                                            </li>
-                                            <li className = "nav-item">
-                                                <button className = "deleteButton" onClick={toggle}>
-                                                    Delete my account
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg">
-                                <div className="mt-5">
-                                    
-                                    <Modal isOpen={modal} toggle={toggle}>
-                                        <ModalHeader toggle={toggle}>
+                        <div className="row d-flex align-items-center justify-content-center " >
+                            <div className="row mt-5 d-flex align-items-center justify-content-center" >
+                                <ul role = "tablist" className="listWrapper">
+                                    <li className = "nav-item">
+                                        <Link className = "editProfile"  to= '/editprofile' id = "home-tab" data-toggle = "tab"  role = "tab">Edit profile</Link>
+                                    </li>
+                                    <li className = "nav-item">
+                                        <Link className = "settings"  to='/settings' id = "profile-tab" data-toggle = "tab" href = "#" role = "tab">Settings</Link>
+                                    </li>
+                                    <li className = "nav-item">
+                                        <Link className = "logOut " to = "/" onClick={LogOut}>Log out </Link>
+                                    </li>
+                                    <li className = "nav-item">
+                                        <button className = "deleteButton" onClick={toggle}>
                                             Delete my account
-                                        </ModalHeader>
-                                        <ModalBody>
-                                            Do you want to delete your account on LeisureGuru?
-                                        </ModalBody>
-                                        <ModalFooter>
-                                            <Button color="danger" onClick={toggleYes}>
-                                                Delete
-                                            </Button>{' '}
-                                            <Button color="secondary" onClick={toggle}>
-                                                Cancel
-                                            </Button>
-                                        </ModalFooter>
-                                    </Modal>
-                                </div>
+                                        </button>
+                                    </li>
+                                </ul>
+                                    <div className="modalContainer d-flex justify-content-center align-items-center">
+                                        <Modal className=" position-relative" isOpen={modal} toggle={toggle} style={{width:'50%', justifySelf:'center', alignSelf:'center'}}>
+                                            <ModalHeader toggle={toggle}>
+                                                Delete my account
+                                            </ModalHeader>
+                                            <ModalBody>
+                                                Do you want to delete your account on LeisureGuru?
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <Button color="danger" onClick={toggleYes}>
+                                                    Delete
+                                                </Button>{' '}
+                                                <Button color="secondary" onClick={toggle}>
+                                                    Cancel
+                                                </Button>
+                                            </ModalFooter>
+                                        </Modal>
+                                    </div>
                             </div>
                         </div>
                     </div>

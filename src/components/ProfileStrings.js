@@ -26,7 +26,7 @@ export const ProfileStrings = function({profData})  {
         </tr>
         <tr>
           <td>Verification</td>
-          <td>{profData.verification ? "Complete" : "Not yet"}</td>
+          <td>{profData.verification ? '✅' : "❌"}</td>
         </tr>
       </tbody>
     </Table>
