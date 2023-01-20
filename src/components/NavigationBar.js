@@ -4,6 +4,7 @@ import { React, useContext, useState } from "react";
 import { Filters } from "./filters/Filters";
 import { SearchContext } from "./context/SearchContext";
 import style from './style.css'
+import {AiOutlineUser} from "react-icons/ai";
 import {
   Dropdown,
   DropdownToggle,
@@ -52,21 +53,37 @@ export const NavigationBar = function (props) {
     switch (pathname) {
       case '/':
         return (
-          <ul style={{listStyleType:'none'}}>
-            <li><Link to='/login' className="login">Login</Link></li>
-            <li><Link to='/registration' className="user">Registration</Link></li>
-          </ul>
+          <div className="userMenu">
+          
+            <div className="myDropdown">
+              <Dropdown  isOpen={dropdownOpen} toggle={toggle} direction="down" className="userButton">
+                <DropdownToggle caret size="lg" color="primary" className="userButton"><AiOutlineUser className="profileIcon"/></DropdownToggle>
+                <DropdownMenu className="dpMenu">
+                  <DropdownItem ><Link to='/login' className="login" style={{ textDecoration: 'none' }}>Login</Link></DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem><Link to='/registration' className="user" style={{ textDecoration: 'none' }}>Registration</Link></DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
+
+            <div className="bigButtons">
+              <Link to='/login' className="notification" style={{ textDecoration: 'none' }}>Login</Link>
+              <Link to='/registration' className="user" style={{ textDecoration: 'none' }}>Registration</Link>
+
+            </div>
+        
+        </div>
         );
       case '/login':
         return (
-          <ul>
-            <li><Link to='/registration' className="user">Registration</Link></li>
+          <ul style={{listStyle: 'none'}}>
+            <li><Link to='/registration' className="user" style={{ textDecoration: 'none' }}>Registration</Link></li>
           </ul>
         );
       case '/registration':
         return (
-          <ul>
-            <li><Link to='/login' className="user">Login</Link></li>
+          <ul style={{listStyle: 'none'}}>
+            <li><Link to='/login' className="user" style={{ textDecoration: 'none' }}>Login</Link></li>
           </ul>
         );
       default:
@@ -75,11 +92,11 @@ export const NavigationBar = function (props) {
           
             <div className="myDropdown">
               <Dropdown  isOpen={dropdownOpen} toggle={toggle} direction="down" className="userButton">
-                <DropdownToggle caret size="lg" color="primary" className="userButton">Profile</DropdownToggle>
+                <DropdownToggle caret size="lg" color="primary" className="userButton"><AiOutlineUser className="profileIcon"/></DropdownToggle>
                 <DropdownMenu className="dpMenu">
-                  <DropdownItem ><Link to='/notifications' className="notification" style={{ textDecoration: 'none' }}>Notifications</Link></DropdownItem>
+                  <DropdownItem><Link to='/notifications' className="notification-drop-down" style={{ textDecoration: 'none' }}>Notifications</Link></DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem><Link to='/Profile' className="user" style={{ textDecoration: 'none' }}>User</Link></DropdownItem>
+                  <DropdownItem><Link to='/Profile' className="user-drop-down" style={{ textDecoration: 'none' }}>User</Link></DropdownItem>
                 </DropdownMenu>
               </Dropdown>
             </div>
@@ -109,7 +126,11 @@ export const NavigationBar = function (props) {
         }
         
         <div className="logoMenu">
-          {location.pathname === '/' || location.pathname === '/login' || location.pathname === '/registration' ? <Link to='/' className="logo">LeisureGuru</Link> :
+          {location.pathname === '/' || location.pathname === '/login' || location.pathname === '/registration' ? 
+            <>
+            <Link to='/' className="logo">LeisureGuru</Link>
+            <Link to='/' className="logoSmall">LG</Link>
+           </> :
             <>
               <Link to='/homepage' className="logo">LeisureGuru</Link>
               <Link to='/homepage' className="logoSmall">LG</Link>
