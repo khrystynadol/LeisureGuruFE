@@ -14,7 +14,7 @@ export const PlaceComponent = function({id, image, name, rate, description, coun
 
     return(
         <>
-        <Card className="my-2"style={{ width: '60rem', display:'inline-block'}}>
+        <Card className="my-2" style={{ margin: '20px', display:'inline-block'}}>
             <CardImg src = {image}
             alt = {alterText}
             width='100%'/>
@@ -22,7 +22,7 @@ export const PlaceComponent = function({id, image, name, rate, description, coun
             <CardTitle tag="h5">
                 {name}
             </CardTitle>
-            <CardText style={{width:'57rem', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>
+            <CardText style={{width:'100%', overflow:'hidden', textOverflow:'ellipsis'}}>
                 {description}
             </CardText>
             <CardText>
