@@ -400,6 +400,7 @@ font-size: 20px;
 
 /*Стилизуем кнопку уведомлений*/
 .notification{
+
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     padding: 0 25px;
@@ -411,28 +412,62 @@ font-size: 20px;
     height: 60px;
     border-color: rgb(80, 47, 1);
     line-height: 3em;
-    /* width: 100%; */
+    /* width: 100%;  */
 }
 
-.login{
+.notification-drop-down {
+
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     padding: 0 25px;
     background: #EE8E57;
     color: #fff;
-    display:block;
-    position: absolute;
-    right:11%;
-    top:0px;
+    display:inline-block;
     transition: all .3s ease;
-    border-radius: 10px;
+    border-radius: 0;
     height: 60px;
-    vertical-align: middle;
     border-color: rgb(80, 47, 1);
     line-height: 3em;
 }
 
-.login:hover{
+.user-drop-down{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 25px;
+    align-items: center;
+    background: #EE8E57;
+    color: white;
+    display:inline-block;
+    transition: all .3s ease;
+    border-radius: 0;
+    height: 60px;
+    border-color: rgb(80, 47, 1);
+    line-height: 3em;
+    text-align: center;
+    top:0px;
+    right:0px;
+    width: 100%;
+}
+
+.login {
+
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 25px;
+    background: #EE8E57;
+    color: #fff;
+    display:inline-block;
+    transition: all .3s ease;
+    border-radius: 0;
+    height: 60px;
+    border-color: rgb(80, 47, 1);
+    line-height: 3em;
+    height: 60px;
+    width: 100%;
+
+}
+
+.login:hover {
     background: #fff;
     color: #EE8E57;
     transition: all .3s ease;
@@ -447,6 +482,16 @@ font-size: 20px;
 
 /*Стилизуем кнопку уведомлений при наведении на неё*/
 .notification:hover{
+    background: #fff;
+    color: #EE8E57;
+    transition: all .3s ease;
+}
+.notification-drop-down:hover {
+    background: #fff;
+    color: #EE8E57;
+    transition: all .3s ease;
+}
+.user-drop-down:hover{
     background: #fff;
     color: #EE8E57;
     transition: all .3s ease;

@@ -59,7 +59,7 @@ export const NavigationBar = function (props) {
               <Dropdown  isOpen={dropdownOpen} toggle={toggle} direction="down" className="userButton">
                 <DropdownToggle caret size="lg" color="primary" className="userButton"><AiOutlineUser className="profileIcon"/></DropdownToggle>
                 <DropdownMenu className="dpMenu">
-                  <DropdownItem ><Link to='/login' className="notification" style={{ textDecoration: 'none' }}>Login</Link></DropdownItem>
+                  <DropdownItem ><Link to='/login' className="login" style={{ textDecoration: 'none' }}>Login</Link></DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem><Link to='/registration' className="user" style={{ textDecoration: 'none' }}>Registration</Link></DropdownItem>
                 </DropdownMenu>
@@ -94,9 +94,9 @@ export const NavigationBar = function (props) {
               <Dropdown  isOpen={dropdownOpen} toggle={toggle} direction="down" className="userButton">
                 <DropdownToggle caret size="lg" color="primary" className="userButton"><AiOutlineUser className="profileIcon"/></DropdownToggle>
                 <DropdownMenu className="dpMenu">
-                  <DropdownItem><Link to='/notifications' className="notification" style={{ textDecoration: 'none' }}>Notifications</Link></DropdownItem>
+                  <DropdownItem><Link to='/notifications' className="notification-drop-down" style={{ textDecoration: 'none' }}>Notifications</Link></DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem><Link to='/Profile' className="user" style={{ textDecoration: 'none' }}>User</Link></DropdownItem>
+                  <DropdownItem><Link to='/Profile' className="user-drop-down" style={{ textDecoration: 'none' }}>User</Link></DropdownItem>
                 </DropdownMenu>
               </Dropdown>
             </div>
