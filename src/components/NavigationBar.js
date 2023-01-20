@@ -34,9 +34,10 @@ export const NavigationBar = function (props) {
   const renderSearchContainer = (pathname) => {
     if (pathname == '/' || pathname == '/login' || pathname == '/registration') {
       return (
-        <div className="searchTxt">
+        // <div className="searchTxt">
 
-        </div>
+        // </div>
+        <></>
       );
     } else {
       return (
@@ -51,7 +52,7 @@ export const NavigationBar = function (props) {
     switch (pathname) {
       case '/':
         return (
-          <ul>
+          <ul style={{listStyleType:'none'}}>
             <li><Link to='/login' className="login">Login</Link></li>
             <li><Link to='/registration' className="user">Registration</Link></li>
           </ul>
@@ -99,9 +100,14 @@ export const NavigationBar = function (props) {
 
   return (
       <header>
-        <div className="filterMenu">
-          <Filters/>
-        </div>
+        {
+          location.pathname === '/' || location.pathname === '/login' || location.pathname === '/registration' ?
+          <></>
+          : <div className="filterMenu">
+              <Filters/>
+            </div>
+        }
+        
         <div className="logoMenu">
           {location.pathname === '/' || location.pathname === '/login' || location.pathname === '/registration' ? <Link to='/' className="logo">LeisureGuru</Link> :
             <>

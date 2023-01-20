@@ -338,7 +338,7 @@ font-size: 20px;
     border-radius: 80%;
     animation: spinner 1.5s linear infinite;
     margin-left: 50%;
-  }
+}
 
   /* Nav bar*/
 
@@ -394,6 +394,8 @@ font-size: 20px;
     border-color: rgb(80, 47, 1);
     line-height: 3em;
     text-align: center;
+    top:0px;
+    right:0px;
 }
 
 /*Стилизуем кнопку уведомлений*/

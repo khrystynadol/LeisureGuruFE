@@ -32,11 +32,7 @@ export const AlertComponent = function({authorized}) {
                 other functions. Enjoy!
             </p>
             <hr />
-            <div className="d-flex justify-content-end">
-              <Button onClick={toggle} color="primary">
-                Got it!
-              </Button>
-            </div>
+            
         </>
             :
             <p className="mb-0">
@@ -46,7 +42,11 @@ export const AlertComponent = function({authorized}) {
             </p>
             
         }
-        
+        <div className="d-flex justify-content-end">
+          <Button onClick={toggle} color="primary">
+            Got it!
+          </Button>
+        </div>
       </Alert>
      
     </div>
