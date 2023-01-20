@@ -389,7 +389,7 @@ font-size: 20px;
     color: white;
     display:inline-block;
     transition: all .3s ease;
-    border-radius: 0;
+    border-radius: 10px;
     height: 60px;
     border-color: rgb(80, 47, 1);
     line-height: 3em;
@@ -407,7 +407,7 @@ font-size: 20px;
     color: #fff;
     display:inline-block;
     transition: all .3s ease;
-    border-radius: 0;
+    border-radius: 10px;
     height: 60px;
     border-color: rgb(80, 47, 1);
     line-height: 3em;
@@ -463,6 +463,11 @@ font-size: 20px;
     color: #EE8E57;
     transition: all .3s ease;
 }
+
+.profileIcon {
+    height: 100%;
+    width: 50%;
+}
 .main-panel{
     background: -webkit-linear-gradient(to right, #ecd09f, #e5ceab);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #ecd09f, #e5ceab);
@@ -514,6 +519,7 @@ input:not(:placeholder-shown) + input[type="Submit"]{
 .personDataContainer{
     margin-left: 1.5vh;
 }
+
 
 
 @media screen and(max-width:1500px){
