@@ -537,7 +537,7 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     /*background-color: hsl(0, 0%, 100%);*/
     background-color:transparent;
     border: 4px solid hsl(0, 0%, 90%);
-    text-align: center;
+    text-align: left;
     width:100%;
     position:relative;
     height:100%;
