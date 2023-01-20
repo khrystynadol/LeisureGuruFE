@@ -52,20 +52,20 @@ export const NavigationBar = function (props) {
       case '/':
         return (
           <ul>
-            <li><Link to='/login' className="login">Login</Link></li>
-            <li><Link to='/registration' className="user">Registration</Link></li>
+            <li><Link to='/login' className="login" style={{ textDecoration: 'none' }}>Login</Link></li>
+            <li><Link to='/registration' className="user" style={{ textDecoration: 'none' }}>Registration</Link></li>
           </ul>
         );
       case '/login':
         return (
           <ul>
-            <li><Link to='/registration' className="user">Registration</Link></li>
+            <li><Link to='/registration' className="user" style={{ textDecoration: 'none' }}>Registration</Link></li>
           </ul>
         );
       case '/registration':
         return (
           <ul>
-            <li><Link to='/login' className="user">Login</Link></li>
+            <li><Link to='/login' className="user" style={{ textDecoration: 'none' }}>Login</Link></li>
           </ul>
         );
       default:
