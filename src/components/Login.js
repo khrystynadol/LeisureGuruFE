@@ -138,7 +138,7 @@ export const Login = function() {
     return(
     <div className="Login">
       <div className="login-form">
-        <div>{Header("Log in")}</div>
+        <div><Header word={'Log in'}></Header></div>
         {isLoading ? <LoadingSpinner />  : renderForm}
       </div>
     </div>

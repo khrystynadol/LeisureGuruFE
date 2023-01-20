@@ -22,9 +22,19 @@ export const PlaceComponent = function({id, image, name, rate, description, coun
             <CardTitle tag="h5">
                 {name}
             </CardTitle>
-            <CardText style={{width:'100%', overflow:'hidden', textOverflow:'ellipsis'}}>
-                {description}
-            </CardText>
+            { authorized ?
+                <CardText style={{width:'100%', overflow:'hidden', textOverflow:'ellipsis'}}>
+                    {description}
+                </CardText>
+                :
+                <CardText style={{width:'100%', overflow:'hidden', textOverflow:'ellipsis'}}>
+                    {
+                        description.length >= 191 ? 
+                        description.substring(0, 188) + '...'
+                        : description
+                    }
+                </CardText>
+            }
             <CardText>
                 <small className="text-muted">
                 {country}, {city}
