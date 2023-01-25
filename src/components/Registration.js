@@ -180,29 +180,28 @@ export const Registration = function(props) {
     };
 
     const registrationForm = (
-        <div className="form">
-        <Form className="form-body">
-            <FormGroup className="form__element">
+        <div className="form" style={{height:'100%'}}>
+          <Form className="form-body">
+            <FormGroup className="form__element row">
                 <Label className="form__label" htmlFor="firstName">First Name </Label>
                 <Input invalid={dirtyFirstName && errorFirstName} className="form__input" onChange={e=>firstNameHandler(e)}  onBlur={e=>firstNameHandler(e)} type="text" value={firstName}  name="firstName" placeholder="First Name" ref={fieldFirstName}/>
                 <FormFeedback invalid style={{width: '30%'}}>{errorFirstName}</FormFeedback>
             </FormGroup>
-            <FormGroup className="form__element">
+            <FormGroup className="form__element row">
                 <Label className="form__label" htmlFor="lastName">Last Name </Label>
                 <Input invalid={dirtyLastName && errorLastName}  onChange={e=>lastNameHandler(e)} onBlur={e=>lastNameHandler(e)} type="text"  name="lastName" value={lastName}  className="form__input" placeholder="LastName" ref={fieldLastName}/>
                 <FormFeedback invalid style={{width: '30%'}}>{errorLastName}</FormFeedback>
             </FormGroup>
-            <FormGroup className="form__element">
+            <FormGroup className="form__element ">
                 <Label className="form__label" htmlFor="email">Email </Label>
                 <Input invalid={dirtyEmail && errorEmail}  onChange={e=>emailHandler(e)} value = {email} onBlur={e=>emailHandler(e)} type="email" name="email" className="form__input"   placeholder="Email" ref={fieldEmail}/>
                 <FormFeedback invalid style={{width: '30%'}}>{errorEmail}</FormFeedback>
             </FormGroup>
-            <FormGroup className="form__element">
+            <FormGroup className="form__element ">
                 <Label className="form__label" htmlFor="date">Birth date </Label>
                 <Input  type = 'date' onChange = {e=>setDate(e.target.value)} value = {date} className = "form__input" name = 'date' placeholder = 'Pick your birth date...' ref={fieldDate}/>
-                
             </FormGroup>
-            <FormGroup className="form__element">
+            <FormGroup className="form__element ">
                 <Label className="form__label" htmlFor="password">Password </Label>
                 <Input invalid={dirtyPassword && errorPassword} className="form__input" onChange={e=>passwordHandler(e)} value = {password} onBlur={e=>passwordHandler(e)} type="password"  name="password"   placeholder="Password" />
                 <FormFeedback invalid style={{width: '30%'}}>{errorPassword}</FormFeedback>
@@ -214,14 +213,14 @@ export const Registration = function(props) {
             </FormGroup>
             <div className="submitDiv">
            
-           <button disabled = {!formValid || isLoading} className = "submitButton" type = 'submit' onClick={()=>handleSubmit()}>{formCaption}</button>
+            <button disabled = {!formValid || isLoading} className = "submitButton" type = 'submit' onClick={()=>handleSubmit()}>{formCaption}</button>
 
            </div>
            <div className="formError">
              { serverError == '' ? null : <Alert color="danger" style={{width: "100%"}} >{serverError}</Alert>}
            </div>
 
-        </Form>
+          </Form>
 
     </div>
               
@@ -230,7 +229,7 @@ export const Registration = function(props) {
     
      return(
         <div className="Login">
-        <div className="login-onClick={()=>handleSubmit()}m">
+        <div className="login-onClick={()=>handleSubmit()}m" >
         <div><Header word={formCaption}></Header></div> 
         {isLoading ? <LoadingSpinner />  : registrationForm}
         </div>

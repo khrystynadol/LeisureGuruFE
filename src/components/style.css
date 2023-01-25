@@ -13,7 +13,7 @@ body{
 .form{
     background-color: #EBE7C4;
     border-radius: 5px;
-    width: 1000px;
+    width: 70%;
     margin: 20px auto;
     padding: 20px;
     position: relative;
@@ -39,8 +39,8 @@ body{
 .form__input {
     display:flex;
     justify-content: center;
-    align-content: center;
-    width:35%;
+    align-items: center;
+    width:45%;
     border-radius: 10px;
     height:30px;
     padding: 2px 2px;
@@ -48,13 +48,28 @@ body{
     border: 3px solid;
     text-align: center;
 }
-
 .form__element{
-    display:flex;
+    display:flex; 
     justify-content: left;
-    align-content: center;
+    align-items: center;
     margin-bottom:1em;
+    flex-direction: row;
 }
+
+@media (max-width:760px) {
+    .form__input{
+        width:90%;
+    }
+    .form__label{
+        width:60%;
+        justify-content: center;
+    }
+    .form__element{
+        flex-direction: column;
+    }
+}
+
+
   
 .submitDiv{
     margin-top:2em;
@@ -73,8 +88,16 @@ body{
     height: 40px;
     border-color: rgb(80, 47, 1);
     line-height: 3em;
+    flex-wrap: wrap;
     width:35%;
     margin-left:30%;
+}
+
+@media (max-width:760px) {
+    .submitDiv{
+        width:90%;
+        margin-left: 5%;
+    }
 }
   
 .submitButton{
@@ -292,7 +315,7 @@ font-size: 20px;
     position: absolute;
     transition: all .3s ease;
     border-radius: 10px;
-    height: 5vh;
+    height: 5.5vh;
     width:fit-content;
     text-size-adjust: auto;
     border-color: rgb(80, 47, 1);

@@ -29,8 +29,8 @@ export const PlaceComponent = function({id, image, name, rate, description, coun
                 :
                 <CardText style={{width:'100%', overflow:'hidden', textOverflow:'ellipsis'}}>
                     {
-                        description.length >= 191 ? 
-                        description.substring(0, 188) + '...'
+                        description.length >= 200 ? 
+                        description.substring(0, 200) + '...'
                         : description
                     }
                 </CardText>
