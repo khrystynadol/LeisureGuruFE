@@ -109,7 +109,7 @@ export const Login = function() {
     <div className="form">
         <Form className="form-body" onSubmit={handleSubmit}>
       {/* <form onSubmit={handleSubmit}> */}
-        <FormGroup className="form__element">
+        <FormGroup className="form__element ">
           <Label className="form__label">Email</Label>
 
           <Input invalid= {dirtyEmail && errorEmail} onChange={e => emailHandler(e)}  onBlur={e=>emailHandler(e)} type="text" className="form__input" placeholder = "Email" name="email" required ref={fieldEmail}/>
