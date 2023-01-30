@@ -5,6 +5,7 @@ import { Link} from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ProfileStrings} from './ProfileStrings'
+import SecurityUtils from "./classes/SecurityUtils"; 
 
 
 export const Profile = function () {
@@ -18,12 +19,15 @@ export const Profile = function () {
     const[profileData, setProfileData] = useState({})
 
     function LogOut(){
-       
-        fetch(`http://127.0.0.1:5000/profile/logout/${localStorage.getItem("id")}`,  {
+        SecurityUtils.checkAccessToken()
+            .then(() => {
+                
+       return fetch(`http://127.0.0.1:5000/profile/logout/${localStorage.getItem("id")}`,  {
             method: 'GET',
             headers : auth,
             mode:'cors'
         })
+    })
         .then((response) => {
          if (response.status >= 200 && response.status <= 299) {
 
@@ -39,11 +43,14 @@ export const Profile = function () {
     
     const toggleYes = () =>{
         setModal(!modal);
-        fetch(`http://127.0.0.1:5000/profile/${localStorage.getItem("id")}`, {
+        SecurityUtils.checkAccessToken()
+            .then(() => {
+        return fetch(`http://127.0.0.1:5000/profile/${localStorage.getItem("id")}`, {
             method: 'DELETE',
             headers : auth,
             mode:'cors' 
         })
+    })
         .then((response) => {
             if (response.status >= 200 && response.status <= 299) {
                 localStorage.clear();
@@ -61,12 +68,14 @@ export const Profile = function () {
 
 
     useEffect(()=>{
-        function GetInfo(){
-            fetch(`http://127.0.0.1:5000/profile/${localStorage.getItem("id")}`,  {
-                method: 'GET',
+        function GetInfo() {
+            SecurityUtils.checkAccessToken()
+            .then(() => {
+            return fetch(`http://127.0.0.1:5000/profile/${localStorage.getItem("id")}`, {
                 headers : auth,
                 mode:'cors'
             })
+        })
             .then(response => response.json())
             .then(respData => {
                 setProfileData(respData);
@@ -81,6 +90,7 @@ export const Profile = function () {
             })
             .catch(e => console.log("failed: " + e));
         };
+    
         GetInfo();
     }, []);
 

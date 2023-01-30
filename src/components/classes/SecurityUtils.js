@@ -8,7 +8,7 @@ class SecurityUtils {
             let exp = JSON.parse(atob(token.split('.')[1])).exp
             if (-exp * 1000 < Date.now()) {
                 console.log("expired!!")
-                fetch('http://127.0.0.1:5000/refresh', {
+                return fetch('http://127.0.0.1:5000/refresh', {
                     method: 'POST',
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.getItem("refresh_token"),

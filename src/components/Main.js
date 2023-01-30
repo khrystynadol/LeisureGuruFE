@@ -62,26 +62,27 @@ export const Main = function () {
         }, [filterContext.rating, filterContext.date, filterContext.selectedActivities]
 
     );
-/*
+
     useEffect(() => {
        console.log("input!" + searchContext.searchString)
-        token_check()
+       SecurityUtils.checkAccessToken()
             .then(() => {
                 console.log('check token reoslved 2');
+                return fetch(`http://127.0.0.1:5000/filter`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem("access_token"),
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+        
+                    body: JSON.stringify(
+                        {
+                            search_box: searchContext.searchString
+                        }
+                    )
             })
-        fetch(`http://127.0.0.1:5000/filter`, {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem("access_token"),
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-
-            body: JSON.stringify(
-                {
-                    search_box: searchContext.searchString
-                }
-            )
+       
         })
             .then(response => response.json())
             .then(respData => {
@@ -89,7 +90,7 @@ export const Main = function () {
             })
             .catch(e => console.log("failed: " + e));
     }, [searchContext.searchString]);
-*/
+
     return (
         
             <div className="wrapper">
