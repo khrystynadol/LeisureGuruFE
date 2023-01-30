@@ -13,13 +13,13 @@ export const Profile = function () {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
     var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
-    var auth = { "Authorization" : `Basic ${credentials}` }
-    let id = localStorage.getItem("id")
+    var auth = { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") }
+    let id = JSON.parse(atob(localStorage.getItem("access_token").split('.')[1])).user_id
     const[profileData, setProfileData] = useState({})
 
     function LogOut(){
        
-        fetch(`http://127.0.0.1:5000/profile/logout/${id}`,  {
+        fetch(`http://127.0.0.1:5000/profile/logout/${localStorage.getItem("id")}`,  {
             method: 'GET',
             headers : auth,
             mode:'cors'
@@ -39,7 +39,7 @@ export const Profile = function () {
     
     const toggleYes = () =>{
         setModal(!modal);
-        fetch('http://127.0.0.1:5000/profile/' + localStorage.getItem("id"), {
+        fetch(`http://127.0.0.1:5000/profile/${localStorage.getItem("id")}`, {
             method: 'DELETE',
             headers : auth,
             mode:'cors' 
@@ -62,7 +62,7 @@ export const Profile = function () {
 
     useEffect(()=>{
         function GetInfo(){
-            fetch(`http://127.0.0.1:5000/profile/${id}`,  {
+            fetch(`http://127.0.0.1:5000/profile/${localStorage.getItem("id")}`,  {
                 method: 'GET',
                 headers : auth,
                 mode:'cors'
