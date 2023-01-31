@@ -12,6 +12,7 @@ import {
 } from 'reactstrap';
 import { WiDayCloudyGusts, WiDayCloudy, WiNightShowers, WiDaySleetStorm} from "react-icons/wi";
 import './style.css'
+import SecurityUtils from "./classes/SecurityUtils"; 
 
 
 export const Details = function () {
@@ -23,7 +24,7 @@ export const Details = function () {
     const location = useLocation();
     var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
     console.log(credentials)
-    var auth = { "Authorization": `Basic ${credentials}` }
+    var auth = { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") }
 
 
     const next = () => {
@@ -45,11 +46,14 @@ export const Details = function () {
 
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:5000/place/photos/${id}`, {
+        SecurityUtils.checkAccessToken()
+            .then(() => {
+            return fetch(`http://127.0.0.1:5000/place/photos/${id}`, {
             method: 'GET',
             headers: auth,
             mode: 'cors'
         })
+    })
             .then(response => response.json())
             .then(jsonResponse => {
 
@@ -59,12 +63,14 @@ export const Details = function () {
 
 
 
-
-        fetch(`http://127.0.0.1:5000/place/${id}`, {
+            SecurityUtils.checkAccessToken()
+            .then(() => {
+            return fetch(`http://127.0.0.1:5000/place/${id}`, {
             method: 'GET',
             headers: auth,
             mode: 'cors'
         })
+    })
             .then(response => response.json())
             .then(jsonResponse => {
 
