@@ -67,7 +67,7 @@ export const Login = function() {
 
 
     setIsLoading(true);
-    fetch('http://127.0.0.1:5000/token', {
+    fetch('http://127.0.0.1:5000/login', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

@@ -167,12 +167,13 @@ export const Registration = function(props) {
         if (jsonResponse.code >=300) {
           throw new Error(jsonResponse.message)
         } else {
-          // localStorage.setItem("id", jsonResponse.id)
-          // localStorage.setItem("email", jsonResponse.email)
-
-          // setIsLoading(false);
-          // navigate("/homepage");
-
+          let id = JSON.parse(atob(jsonResponse.access_token.split('.')[1])).user_id
+          localStorage.setItem("id", id)
+          localStorage.setItem("access_token", jsonResponse.access_token)
+          localStorage.setItem("refresh_token", jsonResponse.refresh_token)     
+          setIsLoading(false);
+          navigate("/homepage");
+/*
           fetch('http://127.0.0.1:5000/token', {
             method: 'PUT',
             headers: {
@@ -201,23 +202,19 @@ export const Registration = function(props) {
             } else {
               let id = JSON.parse(atob(jsonResponse.access_token.split('.')[1])).user_id
               localStorage.setItem("id", id)
-              // localStorage.setItem("email", jsonResponse.email)
               localStorage.setItem("access_token", jsonResponse.access_token)
               localStorage.setItem("refresh_token", jsonResponse.refresh_token)     
               setIsLoading(false);
               navigate("/homepage");
             }
           })
+          
           .catch(e => {
             setIsLoading(false);
             setServerError(e.message);  
           });
 
-
-
-
-
-
+*/
 
 
         }
