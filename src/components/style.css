@@ -89,7 +89,7 @@ body{
     border-color: rgb(80, 47, 1);
     line-height: 3em;
     flex-wrap: wrap;
-    width:35%;
+    width:45%;
     margin-left:30%;
 }
 
@@ -97,6 +97,7 @@ body{
     .submitDiv{
         width:90%;
         margin-left: 5%;
+        padding:0 15px;
     }
 }
   
@@ -609,6 +610,14 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     flex-grow: 1;
     background-color: white;
     text-align: center;
+    flex-direction: row;
+}
+
+@media (max-Width:500px){
+    .detailsWeatherPanel .weatherCard {
+        width: 30%;
+        flex-direction: column;
+    }    
 }
 
 .detailsWeatherPanel .weatherIcon svg {
