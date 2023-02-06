@@ -1,6 +1,7 @@
 import {React, useState, useEffect} from "react";
 import {PlaceComponent} from "./PlaceComponent"
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import SecurityUtils from "./classes/SecurityUtils"; 
 
 export const ResultPage = function(){
 const location = useLocation();
@@ -21,7 +22,9 @@ let id = localStorage.getItem("id")
 
 useEffect( () =>{
     //e.preventDefault();
-        fetch(`http://127.0.0.1:5000/filter`, {
+    SecurityUtils.checkAccessToken()
+            .then(() => {
+            return fetch(`http://127.0.0.1:5000/filter`, {
             method: 'POST',
                 headers: { 
                             'Authorization' : `Basic ${credentials}`,
@@ -35,6 +38,7 @@ useEffect( () =>{
             }
             )
         })
+    })
             .then(response => response.json())
             .then(respData => {
                 setResult(respData)

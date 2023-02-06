@@ -167,10 +167,56 @@ export const Registration = function(props) {
         if (jsonResponse.code >=300) {
           throw new Error(jsonResponse.message)
         } else {
-          localStorage.setItem("id", jsonResponse.id)
-          localStorage.setItem("email", jsonResponse.email)
+          let id = JSON.parse(atob(jsonResponse.access_token.split('.')[1])).user_id
+          localStorage.setItem("id", id)
+          localStorage.setItem("access_token", jsonResponse.access_token)
+          localStorage.setItem("refresh_token", jsonResponse.refresh_token)     
           setIsLoading(false);
           navigate("/homepage");
+/*
+          fetch('http://127.0.0.1:5000/token', {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+              {
+                email: email,
+                password: password
+              }
+            )
+          })
+          .catch(e => {
+            throw new Error('Service unreachable')
+          })
+          .then(response => {
+            if (response.headers.get('content-type') == 'application/json') {
+              return response.json()
+            } else {
+              throw new Error(response.statusText)
+            }
+          })
+          .then(jsonResponse => {
+            if (jsonResponse.code >=300) {
+              throw new Error(jsonResponse.message)
+            } else {
+              let id = JSON.parse(atob(jsonResponse.access_token.split('.')[1])).user_id
+              localStorage.setItem("id", id)
+              localStorage.setItem("access_token", jsonResponse.access_token)
+              localStorage.setItem("refresh_token", jsonResponse.refresh_token)     
+              setIsLoading(false);
+              navigate("/homepage");
+            }
+          })
+          
+          .catch(e => {
+            setIsLoading(false);
+            setServerError(e.message);  
+          });
+
+*/
+
+
         }
       })
       .catch(e => {

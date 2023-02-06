@@ -3,12 +3,16 @@ import { PlaceComponent } from "./PlaceComponent"
 import { AlertComponent } from "./AlertComponent"
 import { SearchContext } from "./context/SearchContext";
 import { FilterContext } from "./context/FilterContext";
+import SecurityUtils from "./classes/SecurityUtils"; 
 
 export const Main = function () {
     const searchContext = useContext(SearchContext);
     const filterContext = useContext(FilterContext);
     const [info, setInfo] = useState([]);// create useState for info thet we GET from db
     var credentials = btoa(localStorage.getItem("email") + ":" + localStorage.getItem("password"))
+    //var access_token = localStorage.getItem("access_token")
+    //var refresh_token = localStorage.getItem("refresh_token")
+    var auth = { 'Authorization': 'Bearer ' + localStorage.getItem("access_token") }
 
     useEffect(() => {
         const getInformation = async () => {
@@ -23,21 +27,25 @@ export const Main = function () {
         console.log("filter changed from main " + filterContext.rating + ", " + filterContext.date + ", " +filterContext. selectedActivities);
 
         console.log(credentials)
-        var auth = { "Authorization": `Basic ${credentials}` }
-        fetch('http://127.0.0.1:5000/filter', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Basic ${credentials}`,
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            body: JSON.stringify(
-                {
-                    rate: filterContext.rating,
-                    activities: filterContext.selectedActivities,
-                }
-            )
-        })
+        console.log('=== before token_check');
+        SecurityUtils.checkAccessToken()
+            .then(() => {
+                console.log('check token reoslved 1');
+                return fetch('http://127.0.0.1:5000/filter', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem("access_token"),//`Basic ${credentials}`,
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+                    body: JSON.stringify(
+                        {
+                            rate: filterContext.rating,
+                            activities: filterContext.selectedActivities,
+                        }
+                    )
+                });
+            })
             .then(response => {
                 if (response.status >= 400) {
                     throw Error(400);
@@ -49,26 +57,32 @@ export const Main = function () {
             .then(jsonResponse => {
                 return setInfo(jsonResponse);
             })
-            .catch(e => console.log("failed: " + e));
-    }, [filterContext.rating, filterContext.date, filterContext.selectedActivities]
+            .catch(e => console.log("!!! failed: " + e));
+        console.log('=== after fetch filter');
+        }, [filterContext.rating, filterContext.date, filterContext.selectedActivities]
 
     );
 
     useEffect(() => {
-        console.log("input!" + searchContext.searchString)
-        fetch(`http://127.0.0.1:5000/filter`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Basic ${credentials}`,
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-
-            body: JSON.stringify(
-                {
-                    search_box: searchContext.searchString
-                }
-            )
+       console.log("input!" + searchContext.searchString)
+       SecurityUtils.checkAccessToken()
+            .then(() => {
+                console.log('check token reoslved 2');
+                return fetch(`http://127.0.0.1:5000/filter`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem("access_token"),
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'cors',
+        
+                    body: JSON.stringify(
+                        {
+                            search_box: searchContext.searchString
+                        }
+                    )
+            })
+       
         })
             .then(response => response.json())
             .then(respData => {

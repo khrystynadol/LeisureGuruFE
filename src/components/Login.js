@@ -47,7 +47,7 @@ export const Login = function() {
   const passwordHandler = (e) => {
     setDirtyPassword(true)
     setPassword(e.target.value)
-    localStorage.setItem("password", e.target.value)
+    //localStorage.setItem("password", e.target.value)
     if (e.target.value.length < 5) {
       setErrorPassword('Make it more than 5')
       if (!e.target.value) {
@@ -93,8 +93,10 @@ export const Login = function() {
       if (jsonResponse.code >=300) {
         throw new Error(jsonResponse.message)
       } else {
-        localStorage.setItem("id", jsonResponse.id)
-        localStorage.setItem("email", jsonResponse.email)
+        let id = JSON.parse(atob(jsonResponse.access_token.split('.')[1])).user_id
+        localStorage.setItem("id", id)
+        localStorage.setItem("access_token", jsonResponse.access_token)
+        localStorage.setItem("refresh_token", jsonResponse.refresh_token)
         setIsLoading(false);
         navigate("/homepage");
       }
