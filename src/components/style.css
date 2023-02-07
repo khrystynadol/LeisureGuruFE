@@ -598,7 +598,6 @@ input:not(:placeholder-shown) + input[type="Submit"]{
 }
 
 .detailsWeatherPanel {
-    display: flex;
     background-color: #EE8E57;
 }
 
@@ -615,6 +614,7 @@ input:not(:placeholder-shown) + input[type="Submit"]{
     width: 40px;
     height: 40px;
 }
+
 .wordBox{
     margin-top: 20px;
     font-family: "Poly-Regular";
@@ -794,7 +794,7 @@ header>div {
 .searchMenu .searchTxt{
     inset-inline-start:15%;
     block-size:30px;
-    background:1. 000000;
+    /*background:1. 000000;*/
     border-radius: 10px;
     padding: 10px;
     height: 100%;
@@ -840,4 +840,15 @@ header>div {
     }
 }
 
-
+@media (max-width: 767px) {
+    .detailsWeatherPanel {
+        background-color: transparent;
+    }
+    .weatherCard {
+        height: 110px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+}
