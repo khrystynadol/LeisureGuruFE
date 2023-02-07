@@ -192,11 +192,12 @@ export const Details = function () {
                 </CardBody>
             </Card>
 
-            <div className="detailsWeatherPanel">
-                {dailyWeather.map(item => 
-                    <div className="weatherCard">
+            <div className="detailsWeatherPanel d-flex flex-column flex-md-row">
+                {dailyWeather.map(item =>
+                    <div className="weatherCard w-100 text-center">
                         <div>{item.title}</div>
-                        <div className="weatherIcon">{item.icon}{item.temperature}</div>
+                        <div className="weatherIcon order-0 order-md-2">{item.icon}</div>
+                        <div>{item.temperature}</div>
                     </div>
                 )}
             </div>
